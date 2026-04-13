@@ -1,0 +1,939 @@
+{
+  "project": "OpenINTEL DNS Open Data Analysis",
+  "date": "2026-04-10",
+  "s3_endpoint": "https://object.openintel.nl",
+  "s3_bucket": "openintel-public",
+  "license": "CC BY-NC-SA 4.0",
+  "total_records": 231887661,
+  "total_domains": 33465359,
+  "total_size_mb": 11166.3,
+  "datasets": [
+    {
+      "name": "ch",
+      "category": "zone",
+      "files": 3,
+      "size_mb": 2576.3,
+      "records": 52192076,
+      "domains": 7113423,
+      "query_types": 13,
+      "ts_range": "1775693050000 - 1775756880000"
+    },
+    {
+      "name": "ee",
+      "category": "zone",
+      "files": 1,
+      "size_mb": 92.4,
+      "records": 2921064,
+      "domains": 465026,
+      "query_types": 13,
+      "ts_range": "1775692977000 - 1775754411000"
+    },
+    {
+      "name": "fr",
+      "category": "zone",
+      "files": 4,
+      "size_mb": 3643.2,
+      "records": 69296979,
+      "domains": 11105923,
+      "query_types": 13,
+      "ts_range": "1775692977000 - 1775715515000"
+    },
+    {
+      "name": "gov",
+      "category": "zone",
+      "files": 1,
+      "size_mb": 9.5,
+      "records": 258871,
+      "domains": 39651,
+      "query_types": 13,
+      "ts_range": "1775692982000 - 1775754382000"
+    },
+    {
+      "name": "li",
+      "category": "zone",
+      "files": 1,
+      "size_mb": 47.3,
+      "records": 1073229,
+      "domains": 167156,
+      "query_types": 13,
+      "ts_range": "1775693052000 - 1775756866000"
+    },
+    {
+      "name": "nu",
+      "category": "zone",
+      "files": 1,
+      "size_mb": 279.8,
+      "records": 4033983,
+      "domains": 531631,
+      "query_types": 13,
+      "ts_range": "1775692977000 - 1775754388000"
+    },
+    {
+      "name": "se",
+      "category": "zone",
+      "files": 2,
+      "size_mb": 2429.1,
+      "records": 30744314,
+      "domains": 3786257,
+      "query_types": 13,
+      "ts_range": "1775692977000 - 1775754387000"
+    },
+    {
+      "name": "sk",
+      "category": "zone",
+      "files": 1,
+      "size_mb": 583.1,
+      "records": 11450111,
+      "domains": 1385540,
+      "query_types": 13,
+      "ts_range": "1775692977000 - 1775715512000"
+    },
+    {
+      "name": "root",
+      "category": "zone",
+      "files": 1,
+      "size_mb": 0.4,
+      "records": 11196,
+      "domains": 2024,
+      "query_types": 12,
+      "ts_range": "1775779528000 - 1775843786000"
+    },
+    {
+      "name": "majestic",
+      "category": "toplist",
+      "files": 1,
+      "size_mb": 414.7,
+      "records": 15634679,
+      "domains": 2456668,
+      "query_types": 13,
+      "ts_range": "1775779666000 - 1775804766000"
+    },
+    {
+      "name": "radar",
+      "category": "toplist",
+      "files": 1,
+      "size_mb": 443.9,
+      "records": 16423530,
+      "domains": 2460397,
+      "query_types": 13,
+      "ts_range": "1775779454000 - 1775786945000"
+    },
+    {
+      "name": "tranco",
+      "category": "toplist",
+      "files": 1,
+      "size_mb": 426.1,
+      "records": 15767986,
+      "domains": 2421332,
+      "query_types": 13,
+      "ts_range": "1775779546000 - 1775815589000"
+    },
+    {
+      "name": "umbrella",
+      "category": "toplist",
+      "files": 1,
+      "size_mb": 220.5,
+      "records": 12079643,
+      "domains": 1530331,
+      "query_types": 13,
+      "ts_range": "1775779748000 - 1775824020000"
+    }
+  ],
+  "schema": {
+    "total_columns": 99,
+    "columns": [
+      {
+        "index": 1,
+        "name": "query_type",
+        "type": "VARCHAR",
+        "non_null_pct": "100.0%",
+        "group": "查询元数据",
+        "example": "NS"
+      },
+      {
+        "index": 2,
+        "name": "query_name",
+        "type": "VARCHAR",
+        "non_null_pct": "100.0%",
+        "group": "查询元数据",
+        "example": "easttroywi.gov."
+      },
+      {
+        "index": 3,
+        "name": "response_type",
+        "type": "VARCHAR",
+        "non_null_pct": "99.9%",
+        "group": "响应元数据",
+        "example": "NS"
+      },
+      {
+        "index": 4,
+        "name": "response_name",
+        "type": "VARCHAR",
+        "non_null_pct": "99.9%",
+        "group": "响应元数据",
+        "example": "easttroywi.gov."
+      },
+      {
+        "index": 5,
+        "name": "response_ttl",
+        "type": "INTEGER",
+        "non_null_pct": "99.9%",
+        "group": "响应元数据",
+        "example": "3600"
+      },
+      {
+        "index": 6,
+        "name": "timestamp",
+        "type": "BIGINT",
+        "non_null_pct": "100.0%",
+        "group": "响应元数据",
+        "example": "1775705272000"
+      },
+      {
+        "index": 7,
+        "name": "rtt",
+        "type": "DOUBLE",
+        "non_null_pct": "100.0%",
+        "group": "响应元数据",
+        "example": "0.01317942887544632"
+      },
+      {
+        "index": 8,
+        "name": "worker_id",
+        "type": "INTEGER",
+        "non_null_pct": "100.0%",
+        "group": "响应元数据",
+        "example": "1743984696"
+      },
+      {
+        "index": 9,
+        "name": "status_code",
+        "type": "INTEGER",
+        "non_null_pct": "100.0%",
+        "group": "响应元数据",
+        "example": "0"
+      },
+      {
+        "index": 10,
+        "name": "ad_flag",
+        "type": "INTEGER",
+        "non_null_pct": "100.0%",
+        "group": "响应元数据",
+        "example": "0"
+      },
+      {
+        "index": 11,
+        "name": "extended_error",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "响应元数据",
+        "example": "-"
+      },
+      {
+        "index": 12,
+        "name": "section",
+        "type": "VARCHAR",
+        "non_null_pct": "99.9%",
+        "group": "响应元数据",
+        "example": "ans"
+      },
+      {
+        "index": 13,
+        "name": "ip4_address",
+        "type": "VARCHAR",
+        "non_null_pct": "15.8%",
+        "group": "A 记录",
+        "example": "129.212.186.149"
+      },
+      {
+        "index": 14,
+        "name": "ip6_address",
+        "type": "VARCHAR",
+        "non_null_pct": "5.0%",
+        "group": "AAAA 记录",
+        "example": "2a04:4e42:30::549"
+      },
+      {
+        "index": 15,
+        "name": "country",
+        "type": "VARCHAR",
+        "non_null_pct": "20.8%",
+        "group": "GeoIP",
+        "example": "US"
+      },
+      {
+        "index": 16,
+        "name": "as",
+        "type": "VARCHAR",
+        "non_null_pct": "20.8%",
+        "group": "GeoIP",
+        "example": "14061"
+      },
+      {
+        "index": 17,
+        "name": "as_full",
+        "type": "VARCHAR",
+        "non_null_pct": "20.8%",
+        "group": "GeoIP",
+        "example": "[14061]"
+      },
+      {
+        "index": 18,
+        "name": "ip_prefix",
+        "type": "VARCHAR",
+        "non_null_pct": "20.8%",
+        "group": "GeoIP",
+        "example": "129.212.176.0/20"
+      },
+      {
+        "index": 19,
+        "name": "cname_name",
+        "type": "VARCHAR",
+        "non_null_pct": "8.3%",
+        "group": "CNAME",
+        "example": "advcdn-pantheon.map.fastly.net."
+      },
+      {
+        "index": 20,
+        "name": "dname_name",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNAME",
+        "example": "-"
+      },
+      {
+        "index": 21,
+        "name": "mx_address",
+        "type": "VARCHAR",
+        "non_null_pct": "7.6%",
+        "group": "MX 记录",
+        "example": "alt4.aspmx.l.google.com."
+      },
+      {
+        "index": 22,
+        "name": "mx_preference",
+        "type": "INTEGER",
+        "non_null_pct": "7.6%",
+        "group": "MX 记录",
+        "example": "10"
+      },
+      {
+        "index": 23,
+        "name": "ns_address",
+        "type": "VARCHAR",
+        "non_null_pct": "16.5%",
+        "group": "NS 记录",
+        "example": "dns1.easydns.com."
+      },
+      {
+        "index": 24,
+        "name": "txt_text",
+        "type": "VARCHAR",
+        "non_null_pct": "20.5%",
+        "group": "TXT 记录",
+        "example": "\"g891pl94pj4rgs3mjpvcu6bia\""
+      },
+      {
+        "index": 25,
+        "name": "ds_key_tag",
+        "type": "INTEGER",
+        "non_null_pct": "1.0%",
+        "group": "DS 记录",
+        "example": "1466"
+      },
+      {
+        "index": 26,
+        "name": "ds_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "1.0%",
+        "group": "DS 记录",
+        "example": "8"
+      },
+      {
+        "index": 27,
+        "name": "ds_digest_type",
+        "type": "INTEGER",
+        "non_null_pct": "1.0%",
+        "group": "DS 记录",
+        "example": "2"
+      },
+      {
+        "index": 28,
+        "name": "ds_digest",
+        "type": "VARCHAR",
+        "non_null_pct": "1.0%",
+        "group": "DS 记录",
+        "example": "ce22fae8bc98844aee33349f0a4958ed5f486cdd1ad3587850"
+      },
+      {
+        "index": 29,
+        "name": "dnskey_flags",
+        "type": "INTEGER",
+        "non_null_pct": "2.5%",
+        "group": "DNSKEY 记录",
+        "example": "257"
+      },
+      {
+        "index": 30,
+        "name": "dnskey_protocol",
+        "type": "INTEGER",
+        "non_null_pct": "2.5%",
+        "group": "DNSKEY 记录",
+        "example": "3"
+      },
+      {
+        "index": 31,
+        "name": "dnskey_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "2.5%",
+        "group": "DNSKEY 记录",
+        "example": "8"
+      },
+      {
+        "index": 32,
+        "name": "dnskey_pk_rsa_n",
+        "type": "VARCHAR",
+        "non_null_pct": "0.8%",
+        "group": "DNSKEY 记录",
+        "example": "f92312f088ac2cd207284ed7953b3b6b18abc8107ce2dd2058"
+      },
+      {
+        "index": 33,
+        "name": "dnskey_pk_rsa_e",
+        "type": "VARCHAR",
+        "non_null_pct": "0.8%",
+        "group": "DNSKEY 记录",
+        "example": "010001"
+      },
+      {
+        "index": 34,
+        "name": "dnskey_pk_rsa_bitsize",
+        "type": "INTEGER",
+        "non_null_pct": "0.8%",
+        "group": "DNSKEY 记录",
+        "example": "2048"
+      },
+      {
+        "index": 35,
+        "name": "dnskey_pk_eccgost_x",
+        "type": "VARCHAR",
+        "non_null_pct": "1.7%",
+        "group": "DNSKEY 记录",
+        "example": "99db2cc14cabdc33d6d77da63a2f15f71112584f234e8d1dc4"
+      },
+      {
+        "index": 36,
+        "name": "dnskey_pk_eccgost_y",
+        "type": "VARCHAR",
+        "non_null_pct": "1.7%",
+        "group": "DNSKEY 记录",
+        "example": "aa271a555dc90701e17e2a4c4b6f120b7c32d44f4ac02bd894"
+      },
+      {
+        "index": 37,
+        "name": "dnskey_pk_dsa_t",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 38,
+        "name": "dnskey_pk_dsa_q",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 39,
+        "name": "dnskey_pk_dsa_p",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 40,
+        "name": "dnskey_pk_dsa_g",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 41,
+        "name": "dnskey_pk_dsa_y",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 42,
+        "name": "dnskey_pk_eddsa_a",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 43,
+        "name": "dnskey_pk_wire",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "DNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 44,
+        "name": "nsec_next_domain_name",
+        "type": "VARCHAR",
+        "non_null_pct": "0.3%",
+        "group": "NSEC",
+        "example": "\\000.123-nonexistant-dnsjedi-456.copyrightclaimsbo"
+      },
+      {
+        "index": 45,
+        "name": "nsec_owner_rrset_types",
+        "type": "VARCHAR",
+        "non_null_pct": "0.3%",
+        "group": "NSEC",
+        "example": "RRSIG NSEC TYPE128 "
+      },
+      {
+        "index": 46,
+        "name": "nsec3_hash_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "1.0%",
+        "group": "NSEC3",
+        "example": "1"
+      },
+      {
+        "index": 47,
+        "name": "nsec3_flags",
+        "type": "INTEGER",
+        "non_null_pct": "1.0%",
+        "group": "NSEC3",
+        "example": "0"
+      },
+      {
+        "index": 48,
+        "name": "nsec3_iterations",
+        "type": "INTEGER",
+        "non_null_pct": "1.0%",
+        "group": "NSEC3",
+        "example": "0"
+      },
+      {
+        "index": 49,
+        "name": "nsec3_salt",
+        "type": "VARCHAR",
+        "non_null_pct": "1.0%",
+        "group": "NSEC3",
+        "example": "00"
+      },
+      {
+        "index": 50,
+        "name": "nsec3_next_domain_name_hash",
+        "type": "VARCHAR",
+        "non_null_pct": "1.0%",
+        "group": "NSEC3",
+        "example": "14e2ec1c0ab1a7f1ddd83698c4eab703dc37e6613d"
+      },
+      {
+        "index": 51,
+        "name": "nsec3_owner_rrset_types",
+        "type": "VARCHAR",
+        "non_null_pct": "1.0%",
+        "group": "NSEC3",
+        "example": "A NS SOA TXT RRSIG DNSKEY NSEC3PARAM "
+      },
+      {
+        "index": 52,
+        "name": "nsec3param_hash_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "0.3%",
+        "group": "NSEC3PARAM",
+        "example": "1"
+      },
+      {
+        "index": 53,
+        "name": "nsec3param_flags",
+        "type": "INTEGER",
+        "non_null_pct": "0.3%",
+        "group": "NSEC3PARAM",
+        "example": "0"
+      },
+      {
+        "index": 54,
+        "name": "nsec3param_iterations",
+        "type": "INTEGER",
+        "non_null_pct": "0.3%",
+        "group": "NSEC3PARAM",
+        "example": "0"
+      },
+      {
+        "index": 55,
+        "name": "nsec3param_salt",
+        "type": "VARCHAR",
+        "non_null_pct": "0.3%",
+        "group": "NSEC3PARAM",
+        "example": "00"
+      },
+      {
+        "index": 56,
+        "name": "spf_text",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "SPF 记录",
+        "example": "-"
+      },
+      {
+        "index": 57,
+        "name": "soa_mname",
+        "type": "VARCHAR",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "ns.fsr.com."
+      },
+      {
+        "index": 58,
+        "name": "soa_rname",
+        "type": "VARCHAR",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "hostmaster.fsr.com."
+      },
+      {
+        "index": 59,
+        "name": "soa_serial",
+        "type": "BIGINT",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "2026030301"
+      },
+      {
+        "index": 60,
+        "name": "soa_refresh",
+        "type": "BIGINT",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "10800"
+      },
+      {
+        "index": 61,
+        "name": "soa_retry",
+        "type": "BIGINT",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "3600"
+      },
+      {
+        "index": 62,
+        "name": "soa_expire",
+        "type": "BIGINT",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "1209600"
+      },
+      {
+        "index": 63,
+        "name": "soa_minimum",
+        "type": "BIGINT",
+        "non_null_pct": "7.0%",
+        "group": "SOA 记录",
+        "example": "86400"
+      },
+      {
+        "index": 64,
+        "name": "rrsig_type_covered",
+        "type": "VARCHAR",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "CDNSKEY"
+      },
+      {
+        "index": 65,
+        "name": "rrsig_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "13"
+      },
+      {
+        "index": 66,
+        "name": "rrsig_labels",
+        "type": "INTEGER",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "2"
+      },
+      {
+        "index": 67,
+        "name": "rrsig_original_ttl",
+        "type": "BIGINT",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "3600"
+      },
+      {
+        "index": 68,
+        "name": "rrsig_signature_inception",
+        "type": "BIGINT",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "1774314619"
+      },
+      {
+        "index": 69,
+        "name": "rrsig_signature_expiration",
+        "type": "BIGINT",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "1779585019"
+      },
+      {
+        "index": 70,
+        "name": "rrsig_key_tag",
+        "type": "INTEGER",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "2371"
+      },
+      {
+        "index": 71,
+        "name": "rrsig_signer_name",
+        "type": "VARCHAR",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "uscis.gov."
+      },
+      {
+        "index": 72,
+        "name": "rrsig_signature",
+        "type": "VARCHAR",
+        "non_null_pct": "12.5%",
+        "group": "RRSIG 签名",
+        "example": "5ea187262b6b758ba8a901f620fad7c32398eef0923a32921d"
+      },
+      {
+        "index": 73,
+        "name": "cds_key_tag",
+        "type": "INTEGER",
+        "non_null_pct": "0.3%",
+        "group": "CDS 记录",
+        "example": "0"
+      },
+      {
+        "index": 74,
+        "name": "cds_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "0.3%",
+        "group": "CDS 记录",
+        "example": "0"
+      },
+      {
+        "index": 75,
+        "name": "cds_digest_type",
+        "type": "INTEGER",
+        "non_null_pct": "0.3%",
+        "group": "CDS 记录",
+        "example": "0"
+      },
+      {
+        "index": 76,
+        "name": "cds_digest",
+        "type": "VARCHAR",
+        "non_null_pct": "0.3%",
+        "group": "CDS 记录",
+        "example": "00"
+      },
+      {
+        "index": 77,
+        "name": "cdnskey_flags",
+        "type": "INTEGER",
+        "non_null_pct": "0.4%",
+        "group": "CDNSKEY 记录",
+        "example": "257"
+      },
+      {
+        "index": 78,
+        "name": "cdnskey_protocol",
+        "type": "INTEGER",
+        "non_null_pct": "0.4%",
+        "group": "CDNSKEY 记录",
+        "example": "3"
+      },
+      {
+        "index": 79,
+        "name": "cdnskey_algorithm",
+        "type": "INTEGER",
+        "non_null_pct": "0.4%",
+        "group": "CDNSKEY 记录",
+        "example": "13"
+      },
+      {
+        "index": 80,
+        "name": "cdnskey_pk_rsa_n",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 81,
+        "name": "cdnskey_pk_rsa_e",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 82,
+        "name": "cdnskey_pk_rsa_bitsize",
+        "type": "INTEGER",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 83,
+        "name": "cdnskey_pk_eccgost_x",
+        "type": "VARCHAR",
+        "non_null_pct": "0.4%",
+        "group": "CDNSKEY 记录",
+        "example": "99db2cc14cabdc33d6d77da63a2f15f71112584f234e8d1dc4"
+      },
+      {
+        "index": 84,
+        "name": "cdnskey_pk_eccgost_y",
+        "type": "VARCHAR",
+        "non_null_pct": "0.4%",
+        "group": "CDNSKEY 记录",
+        "example": "aa271a555dc90701e17e2a4c4b6f120b7c32d44f4ac02bd894"
+      },
+      {
+        "index": 85,
+        "name": "cdnskey_pk_dsa_t",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 86,
+        "name": "cdnskey_pk_dsa_q",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 87,
+        "name": "cdnskey_pk_dsa_p",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 88,
+        "name": "cdnskey_pk_dsa_g",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 89,
+        "name": "cdnskey_pk_dsa_y",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 90,
+        "name": "cdnskey_pk_eddsa_a",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "CDNSKEY 记录",
+        "example": "-"
+      },
+      {
+        "index": 91,
+        "name": "cdnskey_pk_wire",
+        "type": "VARCHAR",
+        "non_null_pct": "0.1%",
+        "group": "CDNSKEY 记录",
+        "example": "00"
+      },
+      {
+        "index": 92,
+        "name": "caa_flags",
+        "type": "INTEGER",
+        "non_null_pct": "0.8%",
+        "group": "CAA 记录",
+        "example": "0"
+      },
+      {
+        "index": 93,
+        "name": "caa_tag",
+        "type": "VARCHAR",
+        "non_null_pct": "0.8%",
+        "group": "CAA 记录",
+        "example": "issuewild"
+      },
+      {
+        "index": 94,
+        "name": "caa_value",
+        "type": "VARCHAR",
+        "non_null_pct": "0.8%",
+        "group": "CAA 记录",
+        "example": "\"comodoca.com\""
+      },
+      {
+        "index": 95,
+        "name": "tlsa_usage",
+        "type": "INTEGER",
+        "non_null_pct": "0.0%",
+        "group": "TLSA 记录",
+        "example": "-"
+      },
+      {
+        "index": 96,
+        "name": "tlsa_selector",
+        "type": "INTEGER",
+        "non_null_pct": "0.0%",
+        "group": "TLSA 记录",
+        "example": "-"
+      },
+      {
+        "index": 97,
+        "name": "tlsa_matchtype",
+        "type": "INTEGER",
+        "non_null_pct": "0.0%",
+        "group": "TLSA 记录",
+        "example": "-"
+      },
+      {
+        "index": 98,
+        "name": "tlsa_certdata",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "TLSA 记录",
+        "example": "-"
+      },
+      {
+        "index": 99,
+        "name": "ptr_name",
+        "type": "VARCHAR",
+        "non_null_pct": "0.0%",
+        "group": "PTR 记录",
+        "example": "-"
+      }
+    ]
+  }
+}

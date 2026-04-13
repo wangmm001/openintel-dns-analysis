@@ -18,18 +18,18 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from config import get_conn, parquet_glob, TLDS, save_fig
+from config import get_conn, parquet_glob, zone_glob, toplist_glob, all_zone_sql, TLDS, save_fig
 
 conn = get_conn()
 
 # Data paths
 TOPLIST_FILES = {
-    "tranco":  "tranco/tranco.gz.parquet",
-    "umbrella": "umbrella/umbrella.gz.parquet",
-    "radar":   "radar/radar.gz.parquet",
+    "tranco":  toplist_glob("tranco"),
+    "umbrella": toplist_glob("umbrella"),
+    "radar":   toplist_glob("radar"),
 }
-ROOT_FILE = "root/root.gz.parquet"
-zone_globs = ", ".join(f"'{parquet_glob(t)}'" for t in TLDS)
+ROOT_FILE = zone_glob("root")
+zone_globs = all_zone_sql()
 
 # ═══════════════════════════════════════════════════════
 # 1. 数据集概览
@@ -260,9 +260,9 @@ print("=" * 60)
 
 overlap = conn.execute(f"""
     WITH
-        t AS (SELECT DISTINCT query_name FROM read_parquet('tranco/tranco.gz.parquet')),
-        u AS (SELECT DISTINCT query_name FROM read_parquet('umbrella/umbrella.gz.parquet')),
-        r AS (SELECT DISTINCT query_name FROM read_parquet('radar/radar.gz.parquet'))
+        t AS (SELECT DISTINCT query_name FROM read_parquet('{TOPLIST_FILES["tranco"]}')),
+        u AS (SELECT DISTINCT query_name FROM read_parquet('{TOPLIST_FILES["umbrella"]}')),
+        r AS (SELECT DISTINCT query_name FROM read_parquet('{TOPLIST_FILES["radar"]}'))
     SELECT
         (SELECT count(*) FROM t) AS tranco_total,
         (SELECT count(*) FROM u) AS umbrella_total,

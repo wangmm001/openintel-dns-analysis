@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenINTEL 开源 DNS 数据分析教程</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#0071e3;--accent2:#5856d6;--green:#30d158;--orange:#ff9f0a;--red:#ff453a;--text:#f5f5f7;--text2:rgba(255,255,255,0.6);--bg:#000;--card:rgba(255,255,255,0.06);--border:rgba(255,255,255,0.08)}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;background:#000;color:#f5f5f7;overflow:hidden;height:100vh;-webkit-font-smoothing:antialiased}
+
+/* Slide system */
+.slide{display:none;width:100vw;height:100vh;padding:60px 80px;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.slide.active{display:flex}
+.slide.dark{background:linear-gradient(145deg,#000 0%,#0a0a1a 100%)}
+.slide.accent{background:linear-gradient(135deg,#0071e3 0%,#5856d6 100%);color:#fff}
+.slide.deep{background:linear-gradient(160deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.slide.warm{background:linear-gradient(160deg,#1a1a0a 0%,#2e1a0a 50%,#3e2a0a 100%)}
+
+/* Typography */
+h1{font-size:72px;font-weight:700;letter-spacing:-2px;line-height:1.1}
+h2{font-size:56px;font-weight:700;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+h3{font-size:36px;font-weight:600;letter-spacing:-0.5px;margin-bottom:12px}
+h4{font-size:18px;font-weight:600;margin-bottom:6px}
+.giant{font-size:120px;font-weight:800;letter-spacing:-4px;line-height:1}
+.subtitle{font-size:28px;font-weight:400;opacity:0.7;margin-top:12px}
+.desc{font-size:21px;line-height:1.6;opacity:0.8;max-width:750px;margin-top:20px}
+.small{font-size:17px;line-height:1.65;opacity:0.7}
+.label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;opacity:0.5;margin-bottom:12px}
+.highlight{color:var(--accent)}
+.slide.accent .highlight{color:rgba(255,255,255,0.9)}
+.quote{font-size:32px;font-style:italic;line-height:1.5;opacity:0.9;border-left:4px solid var(--accent);padding-left:24px;margin:24px 0}
+
+/* Grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:32px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;margin-top:32px}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:24px}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.card-icon{font-size:32px;margin-bottom:10px}
+.card h4{font-size:18px;font-weight:600;margin-bottom:6px}
+.card p{font-size:14px;opacity:0.7;line-height:1.5}
+.card .num{font-size:36px;font-weight:700;color:var(--accent)}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:15px;margin-top:16px}
+th{text-align:left;padding:10px 14px;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13px;text-transform:uppercase;letter-spacing:1px;opacity:0.6}
+td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
+
+/* Bar chart */
+.bar-chart{margin-top:16px}
+.bar-row{display:flex;align-items:center;margin:4px 0;font-size:14px}
+.bar-label{width:100px;text-align:right;padding-right:12px;opacity:0.8;font-weight:500;flex-shrink:0}
+.bar-track{flex:1;height:24px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.8s ease}
+.bar-val{margin-left:10px;opacity:0.6;font-size:13px;width:80px;flex-shrink:0}
+
+/* Donut */
+.donut-legend{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:12px}
+.donut-legend span{display:flex;align-items:center;gap:6px;font-size:13px;opacity:0.8}
+.donut-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Progress bar (inline) */
+.pbar{height:6px;border-radius:3px;background:rgba(255,255,255,0.06);overflow:hidden;margin-top:6px}
+.pbar-fill{height:100%;border-radius:3px}
+
+/* Badge */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:0.5px}
+.badge.blue{background:rgba(0,113,227,0.2);color:#4da3ff;border:1px solid rgba(0,113,227,0.3)}
+.badge.green{background:rgba(48,209,88,0.2);color:#30d158;border:1px solid rgba(48,209,88,0.3)}
+.badge.orange{background:rgba(255,159,10,0.2);color:#ff9f0a;border:1px solid rgba(255,159,10,0.3)}
+.badge.red{background:rgba(255,69,58,0.2);color:#ff453a;border:1px solid rgba(255,69,58,0.3)}
+.badge.purple{background:rgba(88,86,214,0.2);color:#9b99ff;border:1px solid rgba(88,86,214,0.3)}
+
+/* Code */
+pre{background:rgba(0,0,0,0.5);border-radius:10px;padding:16px;font-family:"SF Mono","Menlo","Courier New",monospace;font-size:13px;line-height:1.7;overflow-x:auto;margin:12px 0;color:#a8c0ff;border:1px solid rgba(255,255,255,0.06)}
+pre .cm{color:rgba(255,255,255,0.3)}
+pre .kw{color:#ff79c6}
+pre .fn{color:#50fa7b}
+pre .st{color:#f1fa8c}
+pre .nu{color:#bd93f9}
+
+/* Pipe tags */
+.pipe{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.pipe span{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:500}
+
+/* Chapter tag */
+.chapter-tag{display:inline-block;background:rgba(0,113,227,0.3);border:1px solid rgba(0,113,227,0.5);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:12px;color:#4da3ff}
+
+/* Section number */
+.section-num{font-size:160px;font-weight:900;opacity:0.06;position:absolute;right:80px;bottom:40px;line-height:1;letter-spacing:-8px}
+
+/* Progress bar (top) */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:100;transition:width 0.3s}
+
+/* Nav */
+.nav{position:fixed;bottom:24px;right:32px;z-index:100;display:flex;gap:8px;align-items:center}
+.nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.5);color:#fff;font-size:18px;cursor:pointer;backdrop-filter:blur(10px);transition:all 0.2s}
+.nav button:hover{background:rgba(0,113,227,0.5);border-color:rgba(0,113,227,0.5)}
+.nav .page-num{font-size:13px;opacity:0.5;font-variant-numeric:tabular-nums;min-width:50px;text-align:center}
+
+/* Objective items */
+.obj{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.obj-item{display:flex;align-items:flex-start;gap:10px;font-size:15px;opacity:0.85}
+.obj-item::before{content:"\25B8";color:var(--accent);flex-shrink:0;margin-top:1px}
+
+/* Lab box */
+.lab{background:rgba(48,209,88,0.08);border:1px solid rgba(48,209,88,0.2);border-radius:14px;padding:18px;margin-top:14px}
+.lab h4{color:#30d158;margin-bottom:8px;font-size:15px}
+
+/* Heatmap cell */
+.hm-cell{padding:6px 8px;text-align:center;font-size:13px;font-weight:500;border-radius:4px}
+
+/* Comparison highlights */
+.cmp-win{color:var(--green);font-weight:600}
+.cmp-mid{color:var(--orange)}
+.cmp-lose{color:var(--red);opacity:0.7}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.slide.active>*{animation:fadeUp 0.6s ease-out both}
+.slide.active>*:nth-child(2){animation-delay:0.1s}
+.slide.active>*:nth-child(3){animation-delay:0.2s}
+.slide.active>*:nth-child(4){animation-delay:0.3s}
+.slide.active>*:nth-child(5){animation-delay:0.4s}
+.slide.active>*:nth-child(6){animation-delay:0.5s}
+
+/* Glow effects */
+.glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.15;pointer-events:none}
+.glow.blue{background:#0071e3;width:400px;height:400px}
+.glow.purple{background:#5856d6;width:300px;height:300px}
+.glow.green{background:#30d158;width:350px;height:350px}
+.glow.orange{background:#ff9f0a;width:300px;height:300px}
+
+@media print{
+  body{overflow:visible!important;height:auto!important;background:#000!important}
+  .slide{display:flex!important;width:100vw;height:100vh;page-break-after:always;break-after:page;position:relative;overflow:visible!important}
+  .slide:last-of-type{page-break-after:avoid;break-after:avoid}
+  .nav,.progress{display:none!important}
+  .slide>*{animation:none!important}
+  .glow{display:none!important}
+  @page{size:landscape;margin:0}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 0: 导言  (Slides 1-3)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 1: Title Page -->
+<div class="slide dark active" id="s1">
+  <div class="glow blue" style="top:-150px;right:-100px"></div>
+  <div class="glow purple" style="bottom:-100px;left:-50px"></div>
+  <div class="label">Tutorial / Interactive Course</div>
+  <h1 style="background:linear-gradient(135deg,#fff,#a8c0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">OpenINTEL 开源 DNS<br>数据分析教程</h1>
+  <p class="subtitle">从零开始：学习分析 <strong>2.3 亿</strong>条 DNS 记录的完整指南</p>
+  <p class="desc">涵盖数据获取、格式解读、基础分析、地理网络、安全审计、交叉分析与异常检测 -- 8 章 40 节，手把手带你成为 DNS 大数据分析师。</p>
+  <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+    <span class="badge blue">8 大章节</span>
+    <span class="badge purple">40 节课</span>
+    <span class="badge green">13 数据集</span>
+    <span class="badge orange">2.32 亿记录</span>
+  </div>
+</div>
+
+<!-- SLIDE 2: 教程大纲 -->
+<div class="slide deep" id="s2">
+  <div class="glow green" style="top:-80px;right:-60px"></div>
+  <div class="label">Chapter 0 / 导言</div>
+  <h2>教程大纲</h2>
+  <p class="small" style="margin-bottom:8px">8 章完整学习路径，从数据获取到高级分析</p>
+  <div class="grid4">
+    <div class="card">
+      <div class="card-icon">0</div>
+      <h4>导言</h4>
+      <p>课程目标、大纲、前置知识</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">1</div>
+      <h4>数据获取</h4>
+      <p>S3 接口、下载、直连查询</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">2</div>
+      <h4>数据格式</h4>
+      <p>Parquet 格式、99 列字段全景</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">3</div>
+      <h4>基础分析</h4>
+      <p>DuckDB 查询、规模、分布</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">4</div>
+      <h4>记录深度分析</h4>
+      <p>MX/NS/SPF/DMARC/TTL</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">5</div>
+      <h4>地理与网络</h4>
+      <p>国家分布、AS 集中度</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">6</div>
+      <h4>安全 &amp; 交叉分析</h4>
+      <p>DNSSEC、CAA、TopList 对比</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">7</div>
+      <h4>异常 &amp; 拓展</h4>
+      <p>异常检测、时间维度、多源融合</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: 前置知识 & 工具 -->
+<div class="slide dark" id="s3">
+  <div class="glow orange" style="bottom:-80px;right:-60px"></div>
+  <div class="label">Chapter 0 / 前置知识</div>
+  <h2>前置知识 &amp; 工具</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:24px">你需要了解</h3>
+      <div class="obj">
+        <div class="obj-item">DNS 基础概念 (A/AAAA/MX/NS/TXT/SOA 记录类型)</div>
+        <div class="obj-item">SQL 基本语法 (SELECT, WHERE, GROUP BY, JOIN)</div>
+        <div class="obj-item">Python 基础 (用于下载脚本)</div>
+        <div class="obj-item">Parquet 列式存储概念</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:24px">需要安装的工具</h3>
+      <div class="obj">
+        <div class="obj-item"><strong>DuckDB</strong> -- 主力分析引擎，直接读 Parquet</div>
+        <div class="obj-item"><strong>Python 3.8+</strong> -- boto3 下载 S3 数据</div>
+        <div class="obj-item"><strong>AWS CLI</strong> (可选) -- S3 批量下载</div>
+        <div class="obj-item"><strong>8 GB+ RAM</strong> -- 处理亿级数据</div>
+      </div>
+      <pre style="margin-top:16px"><span class="cm"># 快速安装</span>
+pip install duckdb boto3
+brew install duckdb  <span class="cm"># macOS</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 1: 数据获取  (Slides 4-7)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 4: Chapter 1 Section Title -->
+<div class="slide accent" id="s4">
+  <div class="chapter-tag">CHAPTER 1</div>
+  <h1>数据获取</h1>
+  <p class="subtitle">认识 OpenINTEL 项目，掌握数据下载方法</p>
+  <div class="section-num">01</div>
+</div>
+
+<!-- SLIDE 5: OpenINTEL 项目介绍 -->
+<div class="slide deep" id="s5">
+  <div class="glow blue" style="top:-120px;left:-80px"></div>
+  <div class="label">Chapter 1 / 项目介绍</div>
+  <h2>OpenINTEL 项目</h2>
+  <p class="desc" style="margin-top:8px">由荷兰特文特大学 (University of Twente) 运营的全球最大开放 DNS 测量平台</p>
+  <div class="grid3" style="margin-top:24px">
+    <div class="card">
+      <div class="num">10+</div>
+      <h4>年持续测量</h4>
+      <p>自 2015 年起每日对数亿域名执行 DNS 查询，积累了全球最完整的 DNS 历史数据。</p>
+    </div>
+    <div class="card">
+      <div class="num">2.3 亿+</div>
+      <h4>每日记录量</h4>
+      <p>覆盖 Zone-based 和 TopList-based 两大类数据源，涵盖全球主要域名。</p>
+    </div>
+    <div class="card">
+      <div class="num">99</div>
+      <h4>数据维度</h4>
+      <p>每条记录包含查询元数据、IP 地理、DNSSEC、邮件安全、CAA 等全维度字段。</p>
+    </div>
+  </div>
+  <div class="lab" style="margin-top:20px">
+    <h4>核心价值</h4>
+    <p class="small">免费开放、日级粒度、覆盖面广、Parquet 格式、S3 直连 -- 研究者和安全工程师的宝藏数据集。</p>
+  </div>
+</div>
+
+<!-- SLIDE 6: S3 数据接口 -->
+<div class="slide dark" id="s6">
+  <div class="glow purple" style="top:-100px;right:-80px"></div>
+  <div class="label">Chapter 1 / S3 接口</div>
+  <h2>S3 数据接口</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:22px">连接信息</h3>
+      <table>
+        <tr><td style="opacity:0.6;width:120px">Endpoint</td><td><code>https://object.empirical.network</code></td></tr>
+        <tr><td style="opacity:0.6">Bucket</td><td><code>openintel</code></td></tr>
+        <tr><td style="opacity:0.6">认证</td><td>匿名访问 (无需 key)</td></tr>
+        <tr><td style="opacity:0.6">格式</td><td>Apache Parquet</td></tr>
+      </table>
+      <h3 style="font-size:22px;margin-top:20px">路径结构</h3>
+      <pre style="font-size:12px"><span class="cm"># Zone-based 数据</span>
+openintel/dnsgraph/&lt;zone&gt;/
+  warehouse/year=YYYY/month=MM/day=DD/
+
+<span class="cm"># TopList-based 数据</span>
+openintel/toplists/&lt;list&gt;/
+  warehouse/year=YYYY/month=MM/day=DD/</pre>
+    </div>
+    <div>
+      <h3 style="font-size:22px">DuckDB 直连查询</h3>
+      <pre style="font-size:12px"><span class="kw">INSTALL</span> httpfs;
+<span class="kw">LOAD</span> httpfs;
+<span class="kw">SET</span> s3_endpoint=<span class="st">'object.empirical.network'</span>;
+<span class="kw">SET</span> s3_url_style=<span class="st">'path'</span>;
+<span class="kw">SET</span> s3_use_ssl=<span class="nu">true</span>;
+
+<span class="kw">SELECT</span> <span class="fn">count</span>(*)
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(
+  <span class="st">'s3://openintel/dnsgraph/ch/
+   warehouse/year=2026/
+   month=04/day=13/*.parquet'</span>
+);</pre>
+      <div class="lab">
+        <h4>无需下载，直接分析</h4>
+        <p class="small">DuckDB 的 httpfs 扩展支持直接从 S3 查询 Parquet，无需提前下载到本地。适合探索性分析。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: 可用数据集全景 -->
+<div class="slide deep" id="s7">
+  <div class="glow green" style="bottom:-60px;left:-40px"></div>
+  <div class="label">Chapter 1 / 数据集</div>
+  <h2>可用数据集全景</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:22px"><span class="badge blue">Zone-based</span> 10 个区域</h3>
+      <table style="font-size:13px">
+        <tr><th>Zone</th><th>说明</th><th>访问级别</th></tr>
+        <tr><td>.ch</td><td>瑞士</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.ee</td><td>爱沙尼亚</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.fr</td><td>法国 (最大)</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.gov</td><td>美国政府</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.li</td><td>列支敦士登</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.nu</td><td>纽埃</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.se</td><td>瑞典</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>.sk</td><td>斯洛伐克</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>root</td><td>根区</td><td><span class="badge orange" style="font-size:11px">需申请</span></td></tr>
+        <tr><td>.fed.us</td><td>美联邦</td><td><span class="badge orange" style="font-size:11px">需申请</span></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:22px"><span class="badge purple">TopList-based</span> 4 个榜单</h3>
+      <table style="font-size:13px">
+        <tr><th>List</th><th>特点</th><th>访问级别</th></tr>
+        <tr><td>Tranco</td><td>综合排名，学术常用</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>Umbrella</td><td>Cisco DNS 流量排名</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>Radar</td><td>Cloudflare 排名</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+        <tr><td>Majestic</td><td>反向链接排名</td><td><span class="badge green" style="font-size:11px">开放</span></td></tr>
+      </table>
+      <div class="lab" style="margin-top:16px">
+        <h4>Zone vs TopList 的区别</h4>
+        <p class="small"><strong>Zone-based</strong>: 来自 TLD 区域文件，覆盖该 TLD 下所有注册域名。<br><strong>TopList-based</strong>: 来自流量排名榜单，跨 TLD，覆盖全球热门域名。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: 下载实战 -->
+<div class="slide dark" id="s8">
+  <div class="glow orange" style="top:-100px;right:-60px"></div>
+  <div class="label">Chapter 1 / 下载实战</div>
+  <h2>下载实战</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:20px">方法 1: Python boto3</h3>
+      <pre style="font-size:11.5px"><span class="kw">import</span> boto3
+<span class="kw">from</span> botocore <span class="kw">import</span> UNSIGNED
+<span class="kw">from</span> botocore.config <span class="kw">import</span> Config
+
+s3 = boto3.client(<span class="st">'s3'</span>,
+  endpoint_url=<span class="st">'https://object.empirical.network'</span>,
+  config=Config(signature_version=UNSIGNED))
+
+<span class="cm"># 列出某天文件</span>
+resp = s3.list_objects_v2(
+  Bucket=<span class="st">'openintel'</span>,
+  Prefix=<span class="st">'dnsgraph/ch/warehouse/year=2026/month=04/day=13/'</span>)
+
+<span class="kw">for</span> obj <span class="kw">in</span> resp[<span class="st">'Contents'</span>]:
+    s3.download_file(<span class="st">'openintel'</span>, obj[<span class="st">'Key'</span>],
+                     obj[<span class="st">'Key'</span>].split(<span class="st">'/'</span>)[-<span class="nu">1</span>])</pre>
+    </div>
+    <div>
+      <h3 style="font-size:20px">方法 2: wget / curl</h3>
+      <pre style="font-size:11.5px"><span class="cm"># 直接 HTTP 下载 (需知道文件名)</span>
+wget https://object.empirical.network/\
+  openintel/dnsgraph/ch/warehouse/\
+  year=2026/month=04/day=13/part-0.parquet</pre>
+      <h3 style="font-size:20px;margin-top:20px">方法 3: DuckDB 直接分析</h3>
+      <pre style="font-size:11.5px"><span class="cm">-- 无需下载！直接从 S3 查询</span>
+<span class="kw">SELECT</span> query_type, <span class="fn">count</span>(*)
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'s3://openintel/
+  dnsgraph/ch/warehouse/
+  year=2026/month=04/day=13/*.parquet'</span>)
+<span class="kw">GROUP BY</span> query_type
+<span class="kw">ORDER BY</span> <span class="fn">count</span>(*) <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="nu">10</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 2: 数据格式  (Slides 9-12)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 9: Chapter 2 Section Title -->
+<div class="slide accent" id="s9">
+  <div class="chapter-tag">CHAPTER 2</div>
+  <h1>数据格式</h1>
+  <p class="subtitle">Parquet 列式存储 / 99 列字段全景解读</p>
+  <div class="section-num">02</div>
+</div>
+
+<!-- SLIDE 10: Parquet 格式特性 -->
+<div class="slide dark" id="s10">
+  <div class="glow blue" style="bottom:-80px;left:-60px"></div>
+  <div class="label">Chapter 2 / Parquet</div>
+  <h2>Parquet 格式特性</h2>
+  <div class="grid3">
+    <div class="card">
+      <div class="card-icon">|||</div>
+      <h4>列式存储</h4>
+      <p>只读取查询需要的列，跳过其余 90+ 列。<strong>分析场景下比 CSV 快 10-100x</strong>。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">zip</div>
+      <h4>高效压缩</h4>
+      <p>同列数据类型一致，压缩率极高。<strong>11.2 GB</strong> Parquet vs 估算 ~80 GB CSV。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">{ }</div>
+      <h4>内嵌 Schema</h4>
+      <p>每个文件自带列名/类型定义，无需额外元数据文件。Schema 可演进。</p>
+    </div>
+  </div>
+  <pre style="margin-top:20px"><span class="cm">-- 查看 Parquet Schema</span>
+<span class="kw">DESCRIBE SELECT</span> * <span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/ch/*.parquet'</span>) <span class="kw">LIMIT</span> <span class="nu">0</span>;
+
+<span class="cm">-- 只读取需要的列 (列裁剪)</span>
+<span class="kw">SELECT</span> query_name, ip4_address, country
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/ch/*.parquet'</span>)
+<span class="kw">WHERE</span> query_type = <span class="st">'A'</span> <span class="kw">AND</span> country = <span class="st">'CH'</span>;
+<span class="cm">-- DuckDB 自动做谓词下推 + 列裁剪</span></pre>
+</div>
+
+<!-- SLIDE 11: 99 列字段全景 -->
+<div class="slide deep" id="s11">
+  <div class="glow purple" style="top:-80px;right:-80px"></div>
+  <div class="label">Chapter 2 / 字段全景</div>
+  <h2>99 列字段全景</h2>
+  <p class="small">按功能分组，每组列数如下</p>
+  <div class="grid4" style="margin-top:16px">
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">查询元数据</h4>
+      <div class="num" style="font-size:28px">12</div>
+      <p style="font-size:11px">query_type, query_name, status_code, rtt, timestamp...</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">A / AAAA</h4>
+      <div class="num" style="font-size:28px">2</div>
+      <p style="font-size:11px">ip4_address, ip6_address</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">GeoIP</h4>
+      <div class="num" style="font-size:28px">4</div>
+      <p style="font-size:11px">country, as, as_full, ip_prefix</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">CNAME / DNAME</h4>
+      <div class="num" style="font-size:28px">2</div>
+      <p style="font-size:11px">cname_name, dname_name</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">MX / NS</h4>
+      <div class="num" style="font-size:28px">3</div>
+      <p style="font-size:11px">mx_address, mx_preference, ns_address</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">TXT / SPF</h4>
+      <div class="num" style="font-size:28px">2</div>
+      <p style="font-size:11px">txt_text, spf_text</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">SOA</h4>
+      <div class="num" style="font-size:28px">7</div>
+      <p style="font-size:11px">soa_mname, soa_rname, soa_serial, soa_refresh...</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">DS / DNSKEY</h4>
+      <div class="num" style="font-size:28px">18</div>
+      <p style="font-size:11px">ds_key_tag, dnskey_flags, dnskey_protocol, dnskey_algorithm...</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">RRSIG</h4>
+      <div class="num" style="font-size:28px">8</div>
+      <p style="font-size:11px">rrsig_type_covered, rrsig_algorithm, rrsig_labels...</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">NSEC / NSEC3</h4>
+      <div class="num" style="font-size:28px">11</div>
+      <p style="font-size:11px">nsec_types, nsec3_hash_algorithm, nsec3_iterations...</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">CDS / CDNSKEY</h4>
+      <div class="num" style="font-size:28px">18</div>
+      <p style="font-size:11px">cds_key_tag, cdnskey_flags, cdnskey_algorithm...</p>
+    </div>
+    <div class="card" style="padding:14px">
+      <h4 style="font-size:14px">CAA / TLSA / PTR</h4>
+      <div class="num" style="font-size:28px">8</div>
+      <p style="font-size:11px">caa_flags, caa_tag, caa_value, tlsa_usage...</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:12px;opacity:0.5">总计: 12+2+4+2+3+2+7+18+8+11+18+8 = <strong>95 核心列</strong> + 4 分区列 (year/month/day/source) = 99</p>
+</div>
+
+<!-- SLIDE 12: 关键字段详解 -->
+<div class="slide dark" id="s12">
+  <div class="glow green" style="top:-100px;left:-60px"></div>
+  <div class="label">Chapter 2 / 关键字段</div>
+  <h2>关键字段详解</h2>
+  <table style="font-size:13px">
+    <tr><th>字段</th><th>类型</th><th>说明</th><th>示例值</th></tr>
+    <tr><td><code>query_type</code></td><td>VARCHAR</td><td>DNS 查询类型</td><td>A, AAAA, MX, NS, TXT, SOA</td></tr>
+    <tr><td><code>query_name</code></td><td>VARCHAR</td><td>查询域名 (FQDN)</td><td>example.fr.</td></tr>
+    <tr><td><code>status_code</code></td><td>VARCHAR</td><td>响应状态码</td><td>NOERROR, NXDOMAIN, SERVFAIL</td></tr>
+    <tr><td><code>rtt</code></td><td>DOUBLE</td><td>往返时间 (ms)</td><td>11.8</td></tr>
+    <tr><td><code>ip4_address</code></td><td>VARCHAR</td><td>A 记录 IPv4 地址</td><td>93.184.216.34</td></tr>
+    <tr><td><code>country</code></td><td>VARCHAR</td><td>GeoIP 国家代码</td><td>FR, CH, US, DE</td></tr>
+    <tr><td><code>as</code></td><td>INTEGER</td><td>自治系统号</td><td>16276 (OVH)</td></tr>
+    <tr><td><code>ns_address</code></td><td>VARCHAR</td><td>权威 NS 域名</td><td>dns1.registrar-servers.com.</td></tr>
+    <tr><td><code>mx_address</code></td><td>VARCHAR</td><td>邮件交换服务器</td><td>mx1.mail.ovh.net.</td></tr>
+    <tr><td><code>txt_text</code></td><td>VARCHAR</td><td>TXT 记录内容</td><td>v=spf1 include:_spf.google.com ~all</td></tr>
+    <tr><td><code>ds_key_tag</code></td><td>INTEGER</td><td>DNSSEC DS 密钥标签</td><td>12345</td></tr>
+    <tr><td><code>dnskey_flags</code></td><td>INTEGER</td><td>DNSKEY 标志位</td><td>257 (KSK), 256 (ZSK)</td></tr>
+    <tr><td><code>caa_tag</code></td><td>VARCHAR</td><td>CAA 授权标签</td><td>issue, issuewild, iodef</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 13: 数据质量 -->
+<div class="slide deep" id="s13">
+  <div class="glow orange" style="bottom:-60px;right:-60px"></div>
+  <div class="label">Chapter 2 / 数据质量</div>
+  <h2>数据质量评估</h2>
+  <div class="grid2">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h4>响应成功率</h4>
+        <div class="num">92.2%</div>
+        <p>NOERROR 占比，数据质量优秀</p>
+        <div class="pbar" style="margin-top:10px"><div class="pbar-fill" style="width:92.2%;background:var(--green)"></div></div>
+      </div>
+      <div class="card">
+        <h4>GeoIP 命中率</h4>
+        <div class="num" style="color:var(--green)">~85%</div>
+        <p>A 记录中能成功解析出国家和 AS 信息的比例</p>
+        <div class="pbar" style="margin-top:10px"><div class="pbar-fill" style="width:85%;background:var(--accent)"></div></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px">稀疏列注意事项</h3>
+      <div class="obj">
+        <div class="obj-item">ip4_address 仅在 query_type='A' 时有值 (~17.9%)</div>
+        <div class="obj-item">mx_address 仅在 query_type='MX' 时有值 (~9.7%)</div>
+        <div class="obj-item">DNSSEC 列 (ds_*, dnskey_*) 大量为 NULL</div>
+        <div class="obj-item">CAA 列填充率极低 (&lt; 1.2%)</div>
+        <div class="obj-item">GeoIP 列依赖 A/AAAA 查询有响应</div>
+      </div>
+      <div class="lab" style="margin-top:16px">
+        <h4>分析建议</h4>
+        <p class="small">查询特定记录类型时，始终加 <code>WHERE query_type = 'A'</code> 过滤，避免在 NULL 值上浪费计算。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 3: 基础分析  (Slides 14-18)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 14: Chapter 3 Section Title -->
+<div class="slide accent" id="s14">
+  <div class="chapter-tag">CHAPTER 3</div>
+  <h1>基础分析</h1>
+  <p class="subtitle">DuckDB + Parquet / 规模总览 / 分布统计</p>
+  <div class="section-num">03</div>
+</div>
+
+<!-- SLIDE 15: DuckDB + Parquet 查询基础 -->
+<div class="slide dark" id="s15">
+  <div class="glow blue" style="top:-120px;right:-80px"></div>
+  <div class="label">Chapter 3 / 查询基础</div>
+  <h2>DuckDB + Parquet 查询基础</h2>
+  <div class="grid2">
+    <div>
+      <pre style="font-size:12px"><span class="cm">-- 单文件查询</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/ch.parquet'</span>)
+<span class="kw">LIMIT</span> <span class="nu">10</span>;
+
+<span class="cm">-- Glob 多文件查询</span>
+<span class="kw">SELECT</span> <span class="fn">count</span>(*)
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/*.parquet'</span>);
+
+<span class="cm">-- 带 filename 列</span>
+<span class="kw">SELECT</span> filename, <span class="fn">count</span>(*)
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/*.parquet'</span>,
+     filename=<span class="nu">true</span>)
+<span class="kw">GROUP BY</span> filename;</pre>
+    </div>
+    <div>
+      <pre style="font-size:12px"><span class="cm">-- 创建视图方便反复查询</span>
+<span class="kw">CREATE VIEW</span> dns <span class="kw">AS</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="fn">read_parquet</span>(
+  <span class="st">'data/*.parquet'</span>,
+  hive_partitioning=<span class="nu">true</span>);
+
+<span class="cm">-- 然后像普通表一样查询</span>
+<span class="kw">SELECT</span> query_type, <span class="fn">count</span>(*) <span class="kw">as</span> cnt
+<span class="kw">FROM</span> dns
+<span class="kw">GROUP BY</span> query_type
+<span class="kw">ORDER BY</span> cnt <span class="kw">DESC</span>;
+
+<span class="cm">-- 导出结果</span>
+<span class="kw">COPY</span> (SELECT ...) <span class="kw">TO</span> <span class="st">'output.csv'</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16: 规模总览 -->
+<div class="slide deep" id="s16">
+  <div class="glow green" style="top:-80px;left:-60px"></div>
+  <div class="label">Chapter 3 / 规模</div>
+  <h2>规模总览</h2>
+  <div class="grid4">
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:42px">13</div>
+      <h4>数据集</h4>
+      <p>8 Zone + 4 TopList + root</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:42px">2.32 亿</div>
+      <h4>总记录数</h4>
+      <p>单日测量数据</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:42px">3347 万</div>
+      <h4>独立域名</h4>
+      <p>distinct query_name</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:42px">11.2 GB</div>
+      <h4>数据体量</h4>
+      <p>Parquet 压缩后</p>
+    </div>
+  </div>
+  <pre style="margin-top:24px"><span class="cm">-- 统计总记录数和独立域名数</span>
+<span class="kw">SELECT</span> <span class="fn">count</span>(*) <span class="kw">AS</span> total_records,
+       <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name) <span class="kw">AS</span> unique_domains
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/*.parquet'</span>);
+<span class="cm">-- 结果: 232,000,000+ records / 33,470,000+ domains</span></pre>
+</div>
+
+<!-- SLIDE 17: Query Type 分布 -->
+<div class="slide dark" id="s17">
+  <div class="glow purple" style="bottom:-80px;right:-80px"></div>
+  <div class="label">Chapter 3 / 查询类型</div>
+  <h2>Query Type 分布</h2>
+  <div class="grid2">
+    <div>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">A</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#4da3ff,var(--accent2))"></div></div><span class="bar-val">17.9%</span></div>
+        <div class="bar-row"><span class="bar-label">NS</span><div class="bar-track"><div class="bar-fill" style="width:86%;background:linear-gradient(90deg,#5b8def,var(--accent2))"></div></div><span class="bar-val">15.4%</span></div>
+        <div class="bar-row"><span class="bar-label">AFSDB</span><div class="bar-track"><div class="bar-fill" style="width:77%;background:linear-gradient(90deg,#6977d9,var(--accent2))"></div></div><span class="bar-val">13.7%</span></div>
+        <div class="bar-row"><span class="bar-label">TXT</span><div class="bar-track"><div class="bar-fill" style="width:59%;background:linear-gradient(90deg,#7761c3,var(--accent2))"></div></div><span class="bar-val">10.5%</span></div>
+        <div class="bar-row"><span class="bar-label">MX</span><div class="bar-track"><div class="bar-fill" style="width:54%;background:linear-gradient(90deg,#854bad,var(--accent2))"></div></div><span class="bar-val">9.7%</span></div>
+        <div class="bar-row"><span class="bar-label">AAAA</span><div class="bar-track"><div class="bar-fill" style="width:51%;background:linear-gradient(90deg,#933597,var(--accent2))"></div></div><span class="bar-val">9.1%</span></div>
+        <div class="bar-row"><span class="bar-label">SOA</span><div class="bar-track"><div class="bar-fill" style="width:40%;background:linear-gradient(90deg,#a11f81,#934dad)"></div></div><span class="bar-val">7.2%</span></div>
+        <div class="bar-row"><span class="bar-label">CNAME</span><div class="bar-track"><div class="bar-fill" style="width:26%;background:linear-gradient(90deg,#af096b,#a11f81)"></div></div><span class="bar-val">4.6%</span></div>
+        <div class="bar-row"><span class="bar-label">DS</span><div class="bar-track"><div class="bar-fill" style="width:18%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">3.2%</span></div>
+        <div class="bar-row"><span class="bar-label">DNSKEY</span><div class="bar-track"><div class="bar-fill" style="width:14%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">2.5%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h4>发现</h4>
+        <div class="obj">
+          <div class="obj-item">A 记录占比最高 (17.9%)，符合预期</div>
+          <div class="obj-item">AFSDB 异常高 (13.7%) -- OpenINTEL 主动测量所有类型</div>
+          <div class="obj-item">DNSSEC 类 (DS/DNSKEY/RRSIG) 合计约 8%</div>
+          <div class="obj-item">每个域名平均被查询 ~7 种记录类型</div>
+        </div>
+      </div>
+      <pre style="font-size:12px"><span class="kw">SELECT</span> query_type,
+  <span class="fn">count</span>(*) <span class="kw">AS</span> cnt,
+  <span class="fn">round</span>(<span class="fn">count</span>(*)*<span class="nu">100.0</span>/
+    <span class="fn">sum</span>(<span class="fn">count</span>(*)) <span class="kw">OVER</span>(), <span class="nu">1</span>) <span class="kw">AS</span> pct
+<span class="kw">FROM</span> dns
+<span class="kw">GROUP BY</span> query_type
+<span class="kw">ORDER BY</span> cnt <span class="kw">DESC</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 18: Status Code 分布 -->
+<div class="slide deep" id="s18">
+  <div class="glow green" style="top:-60px;right:-80px"></div>
+  <div class="label">Chapter 3 / 状态码</div>
+  <h2>Status Code 分布</h2>
+  <div class="grid2">
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="num" style="font-size:56px;color:var(--green)">92.15%</div>
+        <h4>NOERROR</h4>
+        <p>绝大多数查询正常返回</p>
+        <div class="pbar" style="height:10px;margin-top:10px"><div class="pbar-fill" style="width:92.15%;background:var(--green)"></div></div>
+      </div>
+      <div class="grid2" style="margin-top:0;gap:12px">
+        <div class="card" style="text-align:center">
+          <div class="num" style="font-size:32px;color:var(--orange)">7.63%</div>
+          <h4>NXDOMAIN</h4>
+          <p>域名不存在</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="num" style="font-size:32px;color:var(--red)">0.19%</div>
+          <h4>SERVFAIL</h4>
+          <p>服务器故障</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px">按 TLD 细分</h3>
+      <table style="font-size:13px">
+        <tr><th>TLD</th><th>NOERROR</th><th>NXDOMAIN</th><th>SERVFAIL</th></tr>
+        <tr><td>.fr</td><td class="cmp-win">93.1%</td><td>6.7%</td><td>0.15%</td></tr>
+        <tr><td>.ch</td><td class="cmp-win">94.2%</td><td>5.5%</td><td>0.14%</td></tr>
+        <tr><td>.se</td><td class="cmp-win">91.8%</td><td>7.9%</td><td>0.22%</td></tr>
+        <tr><td>.gov</td><td class="cmp-win">97.4%</td><td>2.6%</td><td>0.03%</td></tr>
+        <tr><td>.li</td><td>87.6%</td><td>9.5%</td><td class="cmp-lose">2.71%</td></tr>
+        <tr><td>.ee</td><td class="cmp-win">93.5%</td><td>6.1%</td><td>0.18%</td></tr>
+        <tr><td>.sk</td><td>90.4%</td><td>9.2%</td><td>0.31%</td></tr>
+        <tr><td>.nu</td><td class="cmp-win">92.7%</td><td>7.0%</td><td>0.16%</td></tr>
+      </table>
+      <p class="small" style="margin-top:8px">.gov 最干净 (97.4% NOERROR)，.li SERVFAIL 最高 (2.71%)</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 19: TLD 规模对比 -->
+<div class="slide dark" id="s19">
+  <div class="glow orange" style="bottom:-80px;left:-60px"></div>
+  <div class="label">Chapter 3 / TLD 规模</div>
+  <h2>TLD 规模对比</h2>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">.fr</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">11.1M domains</span></div>
+    <div class="bar-row"><span class="bar-label">.ch</span><div class="bar-track"><div class="bar-fill" style="width:64%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">7.1M</span></div>
+    <div class="bar-row"><span class="bar-label">.se</span><div class="bar-track"><div class="bar-fill" style="width:34%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">3.8M</span></div>
+    <div class="bar-row"><span class="bar-label">.sk</span><div class="bar-track"><div class="bar-fill" style="width:12.5%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">1.4M</span></div>
+    <div class="bar-row"><span class="bar-label">.nu</span><div class="bar-track"><div class="bar-fill" style="width:4.8%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">532K</span></div>
+    <div class="bar-row"><span class="bar-label">.ee</span><div class="bar-track"><div class="bar-fill" style="width:4.2%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">465K</span></div>
+    <div class="bar-row"><span class="bar-label">.li</span><div class="bar-track"><div class="bar-fill" style="width:1.5%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">167K</span></div>
+    <div class="bar-row"><span class="bar-label">.gov</span><div class="bar-track"><div class="bar-fill" style="width:0.4%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">40K</span></div>
+  </div>
+  <div class="grid3" style="margin-top:24px">
+    <div class="card">
+      <h4>法国 .fr 领跑</h4>
+      <p>11.1M 域名，是第二名 .ch 的 1.6 倍。法国域名注册市场活跃。</p>
+    </div>
+    <div class="card">
+      <h4>长尾明显</h4>
+      <p>.gov 仅 40K 域名但质量极高 (97.4% NOERROR)。小而精。</p>
+    </div>
+    <div class="card">
+      <h4>总记录量</h4>
+      <p>Zone-based 8 个 TLD 共 1.72 亿记录。加上 TopList 约 6000 万。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 4: 记录深度分析  (Slides 20-24)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 20: Chapter 4 Section Title -->
+<div class="slide accent" id="s20">
+  <div class="chapter-tag">CHAPTER 4</div>
+  <h1>记录深度分析</h1>
+  <p class="subtitle">IPv4/IPv6 / MX / NS / SPF / DMARC / TTL</p>
+  <div class="section-num">04</div>
+</div>
+
+<!-- SLIDE 21: IPv4 vs IPv6 -->
+<div class="slide deep" id="s21">
+  <div class="glow blue" style="top:-100px;right:-80px"></div>
+  <div class="label">Chapter 4 / IPv6 部署</div>
+  <h2>IPv4 vs IPv6 部署</h2>
+  <table>
+    <tr><th>TLD</th><th>IPv4 覆盖率</th><th></th><th>IPv6 覆盖率</th><th></th><th>IPv6/IPv4 比</th></tr>
+    <tr>
+      <td>.sk</td>
+      <td>89.2%</td>
+      <td style="width:200px"><div class="pbar"><div class="pbar-fill" style="width:89.2%;background:var(--accent)"></div></div></td>
+      <td class="cmp-win">27.6%</td>
+      <td style="width:200px"><div class="pbar"><div class="pbar-fill" style="width:27.6%;background:var(--green)"></div></div></td>
+      <td>31.0%</td>
+    </tr>
+    <tr>
+      <td>.se</td>
+      <td>90.1%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:90.1%;background:var(--accent)"></div></div></td>
+      <td class="cmp-win">25.3%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:25.3%;background:var(--green)"></div></div></td>
+      <td>28.1%</td>
+    </tr>
+    <tr>
+      <td>.fr</td>
+      <td>91.5%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:91.5%;background:var(--accent)"></div></div></td>
+      <td>22.1%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:22.1%;background:var(--green)"></div></div></td>
+      <td>24.2%</td>
+    </tr>
+    <tr>
+      <td>.ch</td>
+      <td>92.3%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:92.3%;background:var(--accent)"></div></div></td>
+      <td>18.7%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:18.7%;background:var(--green)"></div></div></td>
+      <td>20.3%</td>
+    </tr>
+    <tr>
+      <td>.gov</td>
+      <td>94.8%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:94.8%;background:var(--accent)"></div></div></td>
+      <td>15.2%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:15.2%;background:var(--green)"></div></div></td>
+      <td>16.0%</td>
+    </tr>
+    <tr>
+      <td>.ee</td>
+      <td>88.4%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:88.4%;background:var(--accent)"></div></div></td>
+      <td class="cmp-lose">5.4%</td>
+      <td><div class="pbar"><div class="pbar-fill" style="width:5.4%;background:var(--red)"></div></div></td>
+      <td>6.1%</td>
+    </tr>
+  </table>
+  <p class="small" style="margin-top:12px">.sk IPv6 最高 (27.6%)，.ee 最低 (5.4%) -- 5 倍差距反映各国网络现代化进度不同</p>
+</div>
+
+<!-- SLIDE 22: MX Top 10 -->
+<div class="slide dark" id="s22">
+  <div class="glow purple" style="bottom:-60px;left:-60px"></div>
+  <div class="label">Chapter 4 / 邮件服务器</div>
+  <h2>MX Top 10 邮件服务商</h2>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">OVH</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#4da3ff,#5b8def)"></div></div><span class="bar-val">1.30M</span></div>
+    <div class="bar-row"><span class="bar-label">Outlook</span><div class="bar-track"><div class="bar-fill" style="width:40.5%;background:linear-gradient(90deg,#6977d9,#7761c3)"></div></div><span class="bar-val">527K</span></div>
+    <div class="bar-row"><span class="bar-label">IONOS</span><div class="bar-track"><div class="bar-fill" style="width:34.4%;background:linear-gradient(90deg,#854bad,#933597)"></div></div><span class="bar-val">447K</span></div>
+    <div class="bar-row"><span class="bar-label">Google</span><div class="bar-track"><div class="bar-fill" style="width:28.5%;background:linear-gradient(90deg,#a11f81,#af096b)"></div></div><span class="bar-val">370K</span></div>
+    <div class="bar-row"><span class="bar-label">Gandi</span><div class="bar-track"><div class="bar-fill" style="width:17.7%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">230K</span></div>
+    <div class="bar-row"><span class="bar-label">ProtonMail</span><div class="bar-track"><div class="bar-fill" style="width:11.5%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">150K</span></div>
+    <div class="bar-row"><span class="bar-label">Infomaniak</span><div class="bar-track"><div class="bar-fill" style="width:9.2%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">120K</span></div>
+    <div class="bar-row"><span class="bar-label">Zoho</span><div class="bar-track"><div class="bar-fill" style="width:7.7%;background:linear-gradient(90deg,#30d158,#55a868)"></div></div><span class="bar-val">100K</span></div>
+    <div class="bar-row"><span class="bar-label">Yahoo</span><div class="bar-track"><div class="bar-fill" style="width:5.4%;background:linear-gradient(90deg,#30d158,#55a868)"></div></div><span class="bar-val">70K</span></div>
+    <div class="bar-row"><span class="bar-label">Yandex</span><div class="bar-track"><div class="bar-fill" style="width:3.8%;background:linear-gradient(90deg,#30d158,#55a868)"></div></div><span class="bar-val">50K</span></div>
+  </div>
+  <p class="small" style="margin-top:8px">OVH 作为欧洲最大主机商在 .fr 市场占绝对优势。Microsoft (Outlook) 和 Google (Gmail) 全球化布局明显。</p>
+</div>
+
+<!-- SLIDE 23: NS Top 10 -->
+<div class="slide deep" id="s23">
+  <div class="glow green" style="top:-80px;right:-60px"></div>
+  <div class="label">Chapter 4 / NS 服务商</div>
+  <h2>NS Top 10 权威 DNS 服务商</h2>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">OVH</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">1.40M</span></div>
+    <div class="bar-row"><span class="bar-label">Cloudflare</span><div class="bar-track"><div class="bar-fill" style="width:27.8%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">390K</span></div>
+    <div class="bar-row"><span class="bar-label">Gandi</span><div class="bar-track"><div class="bar-fill" style="width:24.3%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">340K</span></div>
+    <div class="bar-row"><span class="bar-label">IONOS</span><div class="bar-track"><div class="bar-fill" style="width:22.1%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">310K</span></div>
+    <div class="bar-row"><span class="bar-label">Hetzner</span><div class="bar-track"><div class="bar-fill" style="width:12.8%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">180K</span></div>
+    <div class="bar-row"><span class="bar-label">AWS Route53</span><div class="bar-track"><div class="bar-fill" style="width:10.7%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">150K</span></div>
+    <div class="bar-row"><span class="bar-label">Google DNS</span><div class="bar-track"><div class="bar-fill" style="width:8.6%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">120K</span></div>
+    <div class="bar-row"><span class="bar-label">Infomaniak</span><div class="bar-track"><div class="bar-fill" style="width:7.1%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">100K</span></div>
+  </div>
+  <div class="lab" style="margin-top:16px">
+    <h4>NS 冗余度分析</h4>
+    <p class="small"><strong>60.4%</strong> 的域名恰好有 2 个 NS 记录 (最低推荐值)。15% 有 3 个，8% 有 4+ 个。约 16% 只有 1 个 NS -- 单点故障风险。</p>
+  </div>
+</div>
+
+<!-- SLIDE 24: SPF / DMARC -->
+<div class="slide dark" id="s24">
+  <div class="glow orange" style="bottom:-80px;right:-60px"></div>
+  <div class="label">Chapter 4 / 邮件安全</div>
+  <h2>邮件安全：SPF / DMARC / DKIM</h2>
+  <div class="grid3">
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:48px;color:var(--green)">63.8%</div>
+      <h4>SPF 部署率</h4>
+      <p>TXT 记录中包含 "v=spf1" 的域名占比</p>
+      <div class="pbar" style="height:8px;margin-top:12px"><div class="pbar-fill" style="width:63.8%;background:var(--green)"></div></div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:48px;color:var(--orange)">31.2%</div>
+      <h4>DMARC 部署率</h4>
+      <p>_dmarc 子域存在 TXT 记录的域名占比</p>
+      <div class="pbar" style="height:8px;margin-top:12px"><div class="pbar-fill" style="width:31.2%;background:var(--orange)"></div></div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:48px;color:var(--text2)">N/A</div>
+      <h4>DKIM 限制</h4>
+      <p>DKIM 依赖 selector 子域，OpenINTEL 不测量所有可能的 selector</p>
+    </div>
+  </div>
+  <pre style="margin-top:16px"><span class="cm">-- SPF 检测</span>
+<span class="kw">SELECT</span> <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name) <span class="kw">FILTER</span>(<span class="kw">WHERE</span> txt_text <span class="kw">LIKE</span> <span class="st">'v=spf1%'</span>) <span class="kw">AS</span> spf_domains,
+       <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name) <span class="kw">AS</span> total_domains,
+       <span class="fn">round</span>(spf_domains * <span class="nu">100.0</span> / total_domains, <span class="nu">1</span>) <span class="kw">AS</span> spf_pct
+<span class="kw">FROM</span> dns <span class="kw">WHERE</span> query_type = <span class="st">'TXT'</span>;</pre>
+</div>
+
+<!-- SLIDE 25: TTL 分布 -->
+<div class="slide deep" id="s25">
+  <div class="glow blue" style="top:-80px;left:-60px"></div>
+  <div class="label">Chapter 4 / TTL</div>
+  <h2>TTL 分布分析</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:22px">Top 10 TTL 值</h3>
+      <table style="font-size:13px">
+        <tr><th>TTL (秒)</th><th>占比</th><th>含义</th></tr>
+        <tr><td><strong>3600</strong></td><td class="cmp-win">48.0%</td><td>1 小时 (最常见)</td></tr>
+        <tr><td>86400</td><td>15.2%</td><td>24 小时</td></tr>
+        <tr><td>300</td><td>10.8%</td><td>5 分钟 (CDN 常用)</td></tr>
+        <tr><td>600</td><td>6.3%</td><td>10 分钟</td></tr>
+        <tr><td>1800</td><td>4.1%</td><td>30 分钟</td></tr>
+        <tr><td>7200</td><td>3.5%</td><td>2 小时</td></tr>
+        <tr><td>900</td><td>2.8%</td><td>15 分钟</td></tr>
+        <tr><td>10800</td><td>2.2%</td><td>3 小时</td></tr>
+        <tr><td>60</td><td>1.9%</td><td>1 分钟 (极短)</td></tr>
+        <tr><td>43200</td><td>1.5%</td><td>12 小时</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="card">
+        <h4>关键发现</h4>
+        <div class="obj">
+          <div class="obj-item"><strong>3600 秒 (1 小时)</strong> 占据近半壁江山 -- 注册商/主机商的默认值</div>
+          <div class="obj-item">CDN 域名倾向于使用 300 秒 (5 分钟) 以快速切换</div>
+          <div class="obj-item">TTL = 60 秒的域名可能在做故障转移或动态 DNS</div>
+          <div class="obj-item">TTL > 86400 秒的非常少见 (&lt; 1%)</div>
+        </div>
+      </div>
+      <pre style="font-size:12px;margin-top:12px"><span class="kw">SELECT</span> response_ttl, <span class="fn">count</span>(*) <span class="kw">AS</span> cnt,
+  <span class="fn">round</span>(<span class="fn">count</span>(*)*<span class="nu">100.0</span>/
+    <span class="fn">sum</span>(<span class="fn">count</span>(*)) <span class="kw">OVER</span>(), <span class="nu">1</span>) pct
+<span class="kw">FROM</span> dns <span class="kw">WHERE</span> query_type=<span class="st">'A'</span>
+<span class="kw">GROUP BY</span> response_ttl
+<span class="kw">ORDER BY</span> cnt <span class="kw">DESC LIMIT</span> <span class="nu">10</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 5: 地理与网络  (Slides 26-29)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 26: Chapter 5 Section Title -->
+<div class="slide accent" id="s26">
+  <div class="chapter-tag">CHAPTER 5</div>
+  <h1>地理与网络</h1>
+  <p class="subtitle">国家分布 / AS 集中度 / TLD 地理特征</p>
+  <div class="section-num">05</div>
+</div>
+
+<!-- SLIDE 27: Top 10 Countries -->
+<div class="slide dark" id="s27">
+  <div class="glow green" style="top:-100px;right:-80px"></div>
+  <div class="label">Chapter 5 / 国家分布</div>
+  <h2>Top 10 托管国家</h2>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">FR</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#4da3ff,var(--accent2))"></div></div><span class="bar-val">4.75M</span></div>
+    <div class="bar-row"><span class="bar-label">CH</span><div class="bar-track"><div class="bar-fill" style="width:54.3%;background:linear-gradient(90deg,#5b8def,var(--accent2))"></div></div><span class="bar-val">2.58M</span></div>
+    <div class="bar-row"><span class="bar-label">US</span><div class="bar-track"><div class="bar-fill" style="width:50.7%;background:linear-gradient(90deg,#6977d9,var(--accent2))"></div></div><span class="bar-val">2.41M</span></div>
+    <div class="bar-row"><span class="bar-label">DE</span><div class="bar-track"><div class="bar-fill" style="width:44%;background:linear-gradient(90deg,#7761c3,#854bad)"></div></div><span class="bar-val">2.09M</span></div>
+    <div class="bar-row"><span class="bar-label">NL</span><div class="bar-track"><div class="bar-fill" style="width:18.3%;background:linear-gradient(90deg,#933597,#a11f81)"></div></div><span class="bar-val">870K</span></div>
+    <div class="bar-row"><span class="bar-label">SE</span><div class="bar-track"><div class="bar-fill" style="width:12.6%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">600K</span></div>
+    <div class="bar-row"><span class="bar-label">GB</span><div class="bar-track"><div class="bar-fill" style="width:8.4%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">400K</span></div>
+    <div class="bar-row"><span class="bar-label">SK</span><div class="bar-track"><div class="bar-fill" style="width:7.6%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">360K</span></div>
+    <div class="bar-row"><span class="bar-label">IE</span><div class="bar-track"><div class="bar-fill" style="width:5.7%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">270K</span></div>
+    <div class="bar-row"><span class="bar-label">CZ</span><div class="bar-track"><div class="bar-fill" style="width:4.2%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">200K</span></div>
+  </div>
+  <p class="small" style="margin-top:12px">法国、瑞士、美国、德国四国托管了 ~70% 的域名。美国的高占比来自 CDN 和云服务（AWS、Cloudflare）。</p>
+</div>
+
+<!-- SLIDE 28: Top 10 AS -->
+<div class="slide deep" id="s28">
+  <div class="glow purple" style="bottom:-80px;left:-60px"></div>
+  <div class="label">Chapter 5 / AS 分布</div>
+  <h2>Top 10 自治系统 (AS)</h2>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">OVH</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">2.97M</span></div>
+    <div class="bar-row"><span class="bar-label">Cloudflare</span><div class="bar-track"><div class="bar-fill" style="width:37%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">1.10M</span></div>
+    <div class="bar-row"><span class="bar-label">IONOS</span><div class="bar-track"><div class="bar-fill" style="width:29.1%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">864K</span></div>
+    <div class="bar-row"><span class="bar-label">AWS</span><div class="bar-track"><div class="bar-fill" style="width:27.1%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">804K</span></div>
+    <div class="bar-row"><span class="bar-label">Hetzner</span><div class="bar-track"><div class="bar-fill" style="width:18.5%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">550K</span></div>
+    <div class="bar-row"><span class="bar-label">Swisscom</span><div class="bar-track"><div class="bar-fill" style="width:10.1%;background:linear-gradient(90deg,#55a868,var(--green))"></div></div><span class="bar-val">300K</span></div>
+    <div class="bar-row"><span class="bar-label">Google</span><div class="bar-track"><div class="bar-fill" style="width:8.4%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">250K</span></div>
+    <div class="bar-row"><span class="bar-label">Gandi</span><div class="bar-track"><div class="bar-fill" style="width:7.4%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">220K</span></div>
+  </div>
+  <div class="lab" style="margin-top:12px">
+    <h4>集中度警告</h4>
+    <p class="small">Top 3 AS (OVH + Cloudflare + IONOS) 托管了约 <strong>30%</strong> 的域名。互联网基础设施集中化趋势明显。</p>
+  </div>
+</div>
+
+<!-- SLIDE 29: TLD Geographic Concentration -->
+<div class="slide dark" id="s29">
+  <div class="glow blue" style="top:-60px;left:-60px"></div>
+  <div class="label">Chapter 5 / TLD 地理</div>
+  <h2>TLD 地理集中度</h2>
+  <p class="small">每个 TLD 中 A 记录 IP 地址对应的 Top-3 国家</p>
+  <div class="grid4" style="margin-top:16px">
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.fr</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">FR 68.2%</div>
+        <div class="obj-item" style="font-size:13px">US 10.1%</div>
+        <div class="obj-item" style="font-size:13px">DE 7.3%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.ch</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">CH 52.4%</div>
+        <div class="obj-item" style="font-size:13px">DE 16.8%</div>
+        <div class="obj-item" style="font-size:13px">US 12.5%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.se</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">SE 41.3%</div>
+        <div class="obj-item" style="font-size:13px">US 18.7%</div>
+        <div class="obj-item" style="font-size:13px">DE 12.1%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.sk</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">SK 55.1%</div>
+        <div class="obj-item" style="font-size:13px">CZ 14.2%</div>
+        <div class="obj-item" style="font-size:13px">DE 10.8%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.ee</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">EE 38.7%</div>
+        <div class="obj-item" style="font-size:13px">DE 18.4%</div>
+        <div class="obj-item" style="font-size:13px">US 16.2%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.gov</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">US 82.5%</div>
+        <div class="obj-item" style="font-size:13px">IE 5.1%</div>
+        <div class="obj-item" style="font-size:13px">DE 3.2%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.li</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">CH 35.6%</div>
+        <div class="obj-item" style="font-size:13px">DE 22.1%</div>
+        <div class="obj-item" style="font-size:13px">US 15.8%</div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="color:var(--accent)">.nu</h4>
+      <div class="obj" style="gap:4px">
+        <div class="obj-item" style="font-size:13px">SE 45.2%</div>
+        <div class="obj-item" style="font-size:13px">US 15.6%</div>
+        <div class="obj-item" style="font-size:13px">DE 11.4%</div>
+      </div>
+    </div>
+  </div>
+  <p class="small" style="margin-top:8px">.gov 最集中 (US 82.5%)，.ee 最分散 (EE 仅 38.7%)。.li 域名主要托管在邻国瑞士和德国。</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 6: 安全分析  (Slides 30-34)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 30: Chapter 6 Section Title -->
+<div class="slide accent" id="s30">
+  <div class="chapter-tag">CHAPTER 6</div>
+  <h1>安全分析</h1>
+  <p class="subtitle">DNSSEC / CAA / 基础设施安全</p>
+  <div class="section-num">06</div>
+</div>
+
+<!-- SLIDE 31: DNSSEC by TLD -->
+<div class="slide deep" id="s31">
+  <div class="glow green" style="top:-80px;right:-60px"></div>
+  <div class="label">Chapter 6 / DNSSEC</div>
+  <h2>DNSSEC 部署率 (by TLD)</h2>
+  <div class="grid2">
+    <div>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">.se</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">21.9%</span></div>
+        <div class="bar-row"><span class="bar-label">.nu</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">18.4%</span></div>
+        <div class="bar-row"><span class="bar-label">.ch</span><div class="bar-track"><div class="bar-fill" style="width:73%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">16.0%</span></div>
+        <div class="bar-row"><span class="bar-label">.fr</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">12.1%</span></div>
+        <div class="bar-row"><span class="bar-label">.ee</span><div class="bar-track"><div class="bar-fill" style="width:43%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">9.4%</span></div>
+        <div class="bar-row"><span class="bar-label">.sk</span><div class="bar-track"><div class="bar-fill" style="width:37%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">8.1%</span></div>
+        <div class="bar-row"><span class="bar-label">.li</span><div class="bar-track"><div class="bar-fill" style="width:30%;background:linear-gradient(90deg,var(--red),#ff6b6b)"></div></div><span class="bar-val">6.5%</span></div>
+        <div class="bar-row"><span class="bar-label">.gov</span><div class="bar-track"><div class="bar-fill" style="width:23%;background:linear-gradient(90deg,var(--red),#ff6b6b)"></div></div><span class="bar-val">5.1%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h4>瑞典领跑 DNSSEC</h4>
+        <p>.se 和 .nu (瑞典管理) 的 DNSSEC 部署率最高，反映瑞典注册管理机构 (IIS) 的积极推广策略。</p>
+      </div>
+      <div class="card">
+        <h4>.gov 意外低迷</h4>
+        <p>尽管美国联邦 BOD 18-01 要求政府域名启用 DNSSEC，但仅 5.1% 的 .gov 域名有 DS 记录 -- 政策执行差距。</p>
+      </div>
+      <pre style="font-size:12px;margin-top:12px"><span class="cm">-- DNSSEC 部署率查询</span>
+<span class="kw">SELECT</span> source,
+  <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name) <span class="kw">FILTER</span>(
+    <span class="kw">WHERE</span> ds_key_tag <span class="kw">IS NOT NULL</span>)
+  * <span class="nu">100.0</span> / <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name)
+<span class="kw">FROM</span> dns <span class="kw">GROUP BY</span> source;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 32: DNSSEC Algorithms -->
+<div class="slide dark" id="s32">
+  <div class="glow purple" style="bottom:-60px;right:-60px"></div>
+  <div class="label">Chapter 6 / DNSSEC 算法</div>
+  <h2>DNSSEC 签名算法分布</h2>
+  <div class="grid2">
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="num" style="font-size:52px;color:var(--green)">61.1%</div>
+        <h4>ECDSA P-256 (算法 13)</h4>
+        <p>最主流的现代 DNSSEC 算法</p>
+      </div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="num" style="font-size:52px;color:var(--accent)">37.8%</div>
+        <h4>RSA/SHA-256 (算法 8)</h4>
+        <p>传统算法，密钥较大但兼容性好</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="num" style="font-size:52px;color:var(--orange)">0.74%</div>
+        <h4>Ed25519 (算法 15)</h4>
+        <p>最新最快的算法，但部署极少</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px">算法迁移趋势</h3>
+      <div class="obj" style="margin-top:12px">
+        <div class="obj-item">ECDSA P-256 已成为事实标准 (61.1%)，密钥仅 64 字节</div>
+        <div class="obj-item">RSA/SHA-256 仍占 37.8%，多为早期部署的域名</div>
+        <div class="obj-item">Ed25519 虽然性能最优，但验证器支持率仍不足</div>
+        <div class="obj-item">RSA/SHA-1 (算法 5) 已几乎消失 (&lt; 0.4%)</div>
+      </div>
+      <div class="lab" style="margin-top:16px">
+        <h4>实践建议</h4>
+        <p class="small">新部署 DNSSEC 推荐使用 <strong>ECDSA P-256 (算法 13)</strong>：密钥小、签名快、DNS 包不易超限。Ed25519 待生态成熟后再迁移。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 33: CAA -->
+<div class="slide deep" id="s33">
+  <div class="glow orange" style="top:-80px;left:-60px"></div>
+  <div class="label">Chapter 6 / CAA</div>
+  <h2>CAA 证书授权记录</h2>
+  <div class="grid2">
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="num" style="font-size:56px;color:var(--red)">&lt; 1.2%</div>
+        <h4>CAA 部署率</h4>
+        <p>所有域名中配置 CAA 记录的极少</p>
+      </div>
+      <h3 style="font-size:20px">被授权 CA 分布</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">Let's Encrypt</span><div class="bar-track"><div class="bar-fill" style="width:69%;background:var(--green)"></div></div><span class="bar-val">69%</span></div>
+        <div class="bar-row"><span class="bar-label">DigiCert</span><div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--accent)"></div></div><span class="bar-val">12%</span></div>
+        <div class="bar-row"><span class="bar-label">Sectigo</span><div class="bar-track"><div class="bar-fill" style="width:8%;background:var(--accent2)"></div></div><span class="bar-val">8%</span></div>
+        <div class="bar-row"><span class="bar-label">AWS</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--orange)"></div></div><span class="bar-val">5%</span></div>
+        <div class="bar-row"><span class="bar-label">Google</span><div class="bar-track"><div class="bar-fill" style="width:3%;background:var(--orange)"></div></div><span class="bar-val">3%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h4>什么是 CAA?</h4>
+        <p>CAA 记录指定哪些证书颁发机构 (CA) 被授权为该域名签发 TLS 证书。CA 在签发前必须检查 CAA 记录。</p>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4>为什么部署率这么低?</h4>
+        <div class="obj" style="margin-top:8px">
+          <div class="obj-item">非强制：不配置 = 允许所有 CA 签发</div>
+          <div class="obj-item">感知不足：多数域名管理者不知道 CAA</div>
+          <div class="obj-item">Let's Encrypt 占 69% 体现免费 CA 的统治地位</div>
+        </div>
+      </div>
+      <pre style="font-size:12px;margin-top:12px"><span class="cm">-- 检查 CAA 配置</span>
+<span class="kw">SELECT</span> caa_value, <span class="fn">count</span>(*) <span class="kw">AS</span> cnt
+<span class="kw">FROM</span> dns
+<span class="kw">WHERE</span> caa_tag = <span class="st">'issue'</span>
+<span class="kw">GROUP BY</span> caa_value
+<span class="kw">ORDER BY</span> cnt <span class="kw">DESC LIMIT</span> <span class="nu">10</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 34: Infrastructure -->
+<div class="slide dark" id="s34">
+  <div class="glow blue" style="bottom:-80px;right:-60px"></div>
+  <div class="label">Chapter 6 / 基础设施</div>
+  <h2>基础设施安全</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:22px">CNAME / CDN 热门目标</h3>
+      <table style="font-size:13px">
+        <tr><th>CNAME 目标</th><th>域名数</th></tr>
+        <tr><td>*.cdn.cloudflare.net</td><td>380K</td></tr>
+        <tr><td>*.github.io</td><td>125K</td></tr>
+        <tr><td>*.amazonaws.com</td><td>98K</td></tr>
+        <tr><td>*.azurewebsites.net</td><td>67K</td></tr>
+        <tr><td>*.shopify.com</td><td>52K</td></tr>
+        <tr><td>*.wordpress.com</td><td>45K</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:22px">NS 冗余度分布</h3>
+      <div class="card">
+        <div class="grid2" style="margin-top:0;gap:12px">
+          <div style="text-align:center">
+            <div class="num" style="font-size:36px">60.4%</div>
+            <p style="font-size:13px;opacity:0.7">恰好 2 个 NS</p>
+          </div>
+          <div style="text-align:center">
+            <div class="num" style="font-size:36px;color:var(--green)">15.0%</div>
+            <p style="font-size:13px;opacity:0.7">3 个 NS</p>
+          </div>
+          <div style="text-align:center">
+            <div class="num" style="font-size:36px;color:var(--orange)">8.0%</div>
+            <p style="font-size:13px;opacity:0.7">4+ 个 NS</p>
+          </div>
+          <div style="text-align:center">
+            <div class="num" style="font-size:36px;color:var(--red)">16.6%</div>
+            <p style="font-size:13px;opacity:0.7">仅 1 个 NS</p>
+          </div>
+        </div>
+      </div>
+      <div class="lab" style="margin-top:12px">
+        <h4>单点故障风险</h4>
+        <p class="small"><strong>16.6%</strong> 的域名只有 1 个 NS 记录。如果该服务器宕机，域名将完全不可解析。RFC 推荐至少 2 个。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 7: 交叉分析  (Slides 35-39)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 35: Chapter 7 Section Title -->
+<div class="slide accent" id="s35">
+  <div class="chapter-tag">CHAPTER 7</div>
+  <h1>交叉分析</h1>
+  <p class="subtitle">TopList vs ccTLD / 重叠度 / 安全对比</p>
+  <div class="section-num">07</div>
+</div>
+
+<!-- SLIDE 36: TopList Overview -->
+<div class="slide deep" id="s36">
+  <div class="glow green" style="top:-80px;left:-80px"></div>
+  <div class="label">Chapter 7 / TopList 概览</div>
+  <h2>TopList 数据集概览</h2>
+  <div class="grid4">
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:32px">2.42M</div>
+      <h4>Tranco</h4>
+      <p>综合排名榜单<br>学术界标准</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:32px">2.46M</div>
+      <h4>Radar</h4>
+      <p>Cloudflare 流量<br>实时性强</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:32px">1.53M</div>
+      <h4>Umbrella</h4>
+      <p>Cisco DNS 流量<br>被动观测</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:32px">2.46M</div>
+      <h4>Majestic</h4>
+      <p>反向链接排名<br>SEO 视角</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h4>TopList 中的 TLD 分布 (以 Tranco 为例)</h4>
+    <div class="pipe">
+      <span>.com 62%</span>
+      <span>.org 5.2%</span>
+      <span>.net 4.1%</span>
+      <span>.de 2.8%</span>
+      <span>.fr 1.9%</span>
+      <span>.ru 1.7%</span>
+      <span>.co.uk 1.3%</span>
+      <span>.io 1.1%</span>
+      <span>其他 20%</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 37: TopList Overlap -->
+<div class="slide dark" id="s37">
+  <div class="glow purple" style="bottom:-80px;right:-60px"></div>
+  <div class="label">Chapter 7 / 重叠度</div>
+  <h2>TopList 重叠度分析</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:22px">两两重叠率</h3>
+      <table style="font-size:13px">
+        <tr><th></th><th>Tranco</th><th>Radar</th><th>Umbrella</th><th>Majestic</th></tr>
+        <tr><td><strong>Tranco</strong></td><td>--</td><td class="cmp-win">53.5%</td><td>38.2%</td><td>47.1%</td></tr>
+        <tr><td><strong>Radar</strong></td><td class="cmp-win">53.5%</td><td>--</td><td>35.8%</td><td>44.6%</td></tr>
+        <tr><td><strong>Umbrella</strong></td><td>38.2%</td><td>35.8%</td><td>--</td><td>32.4%</td></tr>
+        <tr><td><strong>Majestic</strong></td><td>47.1%</td><td>44.6%</td><td>32.4%</td><td>--</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="num" style="font-size:48px;color:var(--accent)">27.2%</div>
+        <h4>四榜共同域名</h4>
+        <p>所有四个 TopList 中都出现的域名占比</p>
+      </div>
+      <div class="card">
+        <h4>关键发现</h4>
+        <div class="obj" style="gap:4px">
+          <div class="obj-item" style="font-size:13px">Tranco 与 Radar 重叠最多 (53.5%)</div>
+          <div class="obj-item" style="font-size:13px">Umbrella 独特域名最多 (DNS 流量视角)</div>
+          <div class="obj-item" style="font-size:13px">约 73% 的域名至少在一个榜单中独有</div>
+          <div class="obj-item" style="font-size:13px">不同方法论导致不同的"热门"定义</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 38: DNSSEC comparison -->
+<div class="slide deep" id="s38">
+  <div class="glow green" style="top:-80px;right:-80px"></div>
+  <div class="label">Chapter 7 / DNSSEC 对比</div>
+  <h2>DNSSEC：TopList vs ccTLD</h2>
+  <div class="grid2">
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="label">TopList 平均</div>
+        <div class="num" style="font-size:64px;color:var(--red)">1-3%</div>
+        <h4>DNSSEC 部署率</h4>
+        <p>全球热门域名中 DNSSEC 几乎无人问津</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="label">ccTLD 平均</div>
+        <div class="num" style="font-size:64px;color:var(--green)">~15%</div>
+        <h4>DNSSEC 部署率</h4>
+        <p>欧洲 ccTLD 注册管理机构积极推广</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h4>戏剧性的差距</h4>
+        <div class="obj" style="margin-top:8px">
+          <div class="obj-item">ccTLD 的 DNSSEC 部署率是 TopList 的 <strong>5-15 倍</strong></div>
+          <div class="obj-item">.se 达到 21.9%，而 Tranco 仅 ~2%</div>
+          <div class="obj-item">ccTLD 注册管理机构提供免费 DNSSEC 签名服务</div>
+          <div class="obj-item">TopList 中 .com 域名占 62%，而 .com 的 DNSSEC 部署极低</div>
+        </div>
+      </div>
+      <div class="lab" style="margin-top:16px">
+        <h4>原因分析</h4>
+        <p class="small">欧洲 ccTLD 注册管理机构（如瑞典 IIS、荷兰 SIDN）主动推广 DNSSEC，提供一键启用。而全球性 gTLD (.com/.net) 缺乏类似激励。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 39: IPv6 + Email comparison -->
+<div class="slide dark" id="s39">
+  <div class="glow orange" style="bottom:-60px;left:-60px"></div>
+  <div class="label">Chapter 7 / IPv6 &amp; Email</div>
+  <h2>IPv6 &amp; 邮件安全对比</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:22px">IPv6 部署率</h3>
+      <div class="grid2" style="margin-top:8px;gap:12px">
+        <div class="card" style="text-align:center">
+          <div class="num" style="font-size:42px;color:var(--green)">~31%</div>
+          <h4>TopList</h4>
+          <p>CDN 效应推高 IPv6</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="num" style="font-size:42px;color:var(--accent)">~24%</div>
+          <h4>ccTLD</h4>
+          <p>中小网站 IPv6 滞后</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h4>CDN 效应</h4>
+        <p>TopList 中 Cloudflare/AWS 等 CDN 默认启用 IPv6，带动整体提升。ccTLD 中大量中小企业使用传统 IPv4-only 托管。</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px">邮件安全协议</h3>
+      <table>
+        <tr><th>协议</th><th>ccTLD</th><th>TopList</th><th>领先方</th></tr>
+        <tr>
+          <td><strong>SPF</strong></td>
+          <td class="cmp-win">64%</td>
+          <td>54%</td>
+          <td><span class="badge green" style="font-size:11px">ccTLD +10%</span></td>
+        </tr>
+        <tr>
+          <td><strong>DMARC</strong></td>
+          <td>31%</td>
+          <td class="cmp-win">39%</td>
+          <td><span class="badge blue" style="font-size:11px">TopList +8%</span></td>
+        </tr>
+      </table>
+      <div class="card" style="margin-top:16px">
+        <h4>有趣的反转</h4>
+        <div class="obj" style="gap:4px">
+          <div class="obj-item" style="font-size:13px"><strong>SPF</strong>: ccTLD 领先 -- 欧洲注册商默认添加 SPF 模板</div>
+          <div class="obj-item" style="font-size:13px"><strong>DMARC</strong>: TopList 领先 -- 大型企业有专业安全团队</div>
+          <div class="obj-item" style="font-size:13px">说明: SPF 易部署(注册商可自动化), DMARC 需专业配置</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     Chapter 8: 异常检测 & 未来拓展  (Slides 40-46)
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- SLIDE 40: Chapter 8 Section Title -->
+<div class="slide accent" id="s40">
+  <div class="chapter-tag">CHAPTER 8</div>
+  <h1>异常检测 &amp; 未来拓展</h1>
+  <p class="subtitle">SERVFAIL / RTT / NXDOMAIN / 时间维度 / 多源融合</p>
+  <div class="section-num">08</div>
+</div>
+
+<!-- SLIDE 41: SERVFAIL/TIMEOUT by TLD -->
+<div class="slide dark" id="s41">
+  <div class="glow red" style="top:-80px;right:-60px;background:var(--red);width:300px;height:300px"></div>
+  <div class="label">Chapter 8 / 异常检测</div>
+  <h2>SERVFAIL / TIMEOUT 分析</h2>
+  <div class="grid2">
+    <div>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">.li</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--red),#ff6b6b)"></div></div><span class="bar-val">2.71%</span></div>
+        <div class="bar-row"><span class="bar-label">.sk</span><div class="bar-track"><div class="bar-fill" style="width:11.4%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">0.31%</span></div>
+        <div class="bar-row"><span class="bar-label">.se</span><div class="bar-track"><div class="bar-fill" style="width:8.1%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">0.22%</span></div>
+        <div class="bar-row"><span class="bar-label">.ee</span><div class="bar-track"><div class="bar-fill" style="width:6.6%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">0.18%</span></div>
+        <div class="bar-row"><span class="bar-label">.nu</span><div class="bar-track"><div class="bar-fill" style="width:5.9%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">0.16%</span></div>
+        <div class="bar-row"><span class="bar-label">.fr</span><div class="bar-track"><div class="bar-fill" style="width:5.5%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">0.15%</span></div>
+        <div class="bar-row"><span class="bar-label">.ch</span><div class="bar-track"><div class="bar-fill" style="width:5.2%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">0.14%</span></div>
+        <div class="bar-row"><span class="bar-label">.gov</span><div class="bar-track"><div class="bar-fill" style="width:1.1%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">0.03%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="border-left:4px solid var(--red)">
+        <h4>.li 异常突出</h4>
+        <p><strong>2.71%</strong> 的 SERVFAIL 率是其他 TLD 的 10-90 倍。可能原因:</p>
+        <div class="obj" style="margin-top:8px;gap:4px">
+          <div class="obj-item" style="font-size:13px">过期或配置错误的 NS 记录</div>
+          <div class="obj-item" style="font-size:13px">DNSSEC 验证失败导致 SERVFAIL</div>
+          <div class="obj-item" style="font-size:13px">.li 域名量小 (167K)，单个问题影响大</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px;border-left:4px solid var(--green)">
+        <h4>.gov 最稳定</h4>
+        <p>仅 <strong>0.03%</strong> SERVFAIL -- 美国政府域名基础设施维护水平高。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 42: RTT Analysis -->
+<div class="slide deep" id="s42">
+  <div class="glow blue" style="bottom:-80px;left:-60px"></div>
+  <div class="label">Chapter 8 / RTT</div>
+  <h2>RTT 响应时间分析</h2>
+  <div class="grid3">
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:48px;color:var(--green)">11.8ms</div>
+      <h4>中位数 (P50)</h4>
+      <p>一半查询在 12ms 内返回</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:48px;color:var(--orange)">78ms</div>
+      <h4>P95</h4>
+      <p>95% 的查询在 78ms 内返回</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="num" style="font-size:48px;color:var(--red)">164ms</div>
+      <h4>P99</h4>
+      <p>1% 的长尾需要超过 164ms</p>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <h4>RTT 百分位分析 SQL</h4>
+      <pre style="font-size:12px"><span class="kw">SELECT</span>
+  <span class="fn">percentile_cont</span>(<span class="nu">0.50</span>) <span class="kw">WITHIN GROUP</span>
+    (<span class="kw">ORDER BY</span> rtt) <span class="kw">AS</span> p50,
+  <span class="fn">percentile_cont</span>(<span class="nu">0.95</span>) <span class="kw">WITHIN GROUP</span>
+    (<span class="kw">ORDER BY</span> rtt) <span class="kw">AS</span> p95,
+  <span class="fn">percentile_cont</span>(<span class="nu">0.99</span>) <span class="kw">WITHIN GROUP</span>
+    (<span class="kw">ORDER BY</span> rtt) <span class="kw">AS</span> p99
+<span class="kw">FROM</span> dns
+<span class="kw">WHERE</span> rtt <span class="kw">IS NOT NULL</span>;</pre>
+    </div>
+    <div class="card">
+      <h4>RTT 异常阈值</h4>
+      <div class="obj">
+        <div class="obj-item"><strong>&lt; 10ms</strong>: 本地/CDN 边缘节点</div>
+        <div class="obj-item"><strong>10-50ms</strong>: 正常跨区域延迟</div>
+        <div class="obj-item"><strong>50-200ms</strong>: 跨洲际或轻度拥塞</div>
+        <div class="obj-item"><strong>&gt; 500ms</strong>: 可能的 DNS 劫持/超时重试</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 43: NXDOMAIN -->
+<div class="slide dark" id="s43">
+  <div class="glow orange" style="top:-80px;right:-60px"></div>
+  <div class="label">Chapter 8 / 幽灵域名</div>
+  <h2>NXDOMAIN 幽灵域名分析</h2>
+  <div class="grid2">
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="num" style="font-size:56px;color:var(--orange)">9.3%</div>
+        <h4>总体 NXDOMAIN 率 (去重后)</h4>
+        <p>Zone 文件中存在但实际已不解析的"幽灵域名"</p>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">.sk</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--red),#ff6b6b)"></div></div><span class="bar-val">12.4%</span></div>
+        <div class="bar-row"><span class="bar-label">.li</span><div class="bar-track"><div class="bar-fill" style="width:76.6%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">9.5%</span></div>
+        <div class="bar-row"><span class="bar-label">.se</span><div class="bar-track"><div class="bar-fill" style="width:63.7%;background:linear-gradient(90deg,var(--orange),#dd8452)"></div></div><span class="bar-val">7.9%</span></div>
+        <div class="bar-row"><span class="bar-label">.nu</span><div class="bar-track"><div class="bar-fill" style="width:56.5%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">7.0%</span></div>
+        <div class="bar-row"><span class="bar-label">.fr</span><div class="bar-track"><div class="bar-fill" style="width:54%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div><span class="bar-val">6.7%</span></div>
+        <div class="bar-row"><span class="bar-label">.ee</span><div class="bar-track"><div class="bar-fill" style="width:49.2%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">6.1%</span></div>
+        <div class="bar-row"><span class="bar-label">.ch</span><div class="bar-track"><div class="bar-fill" style="width:44.4%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">5.5%</span></div>
+        <div class="bar-row"><span class="bar-label">.gov</span><div class="bar-track"><div class="bar-fill" style="width:21%;background:linear-gradient(90deg,var(--green),#55a868)"></div></div><span class="bar-val">2.6%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h4>什么是幽灵域名?</h4>
+        <p>域名仍注册在 Zone 文件中，但 DNS 查询返回 NXDOMAIN，说明:</p>
+        <div class="obj" style="margin-top:8px;gap:4px">
+          <div class="obj-item" style="font-size:13px">NS 服务器配置已删除但注册未取消</div>
+          <div class="obj-item" style="font-size:13px">域名过期但尚在宽限期</div>
+          <div class="obj-item" style="font-size:13px">Zone 文件更新延迟</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h4>.gov 最干净</h4>
+        <p>仅 <strong>2.6%</strong> 幽灵域名，反映政府域名严格的注册管理流程。而 .sk 高达 12.4%，域名清理有待加强。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 44: 时间维度 -->
+<div class="slide deep" id="s44">
+  <div class="glow purple" style="top:-80px;left:-60px"></div>
+  <div class="label">Chapter 8 / 时间维度</div>
+  <h2>未来拓展：时间维度分析</h2>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <h4>下载多天数据</h4>
+        <pre style="font-size:11.5px"><span class="cm"># 下载一周数据</span>
+<span class="kw">for</span> day <span class="kw">in</span> $(<span class="fn">seq</span> <span class="nu">7</span> <span class="nu">13</span>); <span class="kw">do</span>
+  python download.py \
+    --zone ch \
+    --date 2026-04-$day \
+    --output data/ch_04${day}/
+<span class="kw">done</span></pre>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4>时间序列查询</h4>
+        <pre style="font-size:11.5px"><span class="kw">SELECT</span> day,
+  <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name) <span class="kw">FILTER</span>(
+    <span class="kw">WHERE</span> ds_key_tag <span class="kw">IS NOT NULL</span>)
+  * <span class="nu">100.0</span> / <span class="fn">count</span>(<span class="kw">DISTINCT</span> query_name)
+  <span class="kw">AS</span> dnssec_pct
+<span class="kw">FROM</span> <span class="fn">read_parquet</span>(<span class="st">'data/ch_*/*.parquet'</span>,
+  hive_partitioning=<span class="nu">true</span>)
+<span class="kw">GROUP BY</span> day <span class="kw">ORDER BY</span> day;</pre>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px">可追踪的变化</h3>
+      <div class="obj">
+        <div class="obj-item"><strong>DNSSEC 增长曲线</strong> -- 每月/每季的部署率变化</div>
+        <div class="obj-item"><strong>域名注册/注销</strong> -- 新域名出现和旧域名消失</div>
+        <div class="obj-item"><strong>NS 迁移</strong> -- 域名从一个 DNS 服务商迁到另一个</div>
+        <div class="obj-item"><strong>CDN 采用率</strong> -- CNAME 到 Cloudflare/AWS 的增长</div>
+        <div class="obj-item"><strong>邮件安全趋势</strong> -- SPF/DMARC 部署率月度变化</div>
+        <div class="obj-item"><strong>异常事件</strong> -- SERVFAIL 突增可能指向安全事件</div>
+      </div>
+      <div class="lab" style="margin-top:16px">
+        <h4>数据量预估</h4>
+        <p class="small">每天 ~11 GB (全量)。30 天约 330 GB。建议按需下载特定 TLD，或使用 DuckDB S3 直连做采样分析。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 45: 多源融合 -->
+<div class="slide dark" id="s45">
+  <div class="glow green" style="bottom:-80px;right:-60px"></div>
+  <div class="label">Chapter 8 / 多源融合</div>
+  <h2>多源数据融合</h2>
+  <p class="desc" style="margin-top:4px">将 OpenINTEL 与其他公开数据源结合，构建更完整的互联网画像</p>
+  <div class="grid4" style="margin-top:20px">
+    <div class="card">
+      <div class="card-icon">CZDS</div>
+      <h4>ICANN CZDS</h4>
+      <p>1400+ gTLD 区域文件。补充 .com/.net/.org 等 OpenINTEL 不覆盖的 TLD。</p>
+      <div class="pbar" style="margin-top:8px"><div class="pbar-fill" style="width:70%;background:var(--accent)"></div></div>
+      <p class="small" style="margin-top:4px">补充度: 高</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">R7</div>
+      <h4>Rapid7 / Censys</h4>
+      <p>全网 IP 扫描数据。关联 A 记录 IP 的开放端口、TLS 证书、HTTP 响应。</p>
+      <div class="pbar" style="margin-top:8px"><div class="pbar-fill" style="width:90%;background:var(--green)"></div></div>
+      <p class="small" style="margin-top:4px">补充度: 极高</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">CC</div>
+      <h4>Common Crawl</h4>
+      <p>网页抓取存档。关联域名的实际网页内容、HTTP 头、重定向链。</p>
+      <div class="pbar" style="margin-top:8px"><div class="pbar-fill" style="width:60%;background:var(--orange)"></div></div>
+      <p class="small" style="margin-top:4px">补充度: 中高</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">CT</div>
+      <h4>CT Log</h4>
+      <p>证书透明度日志。关联域名的 TLS 证书签发历史、CA 选择。</p>
+      <div class="pbar" style="margin-top:8px"><div class="pbar-fill" style="width:50%;background:var(--accent2)"></div></div>
+      <p class="small" style="margin-top:4px">补充度: 中</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 46: 项目结构 -->
+<div class="slide deep" id="s46">
+  <div class="glow blue" style="top:-80px;right:-80px"></div>
+  <div class="label">Chapter 8 / 项目结构</div>
+  <h2>推荐项目结构</h2>
+  <div class="grid2">
+    <div>
+      <pre style="font-size:13px;line-height:1.9">open-data-lab/
+├── data/
+│   ├── openintel/          <span class="cm">&lt;- 本教程数据</span>
+│   │   ├── zones/          <span class="cm">&lt;- ch/ee/fr/gov/...</span>
+│   │   └── toplists/       <span class="cm">&lt;- tranco/radar/...</span>
+│   ├── czds/               <span class="cm">&lt;- ICANN gTLD zones</span>
+│   ├── common-crawl/       <span class="cm">&lt;- web crawl data</span>
+│   └── rapid7-sonar/       <span class="cm">&lt;- IP scanning</span>
+├── scripts/
+│   ├── download.py         <span class="cm">&lt;- S3 下载脚本</span>
+│   ├── analyze.sql         <span class="cm">&lt;- DuckDB 分析查询</span>
+│   └── visualize.py        <span class="cm">&lt;- 可视化脚本</span>
+├── output/
+│   ├── charts/
+│   └── reports/
+├── docs/
+└── tutorial.html           <span class="cm">&lt;- 本教程</span></pre>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h4>设计原则</h4>
+        <div class="obj">
+          <div class="obj-item"><strong>数据与代码分离</strong> -- data/ 目录可 .gitignore</div>
+          <div class="obj-item"><strong>按数据源组织</strong> -- 每个源一个子目录</div>
+          <div class="obj-item"><strong>SQL 优先</strong> -- DuckDB SQL 作为主要分析语言</div>
+          <div class="obj-item"><strong>渐进式扩展</strong> -- 从 OpenINTEL 开始，逐步加入其他源</div>
+        </div>
+      </div>
+      <div class="lab">
+        <h4>快速启动</h4>
+        <pre style="font-size:11.5px;margin:8px 0"><span class="cm"># 克隆模板</span>
+mkdir -p open-data-lab/{data/openintel,scripts,output}
+cd open-data-lab
+
+<span class="cm"># 下载一天数据</span>
+python scripts/download.py --zone ch --date 2026-04-13
+
+<span class="cm"># 开始分析</span>
+duckdb -c "SELECT count(*) FROM 'data/openintel/*.parquet'"</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 47: Thank You -->
+<div class="slide dark" id="s47">
+  <div class="glow blue" style="top:-200px;right:-100px"></div>
+  <div class="glow purple" style="bottom:-150px;left:-50px"></div>
+  <div class="glow green" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <div class="label">The End</div>
+  <h1 style="background:linear-gradient(135deg,#fff,#a8c0ff,#9b99ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Thank You</h1>
+  <p class="subtitle">开始你的 DNS 大数据分析之旅</p>
+  <div class="grid4" style="margin-top:32px">
+    <div class="card" style="text-align:center">
+      <h4>OpenINTEL</h4>
+      <p style="color:var(--accent)">openintel.nl</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h4>DuckDB</h4>
+      <p style="color:var(--accent)">duckdb.org</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h4>Parquet</h4>
+      <p style="color:var(--accent)">parquet.apache.org</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h4>GitHub</h4>
+      <p style="color:var(--accent)">github.com/openintel</p>
+    </div>
+  </div>
+  <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+    <span class="badge blue">8 章完成</span>
+    <span class="badge green">13 数据集</span>
+    <span class="badge purple">2.32 亿记录</span>
+    <span class="badge orange">99 维字段</span>
+  </div>
+  <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project (University of Twente) &middot; Analysis date: 2026-04-13 &middot; Generated with DuckDB + Python</p>
+</div>
+
+<!-- ======== Navigation ======== -->
+<div class="nav">
+  <button onclick="prev()">&#8249;</button>
+  <span class="page-num" id="pageNum">1 / 47</span>
+  <button onclick="next()">&#8250;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+const total = slides.length;
+
+function show(n) {
+  slides[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, total - 1));
+  slides[current].classList.add('active');
+  document.getElementById('pageNum').textContent = `${current + 1} / ${total}`;
+  document.getElementById('progress').style.width = `${(current + 1) / total * 100}%`;
+}
+function next() { show(current + 1); }
+function prev() { show(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+  if (e.key === 'Home') { e.preventDefault(); show(0); }
+  if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+});
+
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -50) next();
+  if (diff > 50) prev();
+});
+
+show(0);
+</script>
+</body>
+</html>
