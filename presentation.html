@@ -1115,13 +1115,172 @@ td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
   </div>
 </div>
 
-<!-- SLIDE 30: End -->
-<div class="slide dark" id="s30">
+<!-- ════════════════════════════════════════════ -->
+<!-- PART 8: TOPLIST CROSS-ANALYSIS             -->
+<!-- ════════════════════════════════════════════ -->
+
+<!-- SLIDE 30: TopList Section Title -->
+<div class="slide accent" id="s30">
+  <div class="label">Part 7 · TopList 交叉分析</div>
+  <h1>热门域名 vs 全量</h1>
+  <p class="subtitle" style="opacity:0.85">Tranco · Umbrella · Cloudflare Radar — 与 ccTLD 区域数据的对比</p>
+  <span class="section-num">07</span>
+</div>
+
+<!-- SLIDE 31: TopList Overview -->
+<div class="slide dark" id="s31">
+  <div class="label">数据集全景</div>
+  <h3>本次分析<span class="highlight">完整数据版图</span></h3>
+  <div class="grid2" style="margin-top:16px">
+    <div>
+      <h4 style="opacity:0.6;margin-bottom:12px">Zone-Based (ccTLD 区域文件)</h4>
+      <div class="card" style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><h4>8 个 ccTLD 区域</h4><p>ch / ee / fr / gov / li / nu / se / sk</p></div>
+          <div style="text-align:right"><div class="num" style="font-size:28px">24.6M</div><p>域名</p></div>
+        </div>
+      </div>
+      <h4 style="opacity:0.6;margin-bottom:12px;margin-top:16px">TopList-Based (热门域名排行)</h4>
+      <div class="card" style="margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><h4 style="color:var(--accent)">Tranco</h4><p>学术研究用综合排名</p></div>
+          <div style="text-align:right"><div class="num" style="font-size:24px">2.42M</div><p>域名</p></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><h4 style="color:var(--orange)">Cloudflare Radar</h4><p>全球 DNS 流量排名</p></div>
+          <div style="text-align:right"><div class="num" style="font-size:24px">2.46M</div><p>域名</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><h4 style="color:var(--green)">Cisco Umbrella</h4><p>企业 DNS 安全流量</p></div>
+          <div style="text-align:right"><div class="num" style="font-size:24px">1.53M</div><p>域名</p></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4 style="opacity:0.6;margin-bottom:12px">TopList TLD 分布 (Top 8)</h4>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">.com</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),#4da3ff)"></div></div><span class="bar-val">~1.04M</span></div>
+        <div class="bar-row"><span class="bar-label">.net</span><div class="bar-track"><div class="bar-fill" style="width:11%;background:linear-gradient(90deg,var(--accent2),#9b99ff)"></div></div><span class="bar-val">~112K</span></div>
+        <div class="bar-row"><span class="bar-label">.org</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:linear-gradient(90deg,var(--green),#66e088)"></div></div><span class="bar-val">~98K</span></div>
+        <div class="bar-row"><span class="bar-label">.ru</span><div class="bar-track"><div class="bar-fill" style="width:9%;background:linear-gradient(90deg,var(--orange),#ffcc55)"></div></div><span class="bar-val">~91K</span></div>
+        <div class="bar-row"><span class="bar-label">.de</span><div class="bar-track"><div class="bar-fill" style="width:7%;background:linear-gradient(90deg,#dd0000,#ff5555)"></div></div><span class="bar-val">~75K</span></div>
+        <div class="bar-row"><span class="bar-label">.uk</span><div class="bar-track"><div class="bar-fill" style="width:7%;background:rgba(255,255,255,0.3)"></div></div><span class="bar-val">~68K</span></div>
+        <div class="bar-row"><span class="bar-label">.br</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:rgba(255,255,255,0.2)"></div></div><span class="bar-val">~47K</span></div>
+        <div class="bar-row"><span class="bar-label">.jp</span><div class="bar-track"><div class="bar-fill" style="width:4%;background:rgba(255,255,255,0.15)"></div></div><span class="bar-val">~40K</span></div>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:rgba(0,113,227,0.08);border-radius:8px;font-size:13px">
+        <strong style="color:var(--accent)">.com 占 Tranco 的 43%</strong> — 热门域名高度集中于 .com。我们的 ccTLD 区域仅覆盖 TopList 的 2.6%，因为主流域名在 gTLD 中。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 32: TopList vs Zone Security Comparison -->
+<div class="slide deep" id="s32">
+  <div class="glow orange" style="top:-80px;right:-60px"></div>
+  <div class="glow blue" style="bottom:-100px;left:-80px"></div>
+  <div class="label">热门 vs 全量</div>
+  <h2>安全部署率<span class="highlight">对比</span></h2>
+  <p class="desc">热门域名 (TopList) 与 ccTLD 全量区域在安全指标上的差异</p>
+  <div class="grid2" style="margin-top:24px">
+    <div>
+      <h4 style="margin-bottom:16px">DNSSEC (DS 记录) 部署率</h4>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>ccTLD 区域 (全量)</span><span style="color:var(--green);font-weight:700">14.7%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:14.7%;background:linear-gradient(90deg,var(--green),#66e088)"></div></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Cloudflare Radar</span><span style="color:var(--red)">2.6%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:2.6%;background:linear-gradient(90deg,var(--red),#ff6b5b)"></div></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Tranco</span><span style="color:var(--red)">2.3%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:2.3%;background:linear-gradient(90deg,var(--red),#ff6b5b)"></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Umbrella</span><span style="color:var(--red)">1.2%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:1.2%;background:linear-gradient(90deg,var(--red),#ff6b5b)"></div></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4 style="color:var(--red)">热门域名 DNSSEC 远低于全量</h4>
+        <p>ccTLD 区域 14.7% vs TopList 仅 1-3%。原因：热门域名以 .com 为主，而 .com 的 DNSSEC 部署率极低（< 3%）。欧洲 ccTLD 注册局更积极推动 DNSSEC。</p>
+      </div>
+    </div>
+    <div>
+      <h4 style="margin-bottom:16px">IPv6 (AAAA 记录) 采用率</h4>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Umbrella</span><span style="color:var(--green);font-weight:700">30.8%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:30.8%;background:linear-gradient(90deg,var(--green),#66e088)"></div></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Radar</span><span style="color:var(--green)">30.7%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:30.7%;background:linear-gradient(90deg,var(--accent),#4da3ff)"></div></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>Tranco</span><span style="color:var(--accent)">30.0%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:30.0%;background:linear-gradient(90deg,var(--accent),#4da3ff)"></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>ccTLD 区域 (全量)</span><span style="color:var(--orange)">23.6%</span></div>
+        <div class="pbar" style="height:24px"><div class="pbar-fill" style="width:23.6%;background:linear-gradient(90deg,var(--orange),#ffcc55)"></div></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4 style="color:var(--green)">热门域名 IPv6 反超全量</h4>
+        <p>TopList 31% vs ccTLD 24%。大型网站更有动力部署 IPv6 — Cloudflare/AWS 等 CDN 默认启用双栈，而小型域名通常只有 IPv4。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 33: TopList Overlap & Email Security -->
+<div class="slide dark" id="s33">
+  <div class="label">重叠度 & 邮件安全</div>
+  <h3>TopList 重叠度 & <span class="highlight">邮件安全对比</span></h3>
+  <div class="grid2" style="margin-top:16px">
+    <div>
+      <h4 style="opacity:0.6;margin-bottom:12px">三大 TopList 域名重叠度</h4>
+      <div class="card" style="margin-bottom:12px">
+        <table>
+          <tr><th>交集</th><th style="text-align:right">域名数</th><th style="text-align:right">占比</th></tr>
+          <tr><td>Tranco <span style="opacity:0.5">∩</span> Radar</td><td style="text-align:right;color:var(--green);font-weight:600">1,296,370</td><td style="text-align:right;font-weight:600">53.5%</td></tr>
+          <tr><td>Umbrella <span style="opacity:0.5">∩</span> Radar</td><td style="text-align:right">450,568</td><td style="text-align:right">29.4%</td></tr>
+          <tr><td>Tranco <span style="opacity:0.5">∩</span> Umbrella</td><td style="text-align:right">440,223</td><td style="text-align:right">28.8%</td></tr>
+          <tr style="background:rgba(0,113,227,0.06)"><td><strong>三者交集</strong></td><td style="text-align:right;color:var(--accent);font-weight:600">416,644</td><td style="text-align:right;font-weight:600">27.2%</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h4>TopList 共识仅 27%</h4>
+        <p>只有 42 万域名同时出现在三个排行榜中。Tranco 与 Radar 最相似 (53.5%)，因为它们都以 HTTP 访问为基础。Umbrella 基于 DNS 查询流量，包含大量 API 和基础设施域名。</p>
+      </div>
+    </div>
+    <div>
+      <h4 style="opacity:0.6;margin-bottom:12px">SPF & DMARC: 热门 vs 全量</h4>
+      <table>
+        <tr><th>数据源</th><th style="text-align:center">SPF</th><th style="text-align:center">DMARC</th></tr>
+        <tr><td style="font-weight:600">ccTLD 全量</td><td style="text-align:center;color:var(--green);font-weight:600">63.8%</td><td style="text-align:center">31.1%</td></tr>
+        <tr><td>Umbrella</td><td style="text-align:center">55.6%</td><td style="text-align:center">32.4%</td></tr>
+        <tr><td>Radar</td><td style="text-align:center">54.4%</td><td style="text-align:center;color:var(--green);font-weight:600">38.5%</td></tr>
+        <tr><td>Tranco</td><td style="text-align:center">54.2%</td><td style="text-align:center;color:var(--green)">39.0%</td></tr>
+      </table>
+      <div class="card" style="margin-top:16px">
+        <h4 style="color:var(--orange)">反直觉发现</h4>
+        <p>ccTLD 全量的 <strong>SPF 反而更高</strong>（64% vs 54%）— 因为欧洲注册商常为客户默认配置 SPF。但热门域名的 <strong>DMARC 更高</strong>（39% vs 31%）— 大型组织更重视邮件认证策略。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 34: End -->
+<div class="slide dark" id="s34">
   <div class="glow blue" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
   <div style="text-align:center">
     <div class="label">OpenINTEL DNS Analysis</div>
     <h1 style="background:linear-gradient(135deg,#fff,#a8c0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:80px">Thank You</h1>
-    <p class="subtitle">8 TLDs · 172M Records · 24.6M Domains · 6 Analysis Modules</p>
+    <p class="subtitle">8 ccTLDs + 3 TopLists · 216M Records · 31M Domains · 7 Analysis Modules</p>
     <div style="margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <span class="badge blue">01 数据总览</span>
       <span class="badge purple">02 记录分析</span>
@@ -1129,6 +1288,7 @@ td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
       <span class="badge orange">04 安全分析</span>
       <span class="badge red">05 基础设施</span>
       <span class="badge purple">06 异常检测</span>
+      <span class="badge blue">07 TopList 交叉分析</span>
     </div>
     <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project · Analysis date: 2026-04-13 · Generated with DuckDB + Python</p>
   </div>
@@ -1137,7 +1297,7 @@ td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <!-- ======== Navigation ======== -->
 <div class="nav">
   <button onclick="prev()">&#8249;</button>
-  <span class="page-num" id="pageNum">1 / 30</span>
+  <span class="page-num" id="pageNum">1 / 34</span>
   <button onclick="next()">&#8250;</button>
 </div>
 
