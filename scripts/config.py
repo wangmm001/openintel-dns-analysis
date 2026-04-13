@@ -18,7 +18,10 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # ── TLD 列表 ─────────────────────────────────────────
 TLDS = sorted(
     [d.name for d in DATA_DIR.iterdir()
-     if d.is_dir() and d.name not in ("scripts", "output", ".git", "__pycache__")]
+     if d.is_dir() and d.name not in (
+         "scripts", "output", ".git", "__pycache__",
+         "tranco", "umbrella", "radar", "root", "majestic",
+     )]
 )
 
 # ── DuckDB ────────────────────────────────────────────
