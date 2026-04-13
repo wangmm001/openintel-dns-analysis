@@ -1,0 +1,11 @@
+# Data files (too large for git)
+*.parquet
+*.gz
+
+# Output images
+output/*.png
+
+# Python
+__pycache__/
+*.pyc
+.venv/
