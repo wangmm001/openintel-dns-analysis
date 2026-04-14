@@ -1677,9 +1677,9 @@ wget https://object.empirical.network/\
     <div class="card">
       <div class="card-icon">CC</div>
       <h4>Common Crawl</h4>
-      <p>网页抓取存档。关联域名的实际网页内容、HTTP 头、重定向链。</p>
-      <div class="pbar" style="margin-top:8px"><div class="pbar-fill" style="width:60%;background:var(--orange)"></div></div>
-      <p class="small" style="margin-top:4px">补充度: 中高</p>
+      <p>CC-MAIN-2026-12 CDX 索引。422 域名 × 126K URL，HTTP 状态/HTTPS/MIME/语言交叉分析。</p>
+      <div class="pbar" style="margin-top:8px"><div class="pbar-fill" style="width:80%;background:var(--green)"></div></div>
+      <p class="small" style="margin-top:4px">补充度: 高 (已实现)</p>
     </div>
     <div class="card">
       <div class="card-icon">CT</div>
@@ -1742,8 +1742,151 @@ duckdb -c "SELECT count(*) FROM 'data/openintel/*.parquet'"</pre>
   </div>
 </div>
 
-<!-- SLIDE 47: Thank You -->
-<div class="slide dark" id="s47">
+<!-- SLIDE 47: CC Index Section Title -->
+<div class="slide accent" id="s47">
+  <div class="label">Module 09</div>
+  <h1>Common Crawl<br>索引交叉分析</h1>
+  <p class="subtitle">CC-MAIN-2026-12 CDX Index × OpenINTEL DNS × Web Graph PageRank</p>
+  <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+    <span class="badge blue" style="border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff">422 域名匹配</span>
+    <span class="badge green" style="border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff">126,481 URL 记录</span>
+    <span class="badge orange" style="border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff">166.5 MB CDX 数据</span>
+  </div>
+</div>
+
+<!-- SLIDE 48: CC HTTP Status & Domain Types -->
+<div class="slide deep" id="s48">
+  <div class="glow blue" style="top:-60px;right:-60px"></div>
+  <div class="label">Chapter 9 / HTTP 状态码</div>
+  <h2>HTTP 状态码 &amp; 域名功能推断</h2>
+  <div class="grid2" style="margin-top:20px">
+    <div>
+      <h3 style="font-size:22px;margin-bottom:12px">URL 级别状态码分布</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">200 OK</span><div class="bar-track"><div class="bar-fill" style="width:71.9%;background:#55A868"></div></div><span class="bar-val">90,910 (71.9%)</span></div>
+        <div class="bar-row"><span class="bar-label">301</span><div class="bar-track"><div class="bar-fill" style="width:12.4%;background:#4C72B0"></div></div><span class="bar-val">15,719 (12.4%)</span></div>
+        <div class="bar-row"><span class="bar-label">302</span><div class="bar-track"><div class="bar-fill" style="width:7%;background:#8DA0CB"></div></div><span class="bar-val">8,887 (7.0%)</span></div>
+        <div class="bar-row"><span class="bar-label">404</span><div class="bar-track"><div class="bar-fill" style="width:4.9%;background:#C44E52"></div></div><span class="bar-val">6,149 (4.9%)</span></div>
+        <div class="bar-row"><span class="bar-label">Other</span><div class="bar-track"><div class="bar-fill" style="width:3.8%;background:#CCCCCC"></div></div><span class="bar-val">4,816 (3.8%)</span></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4>域名级主要状态</h4>
+        <p style="margin-top:6px">主要 200: <strong style="color:#55A868">277</strong> (65.6%) · 主要 301: <strong style="color:#4C72B0">71</strong> (16.8%) · 主要 404: <strong style="color:#C44E52">18</strong> (4.3%)</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:12px">域名功能类型推断</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label" style="width:120px">Website</span><div class="bar-track"><div class="bar-fill" style="width:74.7%;background:var(--accent)"></div></div><span class="bar-val">263 (avg 444 URLs)</span></div>
+        <div class="bar-row"><span class="bar-label" style="width:120px">Mixed</span><div class="bar-track"><div class="bar-fill" style="width:19%;background:var(--orange)"></div></div><span class="bar-val">67 (avg 105 URLs)</span></div>
+        <div class="bar-row"><span class="bar-label" style="width:120px">Redirect Farm</span><div class="bar-track"><div class="bar-fill" style="width:5.7%;background:var(--red)"></div></div><span class="bar-val">20 (avg 120 URLs)</span></div>
+        <div class="bar-row"><span class="bar-label" style="width:120px">API/Service</span><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--accent2)"></div></div><span class="bar-val">2 (avg 16 URLs)</span></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4>MIME 类型分布</h4>
+        <p style="margin-top:6px">HTML/XHTML: <strong>90.9%</strong> · JSON/JS: 0.05% · Other: 9.1%</p>
+        <p class="small" style="margin-top:4px">CC 以 HTML 网页抓取为主，API 端点和图片覆盖有限</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 49: CC HTTPS × DNS Security -->
+<div class="slide deep" id="s49">
+  <div class="glow green" style="bottom:-60px;left:-60px;background:var(--green);width:250px;height:250px"></div>
+  <div class="label">Chapter 9 / HTTPS × DNS</div>
+  <h2>HTTPS 采用率 × DNS 安全记录</h2>
+  <div class="grid2" style="margin-top:20px">
+    <div>
+      <div class="grid3" style="margin-top:0">
+        <div class="card" style="text-align:center">
+          <div class="num" style="color:var(--green)">61.4%</div>
+          <p>HTTPS &gt; 90%<br><span style="opacity:0.5">259 域名</span></p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="num" style="color:var(--orange)">29.4%</div>
+          <p>混合<br><span style="opacity:0.5">124 域名</span></p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="num" style="color:var(--red)">9.2%</div>
+          <p>HTTP &gt; 90%<br><span style="opacity:0.5">39 域名</span></p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h4>平均 HTTPS 比率</h4>
+        <div class="num" style="font-size:48px;margin:8px 0">79.7%</div>
+        <div class="pbar"><div class="pbar-fill" style="width:79.7%;background:var(--green)"></div></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:12px">HTTPS vs DNS 安全记录交叉</h3>
+      <table>
+        <tr><th>传输类型</th><th>域名</th><th>CAA</th><th>IPv6</th></tr>
+        <tr><td><span class="badge green">HTTPS</span></td><td>26</td><td>19.2%</td><td>65.4%</td></tr>
+        <tr><td><span class="badge orange">Mixed</span></td><td>8</td><td>12.5%</td><td>87.5%</td></tr>
+        <tr><td><span class="badge red">HTTP</span></td><td>2</td><td>0%</td><td>0%</td></tr>
+      </table>
+      <div class="card" style="margin-top:16px">
+        <h4>关键发现</h4>
+        <p>HTTPS 域名 CAA 部署率 19.2%（纯 HTTP 为 0%），安全意识更强。IPv6 与 HTTPS 高度相关：HTTPS 域名 65.4% 支持 IPv6。CC 抓取覆盖仅 3.3% 的 DNS 活跃域名，但被抓取域名平均 332 个 URL。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 50: CC PageRank × Web Health & Languages -->
+<div class="slide deep" id="s50">
+  <div class="glow purple" style="top:-60px;left:-60px;background:var(--accent2);width:250px;height:250px"></div>
+  <div class="label">Chapter 9 / PageRank × 健康度</div>
+  <h2>PageRank × Web 健康度 &amp; 语言多样性</h2>
+  <div class="grid2" style="margin-top:16px">
+    <div>
+      <table style="font-size:13px">
+        <tr><th>PR 层级</th><th>域名</th><th>200 OK</th><th>301</th><th>HTTPS</th><th>Avg URLs</th><th>语言数</th></tr>
+        <tr><td><strong>Top 100</strong></td><td>9</td><td>56.4%</td><td>15.7%</td><td>63.4%</td><td>343</td><td>3.1</td></tr>
+        <tr><td><strong>Top 1K</strong></td><td>66</td><td>47.3%</td><td>21.7%</td><td>79.4%</td><td>388</td><td>1.8</td></tr>
+        <tr><td><strong>Top 5K</strong></td><td>241</td><td>53.9%</td><td>20.7%</td><td>80.7%</td><td>317</td><td>1.9</td></tr>
+        <tr><td>Below 5K</td><td>93</td><td>58.4%</td><td>12.1%</td><td>78.0%</td><td>228</td><td>2.1</td></tr>
+      </table>
+      <div class="card" style="margin-top:16px">
+        <h4>语言多样性 vs 抓取深度</h4>
+        <div class="bar-chart" style="margin-top:8px">
+          <div class="bar-row"><span class="bar-label">10+ 种</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"></div></div><span class="bar-val">1,024 URLs</span></div>
+          <div class="bar-row"><span class="bar-label">4-10 种</span><div class="bar-track"><div class="bar-fill" style="width:99.5%;background:var(--orange)"></div></div><span class="bar-val">1,018 URLs</span></div>
+          <div class="bar-row"><span class="bar-label">2-3 种</span><div class="bar-track"><div class="bar-fill" style="width:37.9%;background:var(--green)"></div></div><span class="bar-val">388 URLs</span></div>
+          <div class="bar-row"><span class="bar-label">1 种</span><div class="bar-track"><div class="bar-fill" style="width:25.5%;background:var(--accent)"></div></div><span class="bar-val">261 URLs</span></div>
+          <div class="bar-row"><span class="bar-label">0 (未知)</span><div class="bar-track"><div class="bar-fill" style="width:7.5%;background:var(--accent2)"></div></div><span class="bar-val">77 URLs</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h4>Top 语言组合</h4>
+        <div class="bar-chart" style="margin-top:8px">
+          <div class="bar-row"><span class="bar-label">eng</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent)"></div></div><span class="bar-val">77 域名</span></div>
+          <div class="bar-row"><span class="bar-label">zho</span><div class="bar-track"><div class="bar-fill" style="width:19.5%;background:var(--red)"></div></div><span class="bar-val">15 域名</span></div>
+          <div class="bar-row"><span class="bar-label">eng+zho</span><div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--orange)"></div></div><span class="bar-val">10 域名</span></div>
+          <div class="bar-row"><span class="bar-label">eng+lat</span><div class="bar-track"><div class="bar-fill" style="width:7.8%;background:var(--green)"></div></div><span class="bar-val">6 域名</span></div>
+          <div class="bar-row"><span class="bar-label">eng+spa</span><div class="bar-track"><div class="bar-fill" style="width:6.5%;background:var(--accent2)"></div></div><span class="bar-val">5 域名</span></div>
+          <div class="bar-row"><span class="bar-label">dan+eng</span><div class="bar-track"><div class="bar-fill" style="width:5.2%;background:#8DA0CB"></div></div><span class="bar-val">4 域名</span></div>
+          <div class="bar-row"><span class="bar-label">eng+fra</span><div class="bar-track"><div class="bar-fill" style="width:5.2%;background:#DD8452"></div></div><span class="bar-val">4 域名</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>核心洞察</h4>
+        <div class="obj">
+          <div class="obj-item">多语言域名 (10+) 被抓取的 URL 是单语言域名的 <strong style="color:var(--orange)">3.9 倍</strong></div>
+          <div class="obj-item">HTTPS 已成主流：平均 <strong style="color:var(--green)">79.7%</strong> URL 使用 HTTPS</div>
+          <div class="obj-item">功能分化明显：Website / API / CDN / 重定向各有 HTTP 特征指纹</div>
+          <div class="obj-item">CC 抓取覆盖率仅 3.3%，高 PR 域名优先被抓取</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 51: Thank You -->
+<div class="slide dark" id="s51">
   <div class="glow blue" style="top:-200px;right:-100px"></div>
   <div class="glow purple" style="bottom:-150px;left:-50px"></div>
   <div class="glow green" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
@@ -1769,18 +1912,18 @@ duckdb -c "SELECT count(*) FROM 'data/openintel/*.parquet'"</pre>
     </div>
   </div>
   <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
-    <span class="badge blue">8 章完成</span>
-    <span class="badge green">13 数据集</span>
+    <span class="badge blue">9 章完成</span>
+    <span class="badge green">14 数据集</span>
     <span class="badge purple">2.32 亿记录</span>
-    <span class="badge orange">99 维字段</span>
+    <span class="badge orange">99 维字段 + CC 索引</span>
   </div>
-  <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project (University of Twente) &middot; Analysis date: 2026-04-13 &middot; Generated with DuckDB + Python</p>
+  <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project (University of Twente) + Common Crawl &middot; Analysis date: 2026-04-14 &middot; Generated with DuckDB + Python</p>
 </div>
 
 <!-- ======== Navigation ======== -->
 <div class="nav">
   <button onclick="prev()">&#8249;</button>
-  <span class="page-num" id="pageNum">1 / 47</span>
+  <span class="page-num" id="pageNum">1 / 51</span>
   <button onclick="next()">&#8250;</button>
 </div>
 
