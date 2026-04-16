@@ -1,0 +1,10 @@
+# Step 08 — DNS Round-Trip Time Performance
+
+  ch  : avg 0.0ms | median 0.0ms | P95 0.0ms | P99 0.1ms
+  ee  : avg 0.1ms | median 0.0ms | P95 0.1ms | P99 0.8ms
+  fr  : avg 0.0ms | median 0.0ms | P95 0.0ms | P99 0.2ms
+  gov : avg 0.1ms | median 0.0ms | P95 0.2ms | P99 0.4ms
+  li  : avg 0.0ms | median 0.0ms | P95 0.1ms | P99 0.3ms
+  nu  : avg 0.0ms | median 0.0ms | P95 0.1ms | P99 0.1ms
+  se  : avg 0.0ms | median 0.0ms | P95 0.1ms | P99 0.1ms
+  sk  : avg 0.0ms | median 0.0ms | P95 0.1ms | P99 0.2ms

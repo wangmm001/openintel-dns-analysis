@@ -1,0 +1,10 @@
+# Step 18 — SOA Lifecycle Signals
+
+  ch  : refresh 8.5h | retry 1.9h | expire 16.3d | min 19651s | primary_ns 28895
+  ee  : refresh 3.5h | retry 6.0h | expire 18.4d | min 12060s | primary_ns 4315
+  fr  : refresh 14.1h | retry 1.3h | expire 21.3d | min 14527s | primary_ns 29723
+  gov : refresh 41.8h | retry 1.0h | expire 12.6d | min 14560s | primary_ns 3045
+  li  : refresh 16.4h | retry 1.3h | expire 14.8d | min 24220s | primary_ns 5640
+  nu  : refresh 18.2h | retry 1.1h | expire 11.9d | min 45672s | primary_ns 6946
+  se  : refresh 7.5h | retry 1.1h | expire 11.5d | min 37521s | primary_ns 17526
+  sk  : refresh 4.5h | retry 0.9h | expire 13.5d | min 12045s | primary_ns 11908

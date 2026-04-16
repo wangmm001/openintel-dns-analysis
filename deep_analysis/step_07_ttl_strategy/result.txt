@@ -1,0 +1,15 @@
+# Step 07 — TTL Caching Strategy
+
+  ≤1min     :      4,412,702 (2.8%)
+  1-5min    :     16,702,610 (10.5%)
+  5min-1h   :     98,486,847 (62.1%)
+  1h-1d     :     37,896,068 (23.9%)
+  >1d       :        975,861 (0.6%)
+  ch   median TTL: 3600s
+  ee   median TTL: 3600s
+  fr   median TTL: 3600s
+  gov  median TTL: 3600s
+  li   median TTL: 3600s
+  nu   median TTL: 3600s
+  se   median TTL: 3600s
+  sk   median TTL: 2560s

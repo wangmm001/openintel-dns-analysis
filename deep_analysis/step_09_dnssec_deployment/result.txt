@@ -1,0 +1,10 @@
+# Step 09 — DNSSEC Deployment Depth
+
+  ch  : DS 21.5% | DNSKEY 21.8% | RRSIG 0.0% (of 6,258,234 domains)
+  ee  : DS 11.4% | DNSKEY 11.6% | RRSIG 0.0% (of 417,486 domains)
+  fr  : DS 9.8% | DNSKEY 10.9% | RRSIG 0.0% (of 9,864,748 domains)
+  gov : DS 5.3% | DNSKEY 6.2% | RRSIG 0.0% (of 38,205 domains)
+  li  : DS 15.0% | DNSKEY 15.5% | RRSIG 0.0% (of 149,412 domains)
+  nu  : DS 23.1% | DNSKEY 24.4% | RRSIG 0.0% (of 470,619 domains)
+  se  : DS 24.7% | DNSKEY 25.5% | RRSIG 0.0% (of 3,356,668 domains)
+  sk  : DS 20.5% | DNSKEY 21.0% | RRSIG 0.0% (of 1,327,799 domains)

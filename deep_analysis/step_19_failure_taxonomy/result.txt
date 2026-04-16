@@ -1,0 +1,64 @@
+# Step 19 — NXDOMAIN & Failure Taxonomy
+
+
+  ch — Top failure combos:
+    NXDOMAIN   × AFSDB   :  3,308,449
+    SERVFAIL   × SOA     :    128,372
+    TIMEOUT    × SOA     :     20,740
+    NXDOMAIN   × AAAA    :      3,559
+    NXDOMAIN   × A       :      3,551
+
+  ee — Top failure combos:
+    NXDOMAIN   × AFSDB   :    254,774
+    SERVFAIL   × SOA     :      4,390
+    NXDOMAIN   × TXT     :        618
+    NXDOMAIN   × A       :        616
+    NXDOMAIN   × AAAA    :        616
+
+  fr — Top failure combos:
+    NXDOMAIN   × AFSDB   :  6,195,188
+    NXDOMAIN   × SOA     :    193,225
+    SERVFAIL   × SOA     :     97,884
+    NXDOMAIN   × AAAA    :      7,217
+    NXDOMAIN   × A       :      7,206
+
+  gov — Top failure combos:
+    NXDOMAIN   × AFSDB   :      6,554
+    SERVFAIL   × SOA     :        293
+    TIMEOUT    × SOA     :         72
+    TIMEOUT    × AFSDB   :         62
+    NXDOMAIN   × A       :         57
+
+  li — Top failure combos:
+    NXDOMAIN   × AFSDB   :     59,096
+    SERVFAIL   × SOA     :      4,502
+    TIMEOUT    × SOA     :        886
+    NXDOMAIN   × AAAA    :        259
+    NXDOMAIN   × A       :        256
+
+  nu — Top failure combos:
+    NXDOMAIN   × AFSDB   :    314,973
+    SERVFAIL   × SOA     :     10,867
+    TIMEOUT    × SOA     :      1,401
+    NXDOMAIN   × AAAA    :        593
+    NXDOMAIN   × A       :        591
+
+  se — Top failure combos:
+    NXDOMAIN   × AFSDB   :  2,545,596
+    SERVFAIL   × SOA     :     62,296
+    TIMEOUT    × SOA     :      6,141
+    NXDOMAIN   × AAAA    :      3,265
+    NXDOMAIN   × A       :      3,239
+
+  sk — Top failure combos:
+    NXDOMAIN   × AFSDB   :    205,310
+    SERVFAIL   × SOA     :     16,999
+    NXDOMAIN   × SOA     :      2,832
+    TIMEOUT    × SOA     :      1,527
+    NXDOMAIN   × AAAA    :        693
+
+  Overall failure breakdown:
+    NXDOMAIN    :     13,128,559 (97.3%)
+    SERVFAIL    :        328,572 (2.4%)
+    TIMEOUT     :         39,280 (0.3%)
+    6           :            128 (0.0%)

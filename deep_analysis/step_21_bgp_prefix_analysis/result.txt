@@ -1,0 +1,29 @@
+# Step 21 — BGP Prefix Analysis
+
+  Top 20 prefixes by domain count:
+    213.186.32.0/19     : 1,564,848 domains |    201 IPs | 1 AS
+    217.160.0.0/16      :  769,429 domains |  2,341 IPs | 1 AS
+    217.26.48.0/20      :  676,883 domains |  1,046 IPs | 1 AS
+    46.30.208.0/21      :  464,089 domains |    508 IPs | 1 AS
+    194.9.94.0/23       :  453,943 domains |     86 IPs | 1 AS
+    217.70.184.0/24     :  327,821 domains |     10 IPs | 1 AS
+    37.9.175.0/24       :  317,623 domains |     61 IPs | 1 AS
+    188.114.96.0/24     :  270,643 domains |      9 IPs | 1 AS
+    188.114.97.0/24     :  270,639 domains |      8 IPs | 1 AS
+    23.227.38.0/23      :  247,565 domains |     36 IPs | 1 AS
+    109.234.164.0/22    :  229,935 domains |    779 IPs | 1 AS
+    34.160.0.0/16       :  212,567 domains |     99 IPs | 1 AS
+    185.230.63.0/24     :  201,028 domains |     20 IPs | 1 AS
+    80.74.144.0/20      :  200,364 domains |    625 IPs | 1 AS
+    149.126.0.0/21      :  176,573 domains |    412 IPs | 1 AS
+    51.91.0.0/16        :  169,871 domains |  2,828 IPs | 1 AS
+    128.65.192.0/21     :  165,201 domains |    544 IPs | 1 AS
+    93.188.2.0/23       :  143,172 domains |      8 IPs | 1 AS
+    88.198.0.0/16       :  139,143 domains |    680 IPs | 1 AS
+    162.159.128.0/19    :  136,295 domains |     89 IPs | 1 AS
+
+  Prefix size distribution:
+    other   :   21,089 prefixes → 10,016,773 domains
+    /24     :   15,428 prefixes →  3,603,184 domains
+    /16     :    1,768 prefixes →  2,860,546 domains
+    /8      :        9 prefixes →        444 domains

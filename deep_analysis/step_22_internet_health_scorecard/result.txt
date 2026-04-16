@@ -1,0 +1,10 @@
+# Step 22 — Cross-Dataset Internet Health Scorecard
+
+  ch  : Score 49.9/100 | NOERROR 93% | Dual 41% | DNSSEC 22% | SPF 29% | CAA 0.7% | NS 2.5 | RTT 0ms
+  ee  : Score 42.9/100 | NOERROR 91% | Dual 7% | DNSSEC 11% | SPF 27% | CAA 1.1% | NS 2.9 | RTT 0ms
+  fr  : Score 46.2/100 | NOERROR 91% | Dual 33% | DNSSEC 10% | SPF 32% | CAA 0.6% | NS 2.5 | RTT 0ms
+  gov : Score 46.0/100 | NOERROR 97% | Dual 24% | DNSSEC 5% | SPF 32% | CAA 1.0% | NS 2.8 | RTT 0ms
+  li  : Score 47.0/100 | NOERROR 94% | Dual 30% | DNSSEC 15% | SPF 27% | CAA 1.3% | NS 2.6 | RTT 0ms
+  nu  : Score 47.6/100 | NOERROR 92% | Dual 34% | DNSSEC 23% | SPF 19% | CAA 1.2% | NS 2.6 | RTT 0ms
+  se  : Score 47.4/100 | NOERROR 91% | Dual 35% | DNSSEC 25% | SPF 18% | CAA 0.7% | NS 2.5 | RTT 0ms
+  sk  : Score 51.7/100 | NOERROR 98% | Dual 43% | DNSSEC 21% | SPF 27% | CAA 0.7% | NS 3.0 | RTT 0ms

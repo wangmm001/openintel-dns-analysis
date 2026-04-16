@@ -1,0 +1,10 @@
+# Step 11 — Email Security Stack (SPF/DMARC/MX)
+
+  ch  : SPF 28.9% | DMARC 15.3% | MX 30.0%
+  ee  : SPF 26.8% | DMARC 15.1% | MX 29.5%
+  fr  : SPF 31.9% | DMARC 15.3% | MX 36.1%
+  gov : SPF 32.3% | DMARC 22.6% | MX 31.3%
+  li  : SPF 26.8% | DMARC 11.9% | MX 29.3%
+  nu  : SPF 19.4% | DMARC 10.7% | MX 23.3%
+  se  : SPF 18.1% | DMARC 7.8% | MX 26.7%
+  sk  : SPF 26.6% | DMARC 10.9% | MX 28.2%

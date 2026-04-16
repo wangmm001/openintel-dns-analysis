@@ -1,0 +1,31 @@
+# Step 17 — Shared Hosting / IP Concentration
+
+  Top 20 most-shared IPs:
+    213.186.33.5      : 1,304,194 domains
+    194.9.94.85       :  453,071 domains
+    194.9.94.86       :  451,935 domains
+    217.26.48.101     :  318,921 domains
+    188.114.97.0      :  270,591 domains
+    188.114.96.0      :  270,589 domains
+    34.160.37.117     :  207,776 domains
+    185.230.63.107    :  199,726 domains
+    185.230.63.171    :  179,492 domains
+    185.230.63.186    :  178,726 domains
+    46.30.211.38      :  152,106 domains
+    217.70.184.38     :  148,025 domains
+    217.70.184.50     :  132,261 domains
+    88.198.116.121    :  129,697 domains
+    3.33.130.190      :  123,735 domains
+    15.197.148.33     :  123,561 domains
+    198.185.159.144   :  114,385 domains
+    198.185.159.145   :  111,010 domains
+    198.49.23.144     :  110,452 domains
+    198.49.23.145     :  110,095 domains
+
+  IP→Domain distribution:
+    1 domain    :     79,955 IPs →       79,955 domains
+    2-5         :    331,649 IPs →      813,900 domains
+    6-20        :    123,335 IPs →    1,321,421 domains
+    21-100      :     25,846 IPs →    1,007,368 domains
+    101-1K      :     11,333 IPs →    3,367,878 domains
+    >1K         :      1,616 IPs →   13,118,549 domains

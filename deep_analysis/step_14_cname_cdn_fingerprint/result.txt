@@ -1,0 +1,14 @@
+# Step 14 — CNAME/CDN Fingerprint
+
+  Total domains with CNAME: 3,695,433
+
+  Cloudflare          :   24,510 (0.66%)
+  AWS CloudFront      :   39,673 (1.07%)
+  Akamai              :   26,851 (0.73%)
+  Fastly              :    5,501 (0.15%)
+  Google              :   55,644 (1.51%)
+  Microsoft Azure     :   57,939 (1.57%)
+  Netlify             :   18,117 (0.49%)
+  Vercel              :   64,789 (1.75%)
+  Incapsula           :    8,935 (0.24%)
+  StackPath           :        0 (0.00%)

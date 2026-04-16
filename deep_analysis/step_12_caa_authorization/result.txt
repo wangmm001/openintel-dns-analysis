@@ -1,0 +1,19 @@
+# Step 12 — CAA Certificate Authority Authorization
+
+  Total domains with CAA: 146,802 (0.67% of all)
+
+  "letsencrypt.org"                       :   97,290 domains
+  "sectigo.com"                           :   24,555 domains
+  "letsencrypt.org;validationmethods=http-01":   22,184 domains
+  "pki.goog;validationmethods=http-01"    :   22,161 domains
+  "globalsign.com"                        :   17,373 domains
+  "pki.goog"                              :   17,033 domains
+  "ssl.com"                               :   16,194 domains
+  "digicert.com"                          :   14,967 domains
+  "comodoca.com"                          :   14,774 domains
+  "pki.goog; cansignhttpexchanges=yes"    :   11,229 domains
+  "digicert.com; cansignhttpexchanges=yes":   10,438 domains
+  "amazon.com"                            :    7,712 domains
+  "amazontrust.com"                       :    6,555 domains
+  "amazonaws.com"                         :    6,443 domains
+  "awstrust.com"                          :    6,037 domains

@@ -1,0 +1,6 @@
+# Step 15 — TopList vs Zone Domain Overlap
+
+  majestic  : 2,456,668 unique domains |    72,816 in zone (3.0%)
+  radar     : 2,460,397 unique domains |    64,173 in zone (2.6%)
+  tranco    : 2,421,332 unique domains |    63,799 in zone (2.6%)
+  umbrella  : 1,530,331 unique domains |    11,135 in zone (0.7%)

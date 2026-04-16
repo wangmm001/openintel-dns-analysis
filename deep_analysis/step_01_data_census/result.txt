@@ -1,0 +1,18 @@
+# Step 01 — 数据普查 (Data Census)
+
+  Zone ch  :   52,192,076 rows | 7,113,423 domains | ts 1775693050000–1775756880000
+  Zone ee  :    2,921,064 rows |   465,026 domains | ts 1775692977000–1775754411000
+  Zone fr  :   69,296,979 rows | 11,105,923 domains | ts 1775692977000–1775715515000
+  Zone gov :      258,871 rows |    39,651 domains | ts 1775692982000–1775754382000
+  Zone li  :    1,073,229 rows |   167,156 domains | ts 1775693052000–1775756866000
+  Zone nu  :    4,033,983 rows |   531,631 domains | ts 1775692977000–1775754388000
+  Zone se  :   30,744,314 rows | 3,786,257 domains | ts 1775692977000–1775754387000
+  Zone sk  :   11,450,111 rows | 1,385,540 domains | ts 1775692977000–1775715512000
+  TopList majestic  :   15,634,679 rows | 2,456,668 domains
+  TopList radar     :   16,423,530 rows | 2,460,397 domains
+  TopList tranco    :   15,767,986 rows | 2,421,332 domains
+  TopList umbrella  :   12,079,643 rows | 1,530,331 domains
+  WebGraph ranks:  134,222,465 domains
+
+  TOTAL records:    231,876,465
+  CC CDX index:  95.9 MB

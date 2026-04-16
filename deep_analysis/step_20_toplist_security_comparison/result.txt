@@ -1,0 +1,8 @@
+# Step 20 — TopList (Elite) vs Zone (General) Security Comparison
+
+  majestic  : DNSSEC 2.3% | IPv6 33.4% | SPF 26.3%
+  radar     : DNSSEC 2.6% | IPv6 31.4% | SPF 26.9%
+  tranco    : DNSSEC 2.4% | IPv6 30.9% | SPF 26.8%
+  umbrella  : DNSSEC 1.2% | IPv6 32.0% | SPF 14.2%
+
+  Zone avg : DNSSEC 16.5% | IPv6 26.5% | SPF 28.2%
