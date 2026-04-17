@@ -1,0 +1,44 @@
+# Step 14 — k-Core Decomposition
+
+  Maximum coreness: 23
+  Core distribution:
+      1-core:    157 nodes (41.9%)
+      2-core:     74 nodes (19.7%)
+      3-core:     27 nodes (7.2%)
+      4-core:     17 nodes (4.5%)
+      5-core:     16 nodes (4.3%)
+      6-core:      5 nodes (1.3%)
+      7-core:      9 nodes (2.4%)
+      8-core:      2 nodes (0.5%)
+      9-core:     14 nodes (3.7%)
+     10-core:      4 nodes (1.1%)
+     11-core:      6 nodes (1.6%)
+     12-core:      1 nodes (0.3%)
+     13-core:     19 nodes (5.1%)
+     23-core:     24 nodes (6.4%)
+
+  Innermost core (23-core) nodes (24):
+    AS --
+    AS 1221
+    AS 14061
+    AS 15557
+    AS 16276
+    AS 198646
+    AS 20001
+    AS 20115
+    AS 209
+    AS 24940
+    AS 25921
+    AS 29076
+    AS 3320
+    AS 33363
+    AS 33915
+    AS 44869
+    AS 47359
+    AS 49981
+    AS 51167
+    AS 54290
+    AS 577
+    AS 6730
+    AS 7922
+    AS 9617

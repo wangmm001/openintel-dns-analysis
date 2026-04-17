@@ -1,0 +1,19 @@
+# Step 10 — Average Shortest Path Length
+
+  Giant component: 375 nodes, 1,288 edges
+  Sampled BFS:     375 source nodes
+  Average path length (L): 3.167
+  Estimated diameter:      9
+  Random graph L (ln N / ln ⟨k⟩): 3.076
+  Ratio L_real / L_random: 1.030
+
+  Path length distribution:
+    d=1:        2,576 pairs (1.8%)
+    d=2:       33,044 pairs (23.6%)
+    d=3:       59,104 pairs (42.1%)
+    d=4:       32,824 pairs (23.4%)
+    d=5:        9,786 pairs (7.0%)
+    d=6:        2,470 pairs (1.8%)
+    d=7:          398 pairs (0.3%)
+    d=8:           42 pairs (0.0%)
+    d=9:            6 pairs (0.0%)

@@ -1,0 +1,24 @@
+# Step 09 — Clustering Coefficient
+
+  AS Graph:
+    Global transitivity (C_global):   0.3304
+    Average local clustering (C_avg): 0.6215
+    For Erdős–Rényi with same density: 0.012091
+    Ratio C_real / C_random:           27.3x
+
+  C(k) — clustering vs degree (sample):
+    k=   2: C=0.7013
+    k=   3: C=0.5495
+    k=   4: C=0.5392
+    k=   5: C=0.5917
+    k=   6: C=0.5556
+    k=   7: C=0.7517
+    k=   9: C=0.8843
+    k=  10: C=0.5926
+    k=  12: C=0.5631
+    k=  13: C=0.4551
+    k=  14: C=0.4808
+    k=  17: C=0.3505
+    k=  23: C=0.9039
+    k=  28: C=0.3563
+    k=  33: C=0.4053

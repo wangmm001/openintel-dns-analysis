@@ -1,0 +1,78 @@
+# Step 12 — Multi-Centrality Analysis (AS graph, giant component)
+
+
+  Top 15 by degree:
+    # 1 AS 16276      | deg=  133 | betw=26121.6 | eig=1.0000 | close=0.5335
+    # 2 AS 16509      | deg=  104 | betw=18207.2 | eig=0.7695 | close=0.5238
+    # 3 AS 24940      | deg=   65 | betw=5815.6 | eig=0.8281 | close=0.4675
+    # 4 AS --         | deg=   61 | betw=5184.2 | eig=0.8266 | close=0.4740
+    # 5 AS 13335      | deg=   57 | betw=4957.3 | eig=0.5614 | close=0.4623
+    # 6 AS 53831      | deg=   53 | betw=4380.9 | eig=0.5351 | close=0.4506
+    # 7 AS 396982     | deg=   44 | betw=3306.4 | eig=0.5288 | close=0.4555
+    # 8 AS 14061      | deg=   42 | betw=3540.1 | eig=0.6866 | close=0.4490
+    # 9 AS 15169      | deg=   38 | betw=1596.2 | eig=0.4675 | close=0.4364
+    #10 AS 209242     | deg=   38 | betw=2817.4 | eig=0.4691 | close=0.4416
+    #11 AS 15557      | deg=   36 | betw=2319.6 | eig=0.5660 | close=0.4105
+    #12 AS 51167      | deg=   36 | betw=550.5 | eig=0.5774 | close=0.4179
+    #13 AS 14618      | deg=   33 | betw=1854.8 | eig=0.4069 | close=0.4349
+    #14 AS 29169      | deg=   33 | betw=2678.4 | eig=0.4068 | close=0.4421
+    #15 AS 6730       | deg=   33 | betw=1451.0 | eig=0.5614 | close=0.4188
+
+  Top 15 by betweenness:
+    # 1 AS 16276      | deg=  133 | betw=26121.6 | eig=1.0000 | close=0.5335
+    # 2 AS 16509      | deg=  104 | betw=18207.2 | eig=0.7695 | close=0.5238
+    # 3 AS 24940      | deg=   65 | betw=5815.6 | eig=0.8281 | close=0.4675
+    # 4 AS --         | deg=   61 | betw=5184.2 | eig=0.8266 | close=0.4740
+    # 5 AS 13335      | deg=   57 | betw=4957.3 | eig=0.5614 | close=0.4623
+    # 6 AS 53831      | deg=   53 | betw=4380.9 | eig=0.5351 | close=0.4506
+    # 7 AS 14061      | deg=   42 | betw=3540.1 | eig=0.6866 | close=0.4490
+    # 8 AS 3215       | deg=   22 | betw=3433.3 | eig=0.2290 | close=0.4133
+    # 9 AS 396982     | deg=   44 | betw=3306.4 | eig=0.5288 | close=0.4555
+    #10 AS 15456      | deg=   13 | betw=3185.9 | eig=0.1053 | close=0.3538
+    #11 AS 8075       | deg=   28 | betw=2848.7 | eig=0.3531 | close=0.4349
+    #12 AS 209242     | deg=   38 | betw=2817.4 | eig=0.4691 | close=0.4416
+    #13 AS 29169      | deg=   33 | betw=2678.4 | eig=0.4068 | close=0.4421
+    #14 AS 8220       | deg=   12 | betw=2676.2 | eig=0.1255 | close=0.3987
+    #15 AS 3320       | deg=   30 | betw=2649.4 | eig=0.5094 | close=0.4188
+
+  Top 15 by eigenvector:
+    # 1 AS 16276      | deg=  133 | betw=26121.6 | eig=1.0000 | close=0.5335
+    # 2 AS 24940      | deg=   65 | betw=5815.6 | eig=0.8281 | close=0.4675
+    # 3 AS --         | deg=   61 | betw=5184.2 | eig=0.8266 | close=0.4740
+    # 4 AS 16509      | deg=  104 | betw=18207.2 | eig=0.7695 | close=0.5238
+    # 5 AS 14061      | deg=   42 | betw=3540.1 | eig=0.6866 | close=0.4490
+    # 6 AS 51167      | deg=   36 | betw=550.5 | eig=0.5774 | close=0.4179
+    # 7 AS 15557      | deg=   36 | betw=2319.6 | eig=0.5660 | close=0.4105
+    # 8 AS 6730       | deg=   33 | betw=1451.0 | eig=0.5614 | close=0.4188
+    # 9 AS 13335      | deg=   57 | betw=4957.3 | eig=0.5614 | close=0.4623
+    #10 AS 53831      | deg=   53 | betw=4380.9 | eig=0.5351 | close=0.4506
+    #11 AS 396982     | deg=   44 | betw=3306.4 | eig=0.5288 | close=0.4555
+    #12 AS 7922       | deg=   26 | betw=218.4 | eig=0.5238 | close=0.4174
+    #13 AS 3320       | deg=   30 | betw=2649.4 | eig=0.5094 | close=0.4188
+    #14 AS 49981      | deg=   24 | betw=373.0 | eig=0.4751 | close=0.3888
+    #15 AS 33915      | deg=   24 | betw=373.0 | eig=0.4751 | close=0.3888
+
+  Top 15 by closeness:
+    # 1 AS 16276      | deg=  133 | betw=26121.6 | eig=1.0000 | close=0.5335
+    # 2 AS 16509      | deg=  104 | betw=18207.2 | eig=0.7695 | close=0.5238
+    # 3 AS --         | deg=   61 | betw=5184.2 | eig=0.8266 | close=0.4740
+    # 4 AS 24940      | deg=   65 | betw=5815.6 | eig=0.8281 | close=0.4675
+    # 5 AS 13335      | deg=   57 | betw=4957.3 | eig=0.5614 | close=0.4623
+    # 6 AS 396982     | deg=   44 | betw=3306.4 | eig=0.5288 | close=0.4555
+    # 7 AS 53831      | deg=   53 | betw=4380.9 | eig=0.5351 | close=0.4506
+    # 8 AS 14061      | deg=   42 | betw=3540.1 | eig=0.6866 | close=0.4490
+    # 9 AS 29169      | deg=   33 | betw=2678.4 | eig=0.4068 | close=0.4421
+    #10 AS 209242     | deg=   38 | betw=2817.4 | eig=0.4691 | close=0.4416
+    #11 AS 15169      | deg=   38 | betw=1596.2 | eig=0.4675 | close=0.4364
+    #12 AS 58182      | deg=   31 | betw=427.6 | eig=0.4584 | close=0.4364
+    #13 AS 14618      | deg=   33 | betw=1854.8 | eig=0.4069 | close=0.4349
+    #14 AS 8075       | deg=   28 | betw=2848.7 | eig=0.3531 | close=0.4349
+    #15 AS 8560       | deg=   26 | betw=815.6 | eig=0.4039 | close=0.4349
+
+  Spearman rank correlations:
+    degree       × eigenvector : ρ=0.7622 (p=1.90e-72)
+    betweenness  × degree      : ρ=0.7060 (p=7.53e-58)
+    betweenness  × eigenvector : ρ=0.4720 (p=3.33e-22)
+    betweenness  × closeness   : ρ=0.4842 (p=1.96e-23)
+    closeness    × degree      : ρ=0.7296 (p=1.59e-63)
+    closeness    × eigenvector : ρ=0.9815 (p=5.50e-270)

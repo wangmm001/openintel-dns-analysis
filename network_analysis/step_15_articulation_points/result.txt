@@ -1,0 +1,23 @@
+# Step 15 — Articulation Points & Bridges (Single Points of Failure)
+
+  AS graph:
+    Articulation points: 85 (22.7% of nodes)
+    Bridges (est.):      100+
+
+  NS layer — Single-NS domains: 26,135 (0.29%)
+  Critical sole-NS (failure impact):
+    sieg.dns1.ch.                                :   17,999 domains depend solely on this NS
+    ns11.infomaniak.ch.                          :    1,299 domains depend solely on this NS
+    ns1.ff.sk.                                   :      609 domains depend solely on this NS
+    dc01.dc01.lyad.com.                          :      404 domains depend solely on this NS
+    ns1.odchyt-domen.sk.                         :      233 domains depend solely on this NS
+    ns02.hostfactory.ch.                         :       96 domains depend solely on this NS
+    win-2vmmsdjf1iu.                             :       81 domains depend solely on this NS
+    ns1.bridge-hosting.ch.                       :       75 domains depend solely on this NS
+    ns1.o2switch.net.                            :       68 domains depend solely on this NS
+    dns.zetagroup.sk.                            :       65 domains depend solely on this NS
+    ns1.tvojadomena.sk.                          :       61 domains depend solely on this NS
+    webhost.cnet.sk.                             :       61 domains depend solely on this NS
+    cdns.ovh.net.                                :       47 domains depend solely on this NS
+    ns1.netexco.info.                            :       37 domains depend solely on this NS
+    ns1.cadiware.ch.                             :       37 domains depend solely on this NS

@@ -1,0 +1,37 @@
+# Step 17 — Community ↔ Security Correlation
+
+  Community avg security profile (top 15 by size):
+    Comm   0 (n= 104): DNSSEC=17.6% | IPv6=21.4% | SPF=35.3%
+    Comm   1 (n=  61): DNSSEC=10.3% | IPv6=15.6% | SPF=33.5%
+    Comm   2 (n=  34): DNSSEC=11.5% | IPv6=12.4% | SPF=30.0%
+    Comm   3 (n=  30): DNSSEC=9.4% | IPv6=9.6% | SPF=31.3%
+    Comm   4 (n=  25): DNSSEC=21.9% | IPv6=10.4% | SPF=31.8%
+    Comm   6 (n=  15): DNSSEC=4.8% | IPv6=1.1% | SPF=20.5%
+    Comm   5 (n=  16): DNSSEC=2.3% | IPv6=1.2% | SPF=4.8%
+    Comm   7 (n=  12): DNSSEC=5.8% | IPv6=3.9% | SPF=23.3%
+    Comm   9 (n=   4): DNSSEC=10.8% | IPv6=0.1% | SPF=21.4%
+    Comm   8 (n=   4): DNSSEC=9.1% | IPv6=35.6% | SPF=31.2%
+    Comm  11 (n=   3): DNSSEC=13.8% | IPv6=9.3% | SPF=35.4%
+    Comm  10 (n=   2): DNSSEC=26.3% | IPv6=27.5% | SPF=27.9%
+    Comm  12 (n=   1): DNSSEC=1.0% | IPv6=0.0% | SPF=13.4%
+    Comm  13 (n=   2): DNSSEC=9.5% | IPv6=0.4% | SPF=23.3%
+    Comm  14 (n=   2): DNSSEC=2.3% | IPv6=75.4% | SPF=15.6%
+
+  DNSSEC variance decomposition:
+    Inter-community variance: 28.88
+    Intra-community variance: 98.38
+    → Security is not community-driven
+
+  Common Crawl coverage by community:
+    Comm   0: CC crawl coverage = 0.0% (of AS domains)
+    Comm   1: CC crawl coverage = 0.0% (of AS domains)
+    Comm   2: CC crawl coverage = 0.0% (of AS domains)
+    Comm   3: CC crawl coverage = 0.0% (of AS domains)
+    Comm   4: CC crawl coverage = 0.0% (of AS domains)
+    Comm   6: CC crawl coverage = 0.0% (of AS domains)
+    Comm   5: CC crawl coverage = 0.0% (of AS domains)
+    Comm   7: CC crawl coverage = 0.0% (of AS domains)
+    Comm   9: CC crawl coverage = 0.0% (of AS domains)
+    Comm   8: CC crawl coverage = 0.0% (of AS domains)
+
+  WebGraph PageRank by community:

@@ -1,0 +1,26 @@
+# Step 07 — Degree-Degree Correlation (Assortativity)
+
+  AS graph assortativity (Newman r): -0.1629
+    → Disassortative (hubs avoid hubs)
+
+  NS k_nn(k) — average neighbor degree vs NS degree:
+    k=       1: k_nn=2.40  (n=75,363)
+    k=       2: k_nn=2.81  (n=22,308)
+    k=       3: k_nn=2.83  (n=18,639)
+    k=       4: k_nn=2.88  (n=16,516)
+    k=       5: k_nn=2.86  (n=14,180)
+    k=       6: k_nn=2.96  (n=14,430)
+    k=       7: k_nn=2.92  (n=12,649)
+    k=       8: k_nn=2.86  (n=12,456)
+    k=       9: k_nn=2.87  (n=11,754)
+    k=      10: k_nn=2.84  (n=10,560)
+    k=      11: k_nn=2.85  (n=9,603)
+    k=      12: k_nn=3.02  (n=10,236)
+    k=      13: k_nn=2.94  (n=9,698)
+    k=      14: k_nn=2.99  (n=10,458)
+    k=      15: k_nn=2.93  (n=8,940)
+    k=      16: k_nn=2.97  (n=8,992)
+    k=      17: k_nn=2.94  (n=8,279)
+    k=      18: k_nn=3.05  (n=8,334)
+    k=      19: k_nn=2.84  (n=7,885)
+    k=      20: k_nn=2.93  (n=6,960)

@@ -1,0 +1,8 @@
+# Step 02 — Domain→IP→AS Dependency Graph
+
+  Domain→IP edges:   19,709,071
+  Domains:           16,372,312
+  Unique IPs:           573,734
+  Unique ASNs:            8,715
+  Unique Prefixes:       38,294
+  Countries:                147

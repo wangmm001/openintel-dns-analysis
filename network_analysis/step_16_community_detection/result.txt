@@ -1,0 +1,21 @@
+# Step 16 — Community Detection (Leiden Algorithm)
+
+  Modularity Q: 0.5007
+  Communities:   15
+
+  Largest communities:
+    Community   0:   109 ASes | sample: 12312, 12347, 12488, 13030, 13335
+    Community   1:    79 ASes | sample: 12430, 12824, 13193, 136133, 13886
+    Community   2:    53 ASes | sample: --, 1136, 1221, 12693, 14061
+    Community   3:    38 ASes | sample: 11831, 12322, 12876, 15830, 16347
+    Community   4:    27 ASes | sample: 12508, 12552, 1257, 13237, 14742
+    Community   6:    18 ASes | sample: 12333, 12479, 138995, 140227, 15704
+    Community   5:    18 ASes | sample: 132839, 133199, 136907, 138415, 138648
+    Community   7:    13 ASes | sample: 12337, 15456, 15817, 1764, 202108
+    Community   9:     4 ASes | sample: 201964, 24611, 3292, 44398
+    Community   8:     4 ASes | sample: 20773, 21499, 34011, 8972
+    Community  11:     3 ASes | sample: 136258, 198614, 63949
+    Community  10:     3 ASes | sample: 16019, 35613, 39392
+    Community  12:     2 ASes | sample: 11278, 3549
+    Community  13:     2 ASes | sample: 1299, 42525
+    Community  14:     2 ASes | sample: 20756, 209510

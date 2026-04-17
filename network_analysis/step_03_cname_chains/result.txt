@@ -1,0 +1,32 @@
+# Step 03 — CNAME Delegation Chain Graph
+
+  CNAME edges:     4,184,198
+  Source domains:  3,695,433
+  Target names:    1,906,151
+
+  Chain depth distribution:
+    Depth 1:  3,695,433 domains
+    Depth 2:      6,985 domains
+    Depth 3:         57 domains
+
+  Top 20 CNAME convergence hubs:
+    dmarc.ionos.fr.                                   :  418,283 sources
+    cdn1.wixdns.net.                                  :  207,970 sources
+    td-premium-37-117.wixdns.net.                     :  207,970 sources
+    webredir.vip.gandi.net.                           :  142,039 sources
+    shops.myshopify.com.                              :  106,480 sources
+    website-rendering.jouwweb.nl.                     :   79,942 sources
+    website-rendering.webador.com.                    :   79,212 sources
+    ext-cust.squarespace.com.                         :   33,416 sources
+    dmarc.ionos.de.                                   :   27,698 sources
+    solocal.eu-multiscreensite.com.                   :   27,380 sources
+    onstatic-fr.setupdns.net.                         :   25,997 sources
+    ext-sq.squarespace.com.                           :   25,652 sources
+    connect.hostinger.com.                            :   23,754 sources
+    ghs.googlehosted.com.                             :   22,187 sources
+    cdn.perf1.com.                                    :   20,210 sources
+    webredir.gandi.net.                               :   19,469 sources
+    pointing.wixdns.net.                              :   18,596 sources
+    saspresence.perf1.com.                            :   17,989 sources
+    cdn.webflow.com.                                  :   17,841 sources
+    s.eu-multiscreensite.com.                         :   15,211 sources

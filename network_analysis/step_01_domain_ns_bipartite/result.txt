@@ -1,0 +1,46 @@
+# Step 01 — Domain→NS Bipartite Graph
+
+  Edges:         22,751,515
+  Domains:        8,874,756
+  Nameservers:      132,558
+  Avg NS/domain: 2.56
+  Avg domains/NS: 171.6
+
+  Domain degree (NS per domain):
+    1 NS:     26,135 domains
+    2 NS:  5,363,608 domains
+    3 NS:  2,166,060 domains
+    4 NS:  1,193,872 domains
+    5 NS:     56,173 domains
+    6 NS:     49,039 domains
+    7 NS:     11,837 domains
+    8 NS:      6,930 domains
+    9 NS:        325 domains
+    10 NS:        617 domains
+    11 NS:         54 domains
+    12 NS:         48 domains
+    13 NS:         13 domains
+    14 NS:         33 domains
+    15 NS:          2 domains
+
+  Top 20 Nameservers by degree:
+    ns2.hostpoint.ch.                            :    416,954 domains
+    ns.hostpoint.ch.                             :    416,954 domains
+    ns3.hostpoint.ch.                            :    415,646 domains
+    ns1.loopia.se.                               :    391,280 domains
+    ns2.loopia.se.                               :    391,278 domains
+    ns01.one.com.                                :    297,490 domains
+    ns02.one.com.                                :    297,490 domains
+    ns2.dns-parking.com.                         :    200,456 domains
+    ns1.dns-parking.com.                         :    200,454 domains
+    ns1.o2switch.net.                            :    174,453 domains
+    ns2.o2switch.net.                            :    174,387 domains
+    ns2.websupport.sk.                           :    169,160 domains
+    ns1.websupport.sk.                           :    169,156 domains
+    ns3.websupport.sk.                           :    169,124 domains
+    ns11.infomaniak.ch.                          :    148,340 domains
+    ns12.infomaniak.ch.                          :    147,043 domains
+    dns200.anycast.me.                           :    110,369 domains
+    ns200.anycast.me.                            :    110,367 domains
+    ns1.cyon.ch.                                 :     94,201 domains
+    ns2.cyon.ch.                                 :     94,200 domains
