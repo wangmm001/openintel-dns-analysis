@@ -3,10 +3,9 @@ downloads/**/*.parquet
 downloads/**/*.gz
 downloads/**/*.idx
 
-# Generated analysis artifacts
-analysis/output/*.png
-analysis/deep_analysis/**/*.png
-analysis/network_analysis/**/*.png
+# Generated analysis artifacts:
+# Commit output/deep/network PNGs so the frontend has charts on fresh clones.
+# Re-running the analysis scripts will overwrite them in-place.
 
 # Python
 __pycache__/
