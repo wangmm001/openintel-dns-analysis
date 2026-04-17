@@ -1,0 +1,22 @@
+# Step 24 — Topology → Security Prediction
+
+  Samples: 299 ASes (≥100 domains)
+  Features: degree, betweenness, coreness, comm_size, PageRank
+  Target: DNSSEC > median (5.2%)
+
+  AUC-ROC: 0.6777
+  Coefficients:
+    degree              : +0.3452
+    betweenness         : +0.1685
+    coreness            : +0.1131
+    comm_size           : +0.3208
+    PageRank            : -0.2636
+
+              precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00        41
+           1       0.54      1.00      0.71        49
+
+    accuracy                           0.54        90
+   macro avg       0.27      0.50      0.35        90
+weighted avg       0.30      0.54      0.38        90

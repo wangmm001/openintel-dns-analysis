@@ -1,0 +1,13 @@
+# Step 18 — Bow-Tie Decomposition (CNAME Graph)
+
+  Nodes: 5,598,155 | Edges: 4,184,198
+  SCC:            1 (0.0%)
+  Sources:  418,283 (7.5%) — pure delegation origins
+  Sinks:          1 (0.0%) — final CNAME targets (CDN/hosting)
+  Other:          0 (0.0%)
+  Disconn: 5,179,871 (92.5%)
+
+  Interpretation:
+    Sources = domains delegating via CNAME (website owners)
+    Sinks = infrastructure endpoints (Wix, Shopify, etc.)
+    The bow-tie shows DNS delegation flows from many origins to few targets

@@ -1,0 +1,12 @@
+# Step 20 — Percolation Analysis
+
+  Random f_c (GC<50%):   0.288 (28.8% removed)
+  Targeted f_c:          0.048 (4.8% removed)
+  Robustness ratio:      6.0×
+  R_random:              0.2868
+  R_targeted:            0.0566
+  R ratio:               5.1×
+
+  → Scale-free paradigm: 'Robust yet Fragile'
+    Random failures tolerated up to 29% removal
+    But targeted attack collapses network at just 5%

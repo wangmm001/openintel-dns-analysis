@@ -1,0 +1,18 @@
+# Step 19 — Network Motif Census
+
+  AS Graph (undirected):
+    Triangles:               47
+    Connected triples:   38,339
+    Transitivity:      0.3303
+    Max clique:        24
+
+  Hub motifs (AS nodes with degree ≥ k):
+    k ≥   3:   169 nodes
+    k ≥   5:   116 nodes
+    k ≥  10:    68 nodes
+    k ≥  20:    43 nodes
+    k ≥  50:     6 nodes
+    k ≥ 100:     2 nodes
+
+  CNAME 3-node directed motifs (sampled 30,000):
+    M2:mutual                :          1

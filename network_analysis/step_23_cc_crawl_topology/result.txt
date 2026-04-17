@@ -1,0 +1,22 @@
+# Step 23 — CC Crawl × Network Topology
+
+  ASes analyzed: 1449 (≥100 domains each)
+  CC CDX unique domains: 714,516
+  WebGraph domains: 134,222,466
+
+  Top ASes by CC crawl coverage:
+    AS    47302:      0/ 176,741 crawled (0.0%) | PR=0.000000 | deg=13
+    AS    13335:      0/1,077,085 crawled (0.0%) | PR=0.000000 | deg=57
+    AS     8075:      0/  66,639 crawled (0.0%) | PR=0.000000 | deg=28
+    AS    51395:      0/  18,826 crawled (0.0%) | PR=0.000000 | deg=1
+    AS    47846:      0/  99,937 crawled (0.0%) | PR=0.000000 | deg=0
+    AS    34119:      0/   1,559 crawled (0.0%) | PR=0.000000 | deg=0
+    AS    48971:      0/   7,736 crawled (0.0%) | PR=0.000000 | deg=4
+    AS    34762:      0/  30,088 crawled (0.0%) | PR=0.000000 | deg=6
+    AS     9044:      0/  21,938 crawled (0.0%) | PR=0.000000 | deg=3
+    AS    29691:      0/  28,532 crawled (0.0%) | PR=0.000000 | deg=1
+    AS     8560:      0/ 862,583 crawled (0.0%) | PR=0.000000 | deg=26
+    AS    14061:      0/  95,553 crawled (0.0%) | PR=0.000000 | deg=42
+    AS    20756:      0/  46,365 crawled (0.0%) | PR=0.000000 | deg=2
+    AS    12876:      0/ 126,226 crawled (0.0%) | PR=0.000000 | deg=28
+    AS    29513:      0/     376 crawled (0.0%) | PR=0.000000 | deg=0

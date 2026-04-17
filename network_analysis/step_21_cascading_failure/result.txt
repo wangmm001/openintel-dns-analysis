@@ -1,0 +1,25 @@
+# Step 21 — Cascading Failure (NS Single-Point)
+
+  NS                                                    Reach Orphaned      %
+  ns11.infomaniak.ch.                                 148,340    1,299   0.9%
+  ns1.o2switch.net.                                   174,453       68   0.0%
+  dns200.anycast.me.                                  110,369       23   0.0%
+  ns200.anycast.me.                                   110,367       22   0.0%
+  ns100.ovh.net.                                       75,535       18   0.0%
+  ns110.ovh.net.                                       82,499       14   0.0%
+  dns102.ovh.net.                                      72,959       14   0.0%
+  ns41.infomaniak.com.                                 89,482       13   0.0%
+  ns20.ovh.net.                                        72,040       12   0.0%
+  ns101.ovh.net.                                       71,436       12   0.0%
+  dns110.ovh.net.                                      82,495       10   0.0%
+  dns10.ovh.net.                                       78,646       10   0.0%
+  ns14.ovh.net.                                        72,676       10   0.0%
+  ns10.ovh.net.                                        78,642        9   0.0%
+  dns100.ovh.net.                                      75,525        9   0.0%
+  ns102.ovh.net.                                       72,955        9   0.0%
+  ns2.dns-parking.com.                                200,456        8   0.0%
+  dns20.ovh.net.                                       72,034        8   0.0%
+  dns14.ovh.net.                                       72,672        7   0.0%
+  dns101.ovh.net.                                      71,431        7   0.0%
+
+  Top 10 NS failure impact: 1,495 orphaned domains
