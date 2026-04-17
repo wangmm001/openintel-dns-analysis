@@ -1,0 +1,11 @@
+{
+  "id": "rir_01_delegation",
+  "titleZh": "RIR 委派分布",
+  "titleEn": "RIR Delegation Distribution",
+  "findings": [
+    "ARIN 独占 54.4%,APNIC 37.2%,两者合计 91.6% ——北美与亚太主导全球 IPv4 前缀空间。",
+    "RIPE(4.6%)、AFRINIC(2.4%)、LACNIC(1.4%)三区合计不足 10%。",
+    "总前缀数 3,703,402 条,覆盖可路由 IPv4 空间的主要部分。"
+  ],
+  "implications": "前缀委派格局折射出互联网基础设施的地缘政治分布——历史先发优势与人口增长存在明显错位。"
+}

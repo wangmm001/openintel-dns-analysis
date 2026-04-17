@@ -875,6 +875,60 @@ OUTPUT_PNG_ANNOTATIONS: dict[str, dict] = {
     ),
 }
 
+# Annotations for Phase 1 RIR enrichment (5 charts, tier H).
+RIR_ANNOTATIONS: dict[str, dict] = {
+    "rir_01_delegation": dict(
+        titleZh="RIR 委派分布",
+        titleEn="RIR Delegation Distribution",
+        findings=[
+            "ARIN 独占 54.4%,APNIC 37.2%,两者合计 91.6% ——北美与亚太主导全球 IPv4 前缀空间。",
+            "RIPE(4.6%)、AFRINIC(2.4%)、LACNIC(1.4%)三区合计不足 10%。",
+            "总前缀数 3,703,402 条,覆盖可路由 IPv4 空间的主要部分。",
+        ],
+        implications="前缀委派格局折射出互联网基础设施的地缘政治分布——历史先发优势与人口增长存在明显错位。",
+    ),
+    "rir_02_prefix_size": dict(
+        titleZh="前缀尺寸分布 (by RIR)",
+        titleEn="Prefix Size Distribution by RIR",
+        findings=[
+            "/24(256 个地址)是各 RIR 最主流的分配粒度,ARIN 持有最多(/24 近 195 万条)。",
+            "INTERNIC 持有 1,271 条 /8 超大块——这是上世纪互联网初期历史遗留的根级分配。",
+            "超小段(< /24)仅 ARIN 与 RIPE 有少量存在,反映精细化地址管理需求。",
+        ],
+        implications="/24 主导意味着互联网路由表以 /24 为基本单位增长;碎片化程度直接影响全球 BGP 路由条目规模。",
+    ),
+    "rir_03_rdns_rtype": dict(
+        titleZh="rDNS 记录类型热力图",
+        titleEn="rDNS Record-Type Distribution Heatmap",
+        findings=[
+            "NS 记录对每个 RIR 的覆盖率均为 100%——反向 DNS 授权靠 NS 传递,无一例外。",
+            "CNAME/SOA/A/AAAA 仅 ARIN 与 RIPE 有稀疏分布(CNAME 1,657 条),APNIC/AFRINIC/LACNIC 为零。",
+            "rDNS 生态高度单一:NS 是核心载体,其余类型为少量辅助记录。",
+        ],
+        implications="rDNS 的 NS-only 特征说明反向区实际上是纯委派结构;运营商可借助 CNAME 实现跨区共享托管。",
+    ),
+    "rir_04_hoster_patterns": dict(
+        titleZh="托管者聚类 (NS apex 域)",
+        titleEn="Hoster-Pattern Clustering via NS Apex",
+        findings=[
+            "ad.jp(7.1%)与 ne.jp(5.8%)居前两位——日本 ISP 大规模托管亚太前缀的反向 DNS。",
+            "akam.net(1.7%)是前 20 中唯一的全球 CDN,其余均为区域性 ISP/运营商。",
+            "前 20 apex 合计约 30% 份额;长尾极长:26,139 个不同 apex 管理剩余 70%。",
+        ],
+        implications="NS 托管高度集中于少数区域运营商;任何一个头部 apex 故障都会造成数十万前缀的 rDNS 失效。",
+    ),
+    "rir_05_country_tld": dict(
+        titleZh="国家维度 (NS rdata TLD 后缀)",
+        titleEn="Country Code Extraction from NS rdata TLD",
+        findings=[
+            ".net(30.5%)与 .com(25.9%)是最大命名空间——超过一半的 NS 指向通用 TLD。",
+            "ccTLD 中 .jp 占比最高,反映日本 ISP 倾向于使用本国域名管理 rDNS。",
+            ".br / .au / .tw 等新兴市场 ccTLD 进入前十,与 APNIC/LACNIC 委派份额吻合。",
+        ],
+        implications="NS TLD 分布揭示反向 DNS 托管的国家偏好——本地化运营商 vs. 全球 DNS 基础设施提供商的博弈。",
+    ),
+}
+
 
 # ────────────────────────────────────────────────────────────────
 # Main
@@ -914,6 +968,10 @@ def run_annotations() -> None:
     # network_analysis steps
     net_dir = REPO_DIR / "analysis" / "network_analysis"
     all_anns.extend(build_step_annotations("network", net_dir, "net_"))
+
+    # rir_enrichment (Phase 1, hand-curated)
+    for cid, fields in RIR_ANNOTATIONS.items():
+        all_anns.append(Annotation(id=cid, **fields))
 
     # Persist per-annotation + bundle
     for a in all_anns:

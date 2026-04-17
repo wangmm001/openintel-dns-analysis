@@ -1,0 +1,11 @@
+{
+  "id": "rir_05_country_tld",
+  "titleZh": "国家维度 (NS rdata TLD 后缀)",
+  "titleEn": "Country Code Extraction from NS rdata TLD",
+  "findings": [
+    ".net(30.5%)与 .com(25.9%)是最大命名空间——超过一半的 NS 指向通用 TLD。",
+    "ccTLD 中 .jp 占比最高,反映日本 ISP 倾向于使用本国域名管理 rDNS。",
+    ".br / .au / .tw 等新兴市场 ccTLD 进入前十,与 APNIC/LACNIC 委派份额吻合。"
+  ],
+  "implications": "NS TLD 分布揭示反向 DNS 托管的国家偏好——本地化运营商 vs. 全球 DNS 基础设施提供商的博弈。"
+}

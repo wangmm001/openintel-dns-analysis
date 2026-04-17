@@ -1,0 +1,11 @@
+{
+  "id": "rir_04_hoster_patterns",
+  "titleZh": "托管者聚类 (NS apex 域)",
+  "titleEn": "Hoster-Pattern Clustering via NS Apex",
+  "findings": [
+    "ad.jp(7.1%)与 ne.jp(5.8%)居前两位——日本 ISP 大规模托管亚太前缀的反向 DNS。",
+    "akam.net(1.7%)是前 20 中唯一的全球 CDN,其余均为区域性 ISP/运营商。",
+    "前 20 apex 合计约 30% 份额;长尾极长:26,139 个不同 apex 管理剩余 70%。"
+  ],
+  "implications": "NS 托管高度集中于少数区域运营商;任何一个头部 apex 故障都会造成数十万前缀的 rDNS 失效。"
+}

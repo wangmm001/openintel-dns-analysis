@@ -85,4 +85,10 @@ const net = await copySteps(
 );
 console.log(`[sync-charts] network_analysis step charts copied: ${net}`);
 
+const rir = await copySteps(
+  join(ANALYSIS, 'rir_enrichment'),
+  join(PUBLIC_CHARTS, 'rir'),
+);
+console.log(`[sync-charts] rir_enrichment step charts copied: ${rir}`);
+
 console.log('[sync-charts] done.');

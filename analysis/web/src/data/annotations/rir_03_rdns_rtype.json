@@ -1,0 +1,11 @@
+{
+  "id": "rir_03_rdns_rtype",
+  "titleZh": "rDNS 记录类型热力图",
+  "titleEn": "rDNS Record-Type Distribution Heatmap",
+  "findings": [
+    "NS 记录对每个 RIR 的覆盖率均为 100%——反向 DNS 授权靠 NS 传递,无一例外。",
+    "CNAME/SOA/A/AAAA 仅 ARIN 与 RIPE 有稀疏分布(CNAME 1,657 条),APNIC/AFRINIC/LACNIC 为零。",
+    "rDNS 生态高度单一:NS 是核心载体,其余类型为少量辅助记录。"
+  ],
+  "implications": "rDNS 的 NS-only 特征说明反向区实际上是纯委派结构;运营商可借助 CNAME 实现跨区共享托管。"
+}

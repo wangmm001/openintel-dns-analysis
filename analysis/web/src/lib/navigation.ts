@@ -1,4 +1,4 @@
-export type TierKey = "A" | "B" | "C" | "D" | "E" | "F" | "G";
+export type TierKey = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
 
 export interface SubPage {
   slug: string;
@@ -173,6 +173,18 @@ export const TIERS: Tier[] = [
       { slug: "phase6-7-resilience", path: "/network/phase6-7-resilience", tier: "G", order: 30,
         titleZh: "阶段六·七·韧性与综合", titleEn: "Phase 6-7 · Resilience & Synthesis",
         tagline: "Step 21–24 · 拓扑 → 安全预测", chartCount: 3, interactive: 0 },
+    ],
+  },
+  {
+    key: "H",
+    titleZh: "Phase 1 · RIR 富化",
+    titleEn: "Phase 1 · RIR Enrichment",
+    taglineZh: "3.7M IPv4 prefix · 5 大 RIR · 反向 DNS 命名模式聚类",
+    glow: "orange",
+    pages: [
+      { slug: "rir-enrichment", path: "/phase1/rir-enrichment", tier: "H", order: 31,
+        titleZh: "RIR rDNS 全景", titleEn: "RIR rDNS Landscape",
+        tagline: "委派分布 · 前缀尺寸 · rtype 分布 · 托管者聚类 · 国家维度", chartCount: 5, interactive: 0 },
     ],
   },
 ];

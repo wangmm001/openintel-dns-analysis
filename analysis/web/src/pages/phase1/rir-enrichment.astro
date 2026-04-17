@@ -1,0 +1,55 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/phase1/rir-enrichment"
+  subtitle="3,703,402 条 IPv4 前缀记录横跨 5 大 RIR —— 从委派分布、前缀尺寸、rDNS 类型到托管者聚类与国家维度,全面刻画反向 DNS 命名生态。"
+>
+  <ChartCard
+    id="rir_01_delegation"
+    titleZh="RIR 委派分布"
+    titleEn="RIR Delegation Distribution"
+    subtitle="ARIN 以 54.4% 独占首位,APNIC 37.2% 居次 —— 两大 RIR 合计覆盖 91.6% 的 IPv4 前缀空间。"
+  >
+    <PngChart src="/charts/rir/step_01_rir_delegation/chart.png" alt="RIR 委派分布" chartId="rir_01_delegation" />
+  </ChartCard>
+
+  <ChartCard
+    id="rir_02_prefix_size"
+    titleZh="前缀尺寸分布 (by RIR)"
+    titleEn="Prefix Size Distribution by RIR"
+    subtitle="/24 是各 RIR 的绝对主力 CIDR 段；INTERNIC 持有的 /8 超大段(1,271 条)是历史遗留的根级分配。"
+  >
+    <PngChart src="/charts/rir/step_02_prefix_size_distribution/chart.png" alt="前缀尺寸分布" chartId="rir_02_prefix_size" />
+  </ChartCard>
+
+  <ChartCard
+    id="rir_03_rdns_rtype"
+    titleZh="rDNS 记录类型热力图"
+    titleEn="rDNS Record-Type Distribution Heatmap"
+    subtitle="NS 记录覆盖所有 RIR 的 100%；CNAME/SOA/A/AAAA 仅 ARIN 与 RIPE 有稀疏分布,其余 RIR 为零。"
+  >
+    <PngChart src="/charts/rir/step_03_rdns_rtype_heatmap/chart.png" alt="rDNS 记录类型热力图" chartId="rir_03_rdns_rtype" />
+  </ChartCard>
+
+  <ChartCard
+    id="rir_04_hoster_patterns"
+    titleZh="托管者聚类 (NS apex 域)"
+    titleEn="Hoster-Pattern Clustering via NS Apex"
+    subtitle="ad.jp(7.1%) 与 ne.jp(5.8%) 主导全球 IP 前缀 NS 托管；前 20 托管者合计管理约 30% 的前缀空间。"
+  >
+    <PngChart src="/charts/rir/step_04_hoster_patterns/chart.png" alt="托管者聚类" chartId="rir_04_hoster_patterns" />
+  </ChartCard>
+
+  <ChartCard
+    id="rir_05_country_tld"
+    titleZh="国家维度 (NS rdata TLD 后缀)"
+    titleEn="Country Code Extraction from NS rdata TLD"
+    subtitle=".net(30.5%) 与 .com(25.9%) 是最大的通用命名空间；ccTLD 中 .jp 最高,反映日本 ISP 对国内 NS 的高度依赖。"
+  >
+    <PngChart src="/charts/rir/step_05_country_tld_extraction/chart.png" alt="国家维度 TLD" chartId="rir_05_country_tld" />
+  </ChartCard>
+</SectionLayout>

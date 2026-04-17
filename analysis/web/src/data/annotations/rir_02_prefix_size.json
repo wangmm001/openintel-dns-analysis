@@ -1,0 +1,11 @@
+{
+  "id": "rir_02_prefix_size",
+  "titleZh": "前缀尺寸分布 (by RIR)",
+  "titleEn": "Prefix Size Distribution by RIR",
+  "findings": [
+    "/24(256 个地址)是各 RIR 最主流的分配粒度,ARIN 持有最多(/24 近 195 万条)。",
+    "INTERNIC 持有 1,271 条 /8 超大块——这是上世纪互联网初期历史遗留的根级分配。",
+    "超小段(< /24)仅 ARIN 与 RIPE 有少量存在,反映精细化地址管理需求。"
+  ],
+  "implications": "/24 主导意味着互联网路由表以 /24 为基本单位增长;碎片化程度直接影响全球 BGP 路由条目规模。"
+}
