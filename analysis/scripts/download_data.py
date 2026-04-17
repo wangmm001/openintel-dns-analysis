@@ -112,21 +112,49 @@ def cmd_openintel(args):
     save_manifest(manifest)
 
 
+# Latest published webgraph as of 2026-04 (covers CC-MAIN-2025-51, -2026-05, -2026-08).
+# CC-MAIN-2026-12's own webgraph is not published yet (expected ~June 2026).
+WG_SLUG = "cc-main-2025-26-dec-jan-feb"
+
 CC_FILES_DOMAIN = [
-    "cc-main-2026-12-domain-vertices.paths.gz",
-    "cc-main-2026-12-domain-edges.paths.gz",
-    "cc-main-2026-12-domain-ranks.txt.gz",
+    f"{WG_SLUG}-domain-vertices.paths.gz",
+    f"{WG_SLUG}-domain-edges.paths.gz",
+    f"{WG_SLUG}-domain-ranks.txt.gz",
 ]
 CC_FILES_HOST = [
-    "cc-main-2026-12-host-vertices.paths.gz",
-    "cc-main-2026-12-host-edges.paths.gz",
-    "cc-main-2026-12-host-ranks.txt.gz",
+    f"{WG_SLUG}-host-vertices.paths.gz",
+    f"{WG_SLUG}-host-edges.paths.gz",
+    f"{WG_SLUG}-host-ranks.txt.gz",
 ]
 
 def cc_url(crawl: str, filename: str) -> str:
-    period = "cc-main-2026-feb-mar-apr"
     level = "domain" if "domain" in filename else "host"
-    return f"{CC_BASE}/projects/hyperlinkgraph/{period}/{level}/{filename}"
+    return f"{CC_BASE}/projects/hyperlinkgraph/{WG_SLUG}/{level}/{filename}"
+
+def cc_follow_manifest(manifest_path: Path, dest_dir: Path) -> list[tuple[str, bool, str]]:
+    """Read a .paths.gz manifest, download each listed part file into dest_dir/parts/.
+
+    Manifest format: one S3-relative path per line. Prepend CC_BASE to form URL.
+    """
+    import gzip
+    parts_dir = dest_dir / "parts"
+    parts_dir.mkdir(parents=True, exist_ok=True)
+    results = []
+    with gzip.open(manifest_path, "rt") as f:
+        lines = [l.strip() for l in f if l.strip()]
+    print(f"  [manifest] {manifest_path.name}: {len(lines)} part files")
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        futures = {}
+        for rel in lines:
+            url = f"{CC_BASE}/{rel}"
+            dest = parts_dir / rel.rsplit("/", 1)[-1]
+            futures[ex.submit(http_download, url, dest)] = rel
+        for fut in as_completed(futures):
+            rel = futures[fut]
+            ok, msg = fut.result()
+            results.append((rel, ok, msg))
+            print(f"    [{'OK' if ok else 'FAIL'}] {rel.rsplit('/',1)[-1]}  {msg}")
+    return results
 
 def http_download(url: str, dest: Path, expected_size: int | None = None) -> tuple[bool, str]:
     if dest.exists() and (expected_size is None or dest.stat().st_size == expected_size):
@@ -156,22 +184,36 @@ def cmd_common_crawl(args):
     files = list(CC_FILES_DOMAIN)
     if args.host_graph:
         files += CC_FILES_HOST
+    manifests_to_follow = []
     with ThreadPoolExecutor(max_workers=4) as ex:
         futures = {}
         for fn in files:
             url = cc_url(args.crawl, fn)
             level = "domain" if "domain" in fn else "host"
             dest = DOWNLOADS / "common-crawl" / "webgraph" / level / fn
-            futures[ex.submit(http_download, url, dest)] = fn
+            futures[ex.submit(http_download, url, dest)] = (fn, level, dest)
         for fut in as_completed(futures):
-            fn = futures[fut]
+            fn, level, dest = futures[fut]
             ok, msg = fut.result()
             print(f"  [{'OK' if ok else 'FAIL'}] {fn}  {msg}")
             if ok:
-                manifest["common_crawl"][fn] = {"crawl": args.crawl}
+                manifest["common_crawl"][fn] = {"crawl": args.crawl, "slug": WG_SLUG}
+                if fn.endswith(".paths.gz") and args.follow_manifests:
+                    manifests_to_follow.append((dest, dest.parent))
             else:
                 manifest["failed"].append({"key": fn, "msg": msg})
     save_manifest(manifest)
+
+    if manifests_to_follow:
+        print(f"\nFollowing {len(manifests_to_follow)} manifests for part files …")
+        for manifest_path, dest_dir in manifests_to_follow:
+            results = cc_follow_manifest(manifest_path, dest_dir)
+            for rel, ok, msg in results:
+                if ok:
+                    manifest["common_crawl"][rel] = {"crawl": args.crawl, "slug": WG_SLUG, "type": "part"}
+                else:
+                    manifest["failed"].append({"key": rel, "msg": msg})
+        save_manifest(manifest)
 
 
 def cmd_verify(args):
@@ -202,7 +244,7 @@ def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     s1 = sub.add_parser("openintel"); s1.add_argument("--date", required=True); s1.set_defaults(func=cmd_openintel)
-    s2 = sub.add_parser("common-crawl"); s2.add_argument("--crawl", required=True); s2.add_argument("--host-graph", action="store_true"); s2.set_defaults(func=cmd_common_crawl)
+    s2 = sub.add_parser("common-crawl"); s2.add_argument("--crawl", required=True); s2.add_argument("--host-graph", action="store_true"); s2.add_argument("--follow-manifests", action="store_true", help="Download part files referenced by each .paths.gz manifest (100+ GB for host graph)"); s2.set_defaults(func=cmd_common_crawl)
     s3 = sub.add_parser("verify"); s3.set_defaults(func=cmd_verify)
     args = ap.parse_args()
     args.func(args)
