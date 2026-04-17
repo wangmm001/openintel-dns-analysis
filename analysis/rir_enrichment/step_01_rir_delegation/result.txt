@@ -1,0 +1,14 @@
+Step 01 — RIR Delegation Distribution
+==================================================
+Total IPv4 prefix records: 3,703,402
+
+RIR            Prefixes  Share %
+--------------------------------
+ARIN          2,012,726    54.35%
+APNIC         1,378,127    37.21%
+RIPE            169,635     4.58%
+AFRINIC          89,472     2.42%
+LACNIC           52,171     1.41%
+INTERNIC          1,271     0.03%
+
+Largest RIR: ARIN (54.4%)

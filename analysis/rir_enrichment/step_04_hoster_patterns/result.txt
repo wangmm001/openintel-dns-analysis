@@ -1,0 +1,32 @@
+Step 04 — Hoster-Pattern Clustering via NS rdata Apex
+============================================================
+
+Total distinct NS rdata values: 81,328
+Total distinct apex domains: 26,139
+
+Top 20 apex hosters (by prefix count):
+
+Rank   Apex domain                           Prefixes  Share %
+--------------------------------------------------------------
+1      ad.jp                                  261,980     7.08%
+2      ne.jp                                  215,151     5.82%
+3      akam.net                                63,642     1.72%
+4      net.tw                                  44,047     1.19%
+5      net.br                                  43,929     1.19%
+6      com.br                                  43,066     1.16%
+7      or.jp                                   40,645     1.10%
+8      net.au                                  39,563     1.07%
+9      com.cn                                  38,696     1.05%
+10     savvis.net                              37,932     1.03%
+11     co.uk                                   35,152     0.95%
+12     windstream.net                          33,148     0.90%
+13     net.id                                  30,528     0.83%
+14     ntt.net                                 30,064     0.81%
+15     co.za                                   29,648     0.80%
+16     com.au                                  29,040     0.78%
+17     charter.com                             27,528     0.74%
+18     indosat.com                             24,381     0.66%
+19     fetnet.net                              23,943     0.65%
+20     googledomains.com                       23,914     0.65%
+
+Top-5 hosters control 17.0% of all prefixes

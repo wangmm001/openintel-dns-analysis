@@ -1,0 +1,21 @@
+Step 02 — Prefix Size Distribution by RIR
+============================================================
+
+Prefix count per CIDR bucket per RIR:
+
+bucket      /8 (16M+)  /16 (65K+)  /24 (256+)  < /24 (tiny)
+rir_source                                                 
+AFRINIC            42        1348       88082             0
+APNIC               0       29610     1348502            15
+ARIN              649       61709     1948659          1709
+INTERNIC         1271           0           0             0
+LACNIC              0         410       51761             0
+RIPE                0        5623      162305          1707
+
+Key observations:
+  AFRINIC: dominant bucket = /24 (256+) (88,082 prefixes)
+  APNIC: dominant bucket = /24 (256+) (1,348,502 prefixes)
+  ARIN: dominant bucket = /24 (256+) (1,948,659 prefixes)
+  INTERNIC: dominant bucket = /8 (16M+) (1,271 prefixes)
+  LACNIC: dominant bucket = /24 (256+) (51,761 prefixes)
+  RIPE: dominant bucket = /24 (256+) (162,305 prefixes)

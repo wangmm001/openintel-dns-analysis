@@ -1,0 +1,32 @@
+Step 03 — rDNS Record-Type Distribution + Coverage
+============================================================
+
+Raw counts (rir_source × rtype):
+
+rtype              NS   CNAME   SOA     A  AAAA
+rir_source                                     
+AFRINIC       89472.0     0.0   0.0   0.0   0.0
+APNIC       1378127.0     0.0   0.0   0.0   0.0
+ARIN        2010932.0  1657.0  93.0  41.0   3.0
+INTERNIC       1271.0     0.0   0.0   0.0   0.0
+LACNIC        52171.0     0.0   0.0   0.0   0.0
+RIPE         167934.0  1657.0   0.0  41.0   3.0
+
+Coverage (% of prefixes per RIR that have each rtype):
+
+rtype           NS  CNAME  SOA     A  AAAA
+rir_source                                
+AFRINIC     100.00   0.00  0.0  0.00   0.0
+APNIC       100.00   0.00  0.0  0.00   0.0
+ARIN         99.91   0.08  0.0  0.00   0.0
+INTERNIC    100.00   0.00  0.0  0.00   0.0
+LACNIC      100.00   0.00  0.0  0.00   0.0
+RIPE         99.00   0.98  0.0  0.02   0.0
+
+Dominant rtype per RIR:
+  AFRINIC: NS (89,472.0 records, 100.0%)
+  APNIC: NS (1,378,127.0 records, 100.0%)
+  ARIN: NS (2,010,932.0 records, 99.9%)
+  INTERNIC: NS (1,271.0 records, 100.0%)
+  LACNIC: NS (52,171.0 records, 100.0%)
+  RIPE: NS (167,934.0 records, 99.0%)
