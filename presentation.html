@@ -1415,13 +1415,149 @@ td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
   </div>
 </div>
 
-<!-- SLIDE 38: End -->
-<div class="slide dark" id="s38">
+<!-- SLIDE 38: Complex Network — Multi-Layer Graph -->
+<div class="slide deep" id="s38">
+  <div class="label">Module 09 / 复杂网络分析</div>
+  <h2>DNS 多层依赖网络</h2>
+  <p class="desc">将 DNS 基础设施建模为 5 层复杂网络: Domain → NS → IP → AS → Prefix</p>
+  <div class="grid3" style="margin-top:20px">
+    <div class="card">
+      <h4>Domain → NS 二部图</h4>
+      <p style="font-size:32px;color:var(--accent);font-weight:700">22.7M</p>
+      <p>边 (8.9M 域名 × 132K NS)</p>
+      <p class="small" style="margin-top:8px">NS 入度幂律: <strong>α = 1.75</strong></p>
+      <p class="small">Top NS: hostpoint.ch (417K 域名)</p>
+    </div>
+    <div class="card">
+      <h4>Domain → IP → AS</h4>
+      <p style="font-size:32px;color:var(--green);font-weight:700">8,715</p>
+      <p>自治系统 (573K IPs, 147 国家)</p>
+      <p class="small" style="margin-top:8px">IP 入度幂律: <strong>α = 1.29</strong></p>
+      <p class="small">AS 投影图: 472 节点, 1,344 边</p>
+    </div>
+    <div class="card">
+      <h4>CNAME 委托链</h4>
+      <p style="font-size:32px;color:var(--orange);font-weight:700">4.2M</p>
+      <p>边 (3.7M 源 → 1.9M 目标)</p>
+      <p class="small" style="margin-top:8px">Bow-Tie: 7.5% 源 → 少数 CDN 汇聚</p>
+      <p class="small">Top: Wix (208K), Gandi (142K), Shopify (106K)</p>
+    </div>
+  </div>
+  <table style="margin-top:16px;font-size:13px">
+    <tr><th>网络层</th><th>节点数</th><th>边数</th><th>幂律 α</th><th>最大度数</th></tr>
+    <tr><td>Domain→NS</td><td>9.0M</td><td>22.8M</td><td>1.75</td><td>417K</td></tr>
+    <tr><td>Domain→IP</td><td>16.9M</td><td>19.7M</td><td>1.29</td><td>1.3M</td></tr>
+    <tr><td>AS 投影</td><td>472</td><td>1,344</td><td>—</td><td>—</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 39: Scale-Free & Small-World -->
+<div class="slide deep" id="s39">
+  <div class="label">Module 09 / 无标度 & 小世界</div>
+  <h2>无标度 + 小世界 + Rich-Club</h2>
+  <p class="desc">网络科学三大核心性质在 DNS 基础设施中得到验证</p>
+  <div class="grid3" style="margin-top:20px">
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h4>无标度 (Scale-Free)</h4>
+      <p style="font-size:24px;color:var(--accent);font-weight:700">α = 1.75</p>
+      <p class="small">Clauset et al. (2009) 方法验证</p>
+      <p class="small" style="margin-top:8px">NS/IP/AS 各层均呈幂律分布</p>
+      <p class="small">含义: 少数节点掌控大量连接</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green)">
+      <h4>小世界 (Small-World)</h4>
+      <p style="font-size:24px;color:var(--green);font-weight:700">σ ≫ 1</p>
+      <p class="small">C/C_rand = 733× | L = 3.1</p>
+      <p class="small" style="margin-top:8px">高聚类 + 短路径 = 高效传播</p>
+      <p class="small">任意两个 AS 仅需 3 跳可达</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--orange)">
+      <h4>富人俱乐部 (Rich-Club)</h4>
+      <p style="font-size:24px;color:var(--orange);font-weight:700">φ<sub>norm</sub> > 1</p>
+      <p class="small">高度数 AS 互相紧密连接</p>
+      <p class="small" style="margin-top:8px">23-core 骨架: 24 个 AS</p>
+      <p class="small">形成 DNS 信任寡头俱乐部</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;text-align:center">
+    <p><strong>Leiden 社区检测</strong>: Q = 0.497, 15 个自然社区 — 不同社区 DNSSEC 部署率从 2.3% 到 26.3% 不等</p>
+  </div>
+</div>
+
+<!-- SLIDE 40: Robust Yet Fragile -->
+<div class="slide deep" id="s40">
+  <div class="label">Module 09 / 韧性分析</div>
+  <h2>"鲁棒而脆弱" — Barabási 范式</h2>
+  <p class="desc">渗流理论揭示: DNS 基础设施对随机故障鲁棒，但对定向攻击极度脆弱</p>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <h4>渗流阈值 (Percolation)</h4>
+      <table style="margin-top:12px">
+        <tr><th>攻击方式</th><th>f<sub>c</sub></th><th>含义</th></tr>
+        <tr><td style="color:var(--green)">随机故障</td><td><strong>0.29</strong></td><td>移除 29% 节点网络仍连通</td></tr>
+        <tr><td style="color:var(--red)">定向攻击</td><td><strong>0.05</strong></td><td>仅移除 5% 即瓦解网络</td></tr>
+      </table>
+      <p class="small" style="margin-top:12px">鲁棒性比值: <strong style="color:var(--orange)">6×</strong> — 经典无标度脆弱性特征</p>
+      <p class="small">R-index: random=0.287, targeted=0.057</p>
+    </div>
+    <div class="card">
+      <h4>级联失败模拟</h4>
+      <div style="margin-top:12px">
+        <p class="small"><strong style="color:var(--red)">Top 5 AS 单点故障</strong></p>
+        <p style="font-size:28px;color:var(--red);font-weight:700;margin:8px 0">6,380,397</p>
+        <p class="small">域名将被完全孤立 (99.8%)</p>
+      </div>
+      <div style="margin-top:12px">
+        <p class="small"><strong>多层级联放大</strong></p>
+        <p class="small">AS 故障 → IP 丢失 → 域名不可解析</p>
+        <p class="small">AS 16276: 单点故障影响 <strong>297 万</strong>域名</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 41: Topology→Security Prediction -->
+<div class="slide deep" id="s41">
+  <div class="label">Module 09 / 拓扑预测安全</div>
+  <h2>网络拓扑 → 安全部署预测</h2>
+  <p class="desc">首次证明: DNS 网络位置可预测安全配置 (DNSSEC/SPF/IPv6)</p>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <h4>机器学习预测模型</h4>
+      <p style="font-size:36px;color:var(--accent);font-weight:700;margin:12px 0">AUC = 0.678</p>
+      <p class="small">特征: 度数、介数中心性、k-核数、社区规模、PageRank</p>
+      <p class="small" style="margin-top:8px">目标: DNSSEC 部署高于中位数</p>
+      <table style="margin-top:12px;font-size:12px">
+        <tr><th>特征</th><th>系数</th><th>方向</th></tr>
+        <tr><td>度数</td><td>+0.345</td><td style="color:var(--green)">正相关</td></tr>
+        <tr><td>社区规模</td><td>+0.321</td><td style="color:var(--green)">正相关</td></tr>
+        <tr><td>介数中心性</td><td>+0.169</td><td style="color:var(--green)">正相关</td></tr>
+        <tr><td>PageRank</td><td>-0.264</td><td style="color:var(--red)">负相关</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h4>关键洞见</h4>
+      <div class="obj-list" style="margin-top:8px">
+        <div class="obj-item">DNS 拓扑中心性越高 → DNSSEC 越可能部署</div>
+        <div class="obj-item">Rich-Club 核心 AS (23-core) 安全水平最高</div>
+        <div class="obj-item">社区效应: 同社区 AS 安全画像趋同</div>
+        <div class="obj-item">关节点 22.7% — 超 1/5 AS 是单点故障</div>
+      </div>
+      <p class="small" style="margin-top:12px;padding:8px;background:rgba(255,255,255,0.05);border-radius:8px">
+        <strong>论文定位:</strong> ACM IMC<br>
+        "Robust Yet Fragile: A Multi-Layer Complex Network Analysis of DNS Infrastructure"
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 42: End -->
+<div class="slide dark" id="s42">
   <div class="glow blue" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
   <div style="text-align:center">
     <div class="label">OpenINTEL DNS Analysis</div>
     <h1 style="background:linear-gradient(135deg,#fff,#a8c0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:80px">Thank You</h1>
-    <p class="subtitle">8 ccTLDs + 3 TopLists · 216M Records · 31M Domains · 8 Analysis Modules</p>
+    <p class="subtitle">8 ccTLDs + 3 TopLists · 232M Records · 31M Domains · 9 Analysis Modules</p>
     <div style="margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <span class="badge blue">01 数据总览</span>
       <span class="badge purple">02 记录分析</span>
@@ -1431,15 +1567,16 @@ td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
       <span class="badge purple">06 异常检测</span>
       <span class="badge blue">07 TopList 交叉分析</span>
       <span class="badge orange">08 CC 索引交叉分析</span>
+      <span class="badge red">09 复杂网络分析</span>
     </div>
-    <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project + Common Crawl · Analysis date: 2026-04-14 · Generated with DuckDB + Python</p>
+    <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project + Common Crawl · Analysis date: 2026-04-17 · Generated with DuckDB + Python + igraph + NetworkX</p>
   </div>
 </div>
 
 <!-- ======== Navigation ======== -->
 <div class="nav">
   <button onclick="prev()">&#8249;</button>
-  <span class="page-num" id="pageNum">1 / 38</span>
+  <span class="page-num" id="pageNum">1 / 42</span>
   <button onclick="next()">&#8250;</button>
 </div>
 

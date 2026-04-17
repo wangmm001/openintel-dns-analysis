@@ -1885,8 +1885,133 @@ duckdb -c "SELECT count(*) FROM 'data/openintel/*.parquet'"</pre>
   </div>
 </div>
 
-<!-- SLIDE 51: Thank You -->
-<div class="slide dark" id="s51">
+<!-- SLIDE 51: Complex Network — Graph Construction -->
+<div class="slide" id="s51">
+  <div class="label">Chapter 10 / 复杂网络分析</div>
+  <h2>10.1 DNS 多层依赖网络建模</h2>
+  <p class="desc">应用复杂网络科学方法，将 DNS 基础设施建模为 5 层依赖网络</p>
+  <div class="grid3" style="margin-top:16px">
+    <div class="card">
+      <h4>Layer 1: Domain → NS</h4>
+      <p style="font-size:28px;color:var(--accent);font-weight:700">22.7M 边</p>
+      <p class="small">8.9M 域名 × 132K NS</p>
+      <p class="small">平均每域名 2.56 个 NS</p>
+      <p class="small" style="margin-top:8px">NS 幂律: <strong>α=1.75</strong> (Clauset 验证)</p>
+    </div>
+    <div class="card">
+      <h4>Layer 2-3: IP → AS</h4>
+      <p style="font-size:28px;color:var(--green);font-weight:700">8,715 AS</p>
+      <p class="small">573K IPs, 38K 前缀, 147 国家</p>
+      <p class="small">IP 幂律: <strong>α=1.29</strong></p>
+      <p class="small" style="margin-top:8px">AS 投影: 472 节点, 1,344 边</p>
+    </div>
+    <div class="card">
+      <h4>Layer 4: CNAME 链</h4>
+      <p style="font-size:28px;color:var(--orange);font-weight:700">4.2M 边</p>
+      <p class="small">3.7M 源 → 1.9M 目标</p>
+      <p class="small">Bow-Tie: 7.5% 源 → CDN 汇聚</p>
+      <p class="small" style="margin-top:8px">Top: Wix 208K, Shopify 106K</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h4>Layer 5: Common Crawl WebGraph</h4>
+    <p class="small">134M 域名 PageRank + 714K CC CDX 爬取覆盖 — DNS 拓扑位置与 Web 可见性交叉分析</p>
+  </div>
+</div>
+
+<!-- SLIDE 52: Scale-Free & Small-World -->
+<div class="slide" id="s52">
+  <div class="label">Chapter 10 / 拓扑性质</div>
+  <h2>10.2 无标度 · 小世界 · Rich-Club</h2>
+  <p class="desc">网络科学三大核心性质全部验证通过</p>
+  <div class="grid3" style="margin-top:16px">
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h4>无标度 Scale-Free</h4>
+      <p class="small" style="margin-top:8px">Clauset et al. (2009) 检验</p>
+      <p class="small">NS α=1.75, IP α=1.29</p>
+      <p class="small"><strong>→ 少数节点掌控大量连接</strong></p>
+      <p class="small">vs lognormal/exponential: power-law 显著优</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green)">
+      <h4>小世界 Small-World</h4>
+      <p class="small" style="margin-top:8px">Humphries σ ≫ 1</p>
+      <p class="small">C/C_rand = 733×, L = 3.1</p>
+      <p class="small"><strong>→ 高聚类 + 短路径</strong></p>
+      <p class="small">任意两 AS 仅需 ~3 跳</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--orange)">
+      <h4>Rich-Club</h4>
+      <p class="small" style="margin-top:8px">φ_norm > 1 (k≥5)</p>
+      <p class="small">23-core 骨架: 24 AS</p>
+      <p class="small"><strong>→ DNS 信任寡头</strong></p>
+      <p class="small">Leiden Q=0.50, 15 社区</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h4>k-Core 分解</h4>
+    <p class="small">最内核 23-core 包含 24 个 AS，构成 DNS 基础设施的结构骨架。关节点占 22.7% — 超过 1/5 的 AS 是网络连通性的单点故障。</p>
+  </div>
+</div>
+
+<!-- SLIDE 53: Robust Yet Fragile -->
+<div class="slide" id="s53">
+  <div class="label">Chapter 10 / 韧性分析</div>
+  <h2>10.3 "鲁棒而脆弱" — 渗流与级联</h2>
+  <p class="desc">Barabási 范式: 随机鲁棒，定向攻击极度脆弱</p>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <h4>渗流阈值 Percolation</h4>
+      <table style="margin-top:8px;font-size:13px">
+        <tr><th>攻击方式</th><th>f<sub>c</sub></th><th>含义</th></tr>
+        <tr><td style="color:var(--green)">随机故障</td><td><strong>0.29</strong></td><td>29% 节点移除仍连通</td></tr>
+        <tr><td style="color:var(--red)">定向攻击</td><td><strong>0.05</strong></td><td>仅 5% 即瓦解</td></tr>
+      </table>
+      <p class="small" style="margin-top:8px">鲁棒性比: <strong style="color:var(--orange)">6×</strong></p>
+      <p class="small">R-index: 0.287 vs 0.057</p>
+    </div>
+    <div class="card">
+      <h4>级联失败模拟</h4>
+      <p class="small" style="margin-top:8px"><strong>AS 级联 (Top 5 故障):</strong></p>
+      <p style="font-size:24px;color:var(--red);font-weight:700">6,380,397 域名孤立</p>
+      <p class="small">占比 99.8% — 几乎完全瓦解</p>
+      <p class="small" style="margin-top:8px"><strong>NS 级联 (Top 10 故障):</strong></p>
+      <p class="small">1,495 域名完全丧失解析能力</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 54: Topology→Security -->
+<div class="slide" id="s54">
+  <div class="label">Chapter 10 / 拓扑→安全预测</div>
+  <h2>10.4 网络位置预测安全部署</h2>
+  <p class="desc">Logistic Regression: 仅凭拓扑特征即可预测 DNSSEC 部署</p>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <h4>预测模型 (AUC=0.678)</h4>
+      <table style="margin-top:8px;font-size:13px">
+        <tr><th>拓扑特征</th><th>系数</th><th>解读</th></tr>
+        <tr><td>度数</td><td style="color:var(--green)">+0.345</td><td>连接越多 → 越安全</td></tr>
+        <tr><td>社区规模</td><td style="color:var(--green)">+0.321</td><td>大社区 → 安全传播</td></tr>
+        <tr><td>介数中心性</td><td style="color:var(--green)">+0.169</td><td>桥接位置 → 安全意识</td></tr>
+        <tr><td>PageRank</td><td style="color:var(--red)">-0.264</td><td>Web 流量 ≠ 安全</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h4>研究贡献总结</h4>
+      <div class="obj-list" style="margin-top:8px">
+        <div class="obj-item">首次 5 层 DNS 多层网络建模</div>
+        <div class="obj-item">Clauset 严格幂律检验</div>
+        <div class="obj-item">渗流理论量化韧性阈值</div>
+        <div class="obj-item">Rich-Club 揭示信任寡头</div>
+        <div class="obj-item">拓扑→安全预测 (AUC=0.678)</div>
+        <div class="obj-item">CC WebGraph 交叉验证</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 55: Thank You -->
+<div class="slide dark" id="s55">
   <div class="glow blue" style="top:-200px;right:-100px"></div>
   <div class="glow purple" style="bottom:-150px;left:-50px"></div>
   <div class="glow green" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
@@ -1912,18 +2037,18 @@ duckdb -c "SELECT count(*) FROM 'data/openintel/*.parquet'"</pre>
     </div>
   </div>
   <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
-    <span class="badge blue">9 章完成</span>
-    <span class="badge green">14 数据集</span>
+    <span class="badge blue">10 章完成</span>
+    <span class="badge green">14 数据集 + WebGraph</span>
     <span class="badge purple">2.32 亿记录</span>
-    <span class="badge orange">99 维字段 + CC 索引</span>
+    <span class="badge orange">复杂网络 · 25 步实验</span>
   </div>
-  <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project (University of Twente) + Common Crawl &middot; Analysis date: 2026-04-14 &middot; Generated with DuckDB + Python</p>
+  <p class="small" style="margin-top:40px;opacity:0.3">Data source: openINTEL project (University of Twente) + Common Crawl &middot; Analysis date: 2026-04-17 &middot; Generated with DuckDB + Python + igraph</p>
 </div>
 
 <!-- ======== Navigation ======== -->
 <div class="nav">
   <button onclick="prev()">&#8249;</button>
-  <span class="page-num" id="pageNum">1 / 51</span>
+  <span class="page-num" id="pageNum">1 / 55</span>
   <button onclick="next()">&#8250;</button>
 </div>
 
