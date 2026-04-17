@@ -1,0 +1,13 @@
+{
+  "id": "net_02",
+  "titleZh": "Step 02 — Domain→IP→AS Dependency Graph",
+  "findings": [
+    "Domain→IP edges:   19,709,071",
+    "Domains:           16,372,312",
+    "Unique IPs:           573,734",
+    "Unique ASNs:            8,715",
+    "Unique Prefixes:       38,294",
+    "Countries:                147"
+  ],
+  "source": "analysis/network_analysis/step_02_domain_ip_as/result.txt"
+}

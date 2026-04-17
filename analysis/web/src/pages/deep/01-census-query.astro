@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/01-census-query"
+  subtitle="深度洞察·第一章 —— 用数据普查、查询类型、响应健康度给 232M 条记录做体检。"
+>
+  <ChartCard id="deep_01" titleZh="Step 01 · 数据普查" titleEn="Data Census" subtitle="全景规模 —— 8 TLDs × 4 TopLists × WebGraph 134M 构成的基线。">
+    <PngChart src="/charts/deep/step_01_data_census/chart.png" alt="数据普查" chartId="deep_01" />
+  </ChartCard>
+
+  <ChartCard id="deep_02" titleZh="Step 02 · Query Type 分布" titleEn="Query Type Distribution" subtitle="A (31M) / NS (27M) / AFSDB (24M) —— 主流+长尾混合。">
+    <PngChart src="/charts/deep/step_02_query_type_distribution/chart.png" alt="Query Type 分布" chartId="deep_02" />
+  </ChartCard>
+
+  <ChartCard id="deep_03" titleZh="Step 03 · 响应健康度" titleEn="Resolution Health" subtitle="NOERROR 均值 93.4%,.gov 最健康,NXDOMAIN 提示域名过期/停放。">
+    <PngChart src="/charts/deep/step_03_resolution_health/chart.png" alt="响应健康度" chartId="deep_03" />
+  </ChartCard>
+</SectionLayout>

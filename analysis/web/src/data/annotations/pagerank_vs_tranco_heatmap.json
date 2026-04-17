@@ -1,0 +1,10 @@
+{
+  "id": "pagerank_vs_tranco_heatmap",
+  "titleZh": "PR vs Tranco · 分位热力",
+  "titleEn": "PR vs Tranco · Quantile Heatmap",
+  "findings": [
+    "分位热力量化两榜的差异概率。",
+    "对角格子密度越高代表越一致。"
+  ],
+  "implications": "热力图是从视觉化 → 定量化两榜对齐的桥梁。"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "security_dnssec_by_tld",
+  "titleZh": "DNSSEC · DS 部署率 by TLD",
+  "titleEn": "DNSSEC DS Deployment Rate by TLD",
+  "findings": [
+    "平均 DS 部署率 16.4%,.se 等北欧国家领先。",
+    ".fr 等规模 TLD 虽总数多但比例低。"
+  ],
+  "implications": "DNSSEC 的采纳仍靠政策推动,商业动力不足;签名的信任链从 TLD 向下。"
+}

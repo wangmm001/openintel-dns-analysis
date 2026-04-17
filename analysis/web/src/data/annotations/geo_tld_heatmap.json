@@ -1,0 +1,10 @@
+{
+  "id": "geo_tld_heatmap",
+  "titleZh": "TLD × 主机 AS 热力矩阵",
+  "titleEn": "TLD × Hosting AS Heatmap",
+  "findings": [
+    "ccTLD 与本国 AS 呈对角线高亮,反映地理偏好。",
+    "云 AS(AWS/GCP/Azure)呈横向均匀,是跨国通用平台。"
+  ],
+  "implications": "热力矩阵识别\"数字国界\"——AS 在多个 TLD 中的存在反映跨国内容托管版图。"
+}

@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/security/dnssec"
+  subtitle="DNSSEC 是互联网的\u0022信任根\u002216.4% 的部署率仍是少数派。本页看部署区别、算法迁移,以及 CDS/CDNSKEY 的自动化链条。"
+>
+  <ChartCard
+    id="security_dnssec_by_tld"
+    titleZh="DNSSEC · DS 部署率 by TLD"
+    titleEn="DNSSEC DS Deployment Rate by TLD"
+    subtitle=".se 等北欧国家领先,.fr 等规模市场比例偏低 —— 政策驱动强于市场。"
+  >
+    <PngChart src="/charts/output/security_dnssec_by_tld.png" alt="DNSSEC DS 部署率" chartId="security_dnssec_by_tld" />
+  </ChartCard>
+
+  <ChartCard
+    id="security_dnssec_algorithms"
+    titleZh="DNSSEC 签名算法分布"
+    titleEn="DNSSEC Signing Algorithm Distribution"
+    subtitle="ECDSA-P256/SHA-256 约 67% 占比,已全面取代老旧的 RSA-SHA1。"
+  >
+    <PngChart src="/charts/output/security_dnssec_algorithms.png" alt="DNSSEC 签名算法分布" chartId="security_dnssec_algorithms" />
+  </ChartCard>
+
+  <ChartCard
+    id="security_cds_cdnskey"
+    titleZh="CDS / CDNSKEY · DNSSEC 信任链自动化"
+    titleEn="CDS / CDNSKEY · DNSSEC Chain Automation"
+    subtitle="子域自动向父域传递 DS 记录,降低手动错误 —— 大规模 DNSSEC 部署的基础设施。"
+  >
+    <PngChart src="/charts/output/security_cds_cdnskey.png" alt="CDS / CDNSKEY 自动化" chartId="security_cds_cdnskey" />
+  </ChartCard>
+</SectionLayout>

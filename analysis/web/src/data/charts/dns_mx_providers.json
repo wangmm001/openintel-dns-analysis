@@ -1,0 +1,70 @@
+{
+  "id": "dns_mx_providers",
+  "title_zh": "Top 15 邮件交换 (MX) 提供商",
+  "title_en": "Top 15 MX Mail Providers",
+  "description": "根据 MX 记录反查的邮件交换提供商 — Google / Microsoft / OVH 等大厂的市占率。",
+  "source_script": "analysis/scripts/02_dns_records.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "provider": "ovh.net",
+      "domains": 1311533
+    },
+    {
+      "provider": "outlook.com",
+      "domains": 526873
+    },
+    {
+      "provider": "ionos.fr",
+      "domains": 447125
+    },
+    {
+      "provider": "hostpoint.ch",
+      "domains": 388889
+    },
+    {
+      "provider": "google.com",
+      "domains": 285606
+    },
+    {
+      "provider": "infomaniak.ch",
+      "domains": 252789
+    },
+    {
+      "provider": "gandi.net",
+      "domains": 249581
+    },
+    {
+      "provider": "one.com",
+      "domains": 228695
+    },
+    {
+      "provider": ".",
+      "domains": 157965
+    },
+    {
+      "provider": "loopia.se",
+      "domains": 105769
+    },
+    {
+      "provider": "hostinger.com",
+      "domains": 91977
+    },
+    {
+      "provider": "mb1p.com",
+      "domains": 65114
+    },
+    {
+      "provider": "m2bp.com",
+      "domains": 65105
+    },
+    {
+      "provider": "websupport.sk",
+      "domains": 62897
+    },
+    {
+      "provider": "googlemail.com",
+      "domains": 55380
+    }
+  ]
+}

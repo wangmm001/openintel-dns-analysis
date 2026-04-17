@@ -1,0 +1,12 @@
+{
+  "id": "net_04",
+  "titleZh": "Step 04 — AS-Level Projected Graph",
+  "findings": [
+    "AS nodes:         472",
+    "AS-AS edges:    1,344  (weight ≥ 5 shared domains)",
+    "Density:     0.012091",
+    "Connected components: 46",
+    "Giant component: 375 nodes (79.4%)"
+  ],
+  "source": "analysis/network_analysis/step_04_as_projected_graph/result.txt"
+}

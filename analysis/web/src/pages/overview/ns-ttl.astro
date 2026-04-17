@@ -1,0 +1,45 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import EChart from "~/components/EChart.astro";
+import nsData from "~/data/charts/dns_ns_providers.json";
+import ttlData from "~/data/charts/dns_ttl_distribution.json";
+import redData from "~/data/charts/infra_ns_redundancy.json";
+import { optNsProviders, optTtlDistribution, optNsRedundancy } from "~/lib/chart-builders";
+
+const opt1 = optNsProviders(nsData);
+const opt2 = optTtlDistribution(ttlData);
+const opt3 = optNsRedundancy(redData);
+---
+
+<SectionLayout
+  path="/overview/ns-ttl"
+  subtitle="从解析方看域名 —— 权威 NS 托管商的集中度、TTL 缓存策略,以及每个域名的 NS 冗余度。这三张图共同刻画了互联网名字服务的抗毁姿态。"
+>
+  <ChartCard
+    id="dns_ns_providers"
+    titleZh="Top 15 权威 DNS 托管商"
+    titleEn="Top 15 Authoritative DNS Providers"
+    subtitle="权威 NS 记录指向的托管商 —— 全球云 DNS + 本国注册局的双轨格局。Top 5 承载巨量。"
+  >
+    <EChart id="dns_ns_providers" option={opt1} height={420} ariaLabel="Top NS 托管商" />
+  </ChartCard>
+
+  <ChartCard
+    id="dns_ttl_distribution"
+    titleZh="A 记录 TTL 分布"
+    titleEn="A-Record TTL Distribution"
+    subtitle="TTL 分桶概率 —— 越左动态,越右保守。大多数域名在 5 分–1 天之间,平衡缓存效率与更新灵活度。"
+  >
+    <EChart id="dns_ttl_distribution" option={opt2} height={380} ariaLabel="A 记录 TTL 分布" />
+  </ChartCard>
+
+  <ChartCard
+    id="infra_ns_redundancy"
+    titleZh="NS 冗余度分布"
+    titleEn="Nameserver Redundancy Distribution"
+    subtitle="每个域名配置的 NS 数量 —— 2–4 台是主流,单 NS 者是单点故障候选。"
+  >
+    <EChart id="infra_ns_redundancy" option={opt3} height={380} ariaLabel="NS 冗余度分布" />
+  </ChartCard>
+</SectionLayout>

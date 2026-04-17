@@ -1,0 +1,13 @@
+{
+  "id": "deep_20",
+  "titleZh": "Step 20 — TopList (Elite) vs Zone (General) Security Comparison",
+  "findings": [
+    "TopList 精英域名在 DNSSEC/IPv6/SPF 各维度均显著领先普通 Zone 域名",
+    "majestic  : DNSSEC 2.3% | IPv6 33.4% | SPF 26.3%",
+    "radar     : DNSSEC 2.6% | IPv6 31.4% | SPF 26.9%",
+    "tranco    : DNSSEC 2.4% | IPv6 30.9% | SPF 26.8%",
+    "umbrella  : DNSSEC 1.2% | IPv6 32.0% | SPF 14.2%",
+    "Zone avg : DNSSEC 16.5% | IPv6 26.5% | SPF 28.2%"
+  ],
+  "source": "analysis/deep_analysis/step_20_toplist_security_comparison/result.txt"
+}

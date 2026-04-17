@@ -1,0 +1,10 @@
+{
+  "id": "pagerank_vs_tranco_distribution",
+  "titleZh": "PR vs Tranco · 分布",
+  "titleEn": "PR vs Tranco · Distribution",
+  "findings": [
+    "PageRank 与 Tranco 排名相关但非一一对应。",
+    "PageRank 更反映跨域引用,Tranco 更反映解析查询流量。"
+  ],
+  "implications": "两榜并用可以相互佐证 — 差值大的域名值得深挖(可能为异常或领域特化)。"
+}

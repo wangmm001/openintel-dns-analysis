@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/18-soa-failure"
+  subtitle="深度洞察·第七章 —— 域名生命周期参数、失败码体系、TopList 对比三个维度。"
+>
+  <ChartCard id="deep_18" titleZh="Step 18 · SOA 生命周期" titleEn="SOA Lifecycle" subtitle="refresh/retry/expire/minimum 跨 TLD 差异数量级不等 —— 保守 vs 激进运维。">
+    <PngChart src="/charts/deep/step_18_soa_lifecycle/chart.png" alt="SOA 生命周期" chartId="deep_18" />
+  </ChartCard>
+
+  <ChartCard id="deep_19" titleZh="Step 19 · 失败分类学" titleEn="Failure Taxonomy" subtitle="13M 总失败;NXDOMAIN 主导 97% —— 失败分布的标准地图。">
+    <PngChart src="/charts/deep/step_19_failure_taxonomy/chart.png" alt="失败分类学" chartId="deep_19" />
+  </ChartCard>
+
+  <ChartCard id="deep_20" titleZh="Step 20 · TopList 安全对比" titleEn="TopList Security Comparison" subtitle="TopList 在 DNSSEC/IPv6/SPF 全面领先 Zone 平均。">
+    <PngChart src="/charts/deep/step_20_toplist_security_comparison/chart.png" alt="TopList 安全对比" chartId="deep_20" />
+  </ChartCard>
+</SectionLayout>

@@ -1,0 +1,14 @@
+{
+  "id": "deep_09",
+  "titleZh": "Step 09 — DNSSEC Deployment Depth",
+  "findings": [
+    "DNSSEC DS 平均部署率 16.4%，各 TLD 差异巨大",
+    "ch  : DS 21.5% | DNSKEY 21.8% | RRSIG 0.0% (of 6,258,234 domains)",
+    "ee  : DS 11.4% | DNSKEY 11.6% | RRSIG 0.0% (of 417,486 domains)",
+    "fr  : DS 9.8% | DNSKEY 10.9% | RRSIG 0.0% (of 9,864,748 domains)",
+    "gov : DS 5.3% | DNSKEY 6.2% | RRSIG 0.0% (of 38,205 domains)",
+    "li  : DS 15.0% | DNSKEY 15.5% | RRSIG 0.0% (of 149,412 domains)",
+    "nu  : DS 23.1% | DNSKEY 24.4% | RRSIG 0.0% (of 470,619 domains)"
+  ],
+  "source": "analysis/deep_analysis/step_09_dnssec_deployment/result.txt"
+}

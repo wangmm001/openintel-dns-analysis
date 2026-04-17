@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/crawl/cdx-index"
+  subtitle="Common Crawl CDX 索引的 71.4 万样本域名 —— 从 HTTP 状态、PR 健康度、到域名画像,补齐\u0022Web 可见性\u0022维度。"
+>
+  <ChartCard
+    id="cc_index_status_distribution"
+    titleZh="CC CDX · HTTP 状态分布"
+    titleEn="CC CDX · HTTP Status Distribution"
+    subtitle="200 主导,但 301/302/404 占比显著 —— Web 可用性不等于 DNS 可解析。"
+  >
+    <PngChart src="/charts/output/cc_index_status_distribution.png" alt="CC CDX HTTP 状态" chartId="cc_index_status_distribution" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_index_pr_health_e"
+    titleZh="CC CDX · PR 健康度"
+    titleEn="CC CDX · PR Health Score"
+    subtitle="PR 越高,Web 健康度越好 —— 核心域名的运维投入具象化。"
+  >
+    <PngChart src="/charts/output/cc_index_pr_health.png" alt="CC CDX PR 健康度" chartId="cc_index_pr_health" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_index_domain_profile"
+    titleZh="CC CDX · 域名画像"
+    titleEn="CC CDX · Domain Profile"
+    subtitle="语言、MIME、国家、URL 模式 —— 跨维度的域名画像分类基础单位。"
+  >
+    <PngChart src="/charts/output/cc_index_domain_profile.png" alt="CC CDX 域名画像" chartId="cc_index_domain_profile" />
+  </ChartCard>
+</SectionLayout>

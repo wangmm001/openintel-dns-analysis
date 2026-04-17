@@ -1,0 +1,11 @@
+{
+  "id": "dns_ns_providers",
+  "titleZh": "Top 15 权威 DNS 托管商",
+  "titleEn": "Top 15 Authoritative DNS Providers",
+  "findings": [
+    "Cloudflare / AWS Route53 / GoDaddy 等云 DNS 集中承载。",
+    "本国注册局/ccTLD 运营者常在其 TLD 中占据首位。",
+    "Top 5 合计承载的域名份额超过全样本 40%,显示高集中度。"
+  ],
+  "implications": "权威 DNS 集中化提升 DDoS 抵御能力,但也埋下少数云出现异常即全球波及的隐患。"
+}

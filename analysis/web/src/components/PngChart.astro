@@ -1,0 +1,30 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  chartId: string;
+  maxHeight?: number;
+}
+const { src, alt, chartId, maxHeight = 420 } = Astro.props;
+---
+
+<div
+  class="png-chart group relative overflow-hidden rounded-xl border border-[color:var(--color-line)] bg-[color:var(--color-bg-2)]/60 p-3"
+  data-png-chart={chartId}
+>
+  <button
+    type="button"
+    class="block w-full cursor-zoom-in text-left"
+    data-png-zoom
+    aria-label={`放大查看:${alt}`}
+  >
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class="mx-auto w-full rounded-lg object-contain"
+      style={`max-height:${maxHeight}px;`}
+    />
+  </button>
+</div>

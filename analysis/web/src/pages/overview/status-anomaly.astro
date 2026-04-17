@@ -1,0 +1,50 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import EChart from "~/components/EChart.astro";
+import PngChart from "~/components/PngChart.astro";
+import statusData from "~/data/charts/overview_status_codes.json";
+import { optStatusCodes } from "~/lib/chart-builders";
+
+const opt1 = optStatusCodes(statusData);
+---
+
+<SectionLayout
+  path="/overview/status-anomaly"
+  subtitle="93% 的查询返回 NOERROR —— 那剩下的 7% 在讲什么故事?本页拆解 NXDOMAIN、SERVFAIL、TIMEOUT 的真相,并对比健康域名的 RTT 尾部。"
+>
+  <ChartCard
+    id="overview_status_codes"
+    titleZh="DNS 响应状态码全局分布"
+    titleEn="DNS Response Status Code Distribution"
+    subtitle="环形图直观展示 NOERROR / NXDOMAIN / SERVFAIL / TIMEOUT 的占比 —— 失败分布反映域名生态活力。"
+  >
+    <EChart id="overview_status_codes" option={opt1} height={420} ariaLabel="DNS 响应状态码分布" />
+  </ChartCard>
+
+  <ChartCard
+    id="anomaly_servfail_timeout"
+    titleZh="SERVFAIL 与 TIMEOUT · 失败模式解剖"
+    titleEn="SERVFAIL & TIMEOUT · Failure Mode Anatomy"
+    subtitle="量级虽小,但指向真实的权威服务可用性问题 —— DNSSEC 验签失败、远端超载、网络抖动。"
+  >
+    <PngChart
+      src="/charts/output/anomaly_servfail_timeout.png"
+      alt="SERVFAIL 与 TIMEOUT 失败模式"
+      chartId="anomaly_servfail_timeout"
+    />
+  </ChartCard>
+
+  <ChartCard
+    id="anomaly_nxdomain_rate"
+    titleZh="NXDOMAIN 失败率 · 按 TLD"
+    titleEn="NXDOMAIN Rate · by TLD"
+    subtitle="域名过期 / 停放 / 拼写错误的镜子 —— 高 NXDOMAIN 率暗示注册市场的投机活动。"
+  >
+    <PngChart
+      src="/charts/output/anomaly_nxdomain_rate.png"
+      alt="NXDOMAIN 失败率"
+      chartId="anomaly_nxdomain_rate"
+    />
+  </ChartCard>
+</SectionLayout>

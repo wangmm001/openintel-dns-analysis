@@ -1,0 +1,10 @@
+{
+  "id": "geo_top_countries",
+  "titleZh": "Top 主机托管国家",
+  "titleEn": "Top Hosting Countries",
+  "findings": [
+    "US / DE / FR / NL 稳居前列,反映 IXP 与云数据中心的集中分布。",
+    "本国 ccTLD 托管者常将本国排名抬至前 5。"
+  ],
+  "implications": "地理集中决定了法律管辖 — 内容审查、数据跨境与隐私诉讼的适用法域。"
+}

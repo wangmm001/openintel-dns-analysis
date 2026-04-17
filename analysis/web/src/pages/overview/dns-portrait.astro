@@ -1,0 +1,45 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import EChart from "~/components/EChart.astro";
+import ipData from "~/data/charts/dns_ipv4_vs_ipv6.json";
+import mxData from "~/data/charts/dns_mx_providers.json";
+import txtData from "~/data/charts/dns_txt_email_security.json";
+import { optIpv4Ipv6, optMxProviders, optTxtEmailSecurity } from "~/lib/chart-builders";
+
+const opt1 = optIpv4Ipv6(ipData);
+const opt2 = optMxProviders(mxData);
+const opt3 = optTxtEmailSecurity(txtData);
+---
+
+<SectionLayout
+  path="/overview/dns-portrait"
+  subtitle="域名的三大画像维度 —— 是否支持 IPv6、由谁发送邮件、是否声明邮件安全策略。三件套勾勒出一个域名的基础设施成熟度。"
+>
+  <ChartCard
+    id="dns_ipv4_vs_ipv6"
+    titleZh="IPv4 / IPv6 双栈部署率"
+    titleEn="IPv4 / IPv6 Dual-Stack Adoption"
+    subtitle="各 TLD 同时发布 A 与 AAAA 记录的域名占比 —— 衡量 IPv6 升级进度的关键指标。"
+  >
+    <EChart id="dns_ipv4_vs_ipv6" option={opt1} height={380} ariaLabel="IPv4 / IPv6 双栈部署率" />
+  </ChartCard>
+
+  <ChartCard
+    id="dns_mx_providers"
+    titleZh="Top 15 邮件交换 (MX) 提供商"
+    titleEn="Top 15 MX Mail Providers"
+    subtitle="按 MX 记录反查的邮件托管商 —— 全球云邮与本国注册局并存,Google / Microsoft / OVH 领先。"
+  >
+    <EChart id="dns_mx_providers" option={opt2} height={420} ariaLabel="Top 15 MX 提供商" />
+  </ChartCard>
+
+  <ChartCard
+    id="dns_txt_email_security"
+    titleZh="邮件安全 · SPF 与 DMARC 部署率"
+    titleEn="Email Security · SPF & DMARC Adoption"
+    subtitle="TXT 中声明 SPF/DMARC 的域名占比 —— 发达经济体领先,DMARC 明显落后于 SPF。"
+  >
+    <EChart id="dns_txt_email_security" option={opt3} height={400} ariaLabel="SPF/DMARC 部署率" />
+  </ChartCard>
+</SectionLayout>

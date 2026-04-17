@@ -1,0 +1,10 @@
+{
+  "id": "webgraph_pagerank_distribution",
+  "titleZh": "WebGraph · PageRank 分布",
+  "titleEn": "WebGraph · PageRank Distribution",
+  "findings": [
+    "PageRank 呈典型幂律 — 少数核心域名占据绝大部分权威。",
+    "Top 100 域名基本都是云/内容/社交平台。"
+  ],
+  "implications": "Web 的权威度像财富——集中度极高,与注册分布错位显著。"
+}

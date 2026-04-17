@@ -1,0 +1,10 @@
+{
+  "id": "anomaly_servfail_timeout",
+  "titleZh": "SERVFAIL 与 TIMEOUT 异常",
+  "titleEn": "SERVFAIL & TIMEOUT Anomaly",
+  "findings": [
+    "SERVFAIL 常与 DNSSEC 验签失败或权威响应错误有关。",
+    "TIMEOUT 反映网络抖动或权威端超载。"
+  ],
+  "implications": "不可用域名的比例是 Internet 基础设施体检的主要指标。"
+}

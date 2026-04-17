@@ -1,0 +1,14 @@
+{
+  "id": "deep_06",
+  "titleZh": "Step 06 — Hosting Geography (Top 25 Countries)",
+  "findings": [
+    "Top 3 托管国家: FR, CH, US，占比 59.6%",
+    "# 1 FR  :  4,751,487 domains (29.08%)",
+    "# 2 CH  :  2,580,903 domains (15.80%)",
+    "# 3 US  :  2,407,549 domains (14.73%)",
+    "# 4 DE  :  2,091,915 domains (12.80%)",
+    "# 5 SE  :  1,287,724 domains (7.88%)",
+    "# 6 DK  :    641,438 domains (3.93%)"
+  ],
+  "source": "analysis/deep_analysis/step_06_hosting_geography/result.txt"
+}

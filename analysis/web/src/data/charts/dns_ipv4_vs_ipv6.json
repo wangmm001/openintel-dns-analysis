@@ -1,0 +1,66 @@
+{
+  "id": "dns_ipv4_vs_ipv6",
+  "title_zh": "IPv4 / IPv6 双栈部署率",
+  "title_en": "IPv4 / IPv6 Dual-Stack Adoption",
+  "description": "各 TLD 中同时发布 A 与 AAAA 记录的域名占比 — 衡量 IPv6 升级进度。",
+  "source_script": "analysis/scripts/02_dns_records.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "tld": "sk",
+      "v4_only": 502928,
+      "v6_only": 237,
+      "dual_stack": 381807,
+      "dual_pct": 43.14
+    },
+    {
+      "tld": "ch",
+      "v4_only": 2549332,
+      "v6_only": 5477,
+      "dual_stack": 1777621,
+      "dual_pct": 41.03
+    },
+    {
+      "tld": "se",
+      "v4_only": 1620992,
+      "v6_only": 490,
+      "dual_stack": 857577,
+      "dual_pct": 34.59
+    },
+    {
+      "tld": "nu",
+      "v4_only": 220365,
+      "v6_only": 122,
+      "dual_stack": 113638,
+      "dual_pct": 34.01
+    },
+    {
+      "tld": "fr",
+      "v4_only": 5280481,
+      "v6_only": 3912,
+      "dual_stack": 2598434,
+      "dual_pct": 32.96
+    },
+    {
+      "tld": "li",
+      "v4_only": 75518,
+      "v6_only": 51,
+      "dual_stack": 32984,
+      "dual_pct": 30.39
+    },
+    {
+      "tld": "gov",
+      "v4_only": 19976,
+      "v6_only": 2,
+      "dual_stack": 6297,
+      "dual_pct": 23.97
+    },
+    {
+      "tld": "ee",
+      "v4_only": 309319,
+      "v6_only": 20,
+      "dual_stack": 25043,
+      "dual_pct": 7.49
+    }
+  ]
+}

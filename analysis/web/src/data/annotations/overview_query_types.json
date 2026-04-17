@@ -1,0 +1,11 @@
+{
+  "id": "overview_query_types",
+  "titleZh": "DNS Query Type 分布",
+  "titleEn": "DNS Query Type Distribution",
+  "findings": [
+    "A + NS + AAAA 三大主力约占 80%,其余长尾代表次要记录类型。",
+    "AFSDB / RP 这类历史遗留类型仍在被主动查询,显示长尾协议尚未消退。",
+    "DNSKEY / DS 数量反映 DNSSEC 被动态发布的规模。"
+  ],
+  "implications": "Query type 分布是测量方法的镜子 — 它告诉你 OpenINTEL 探针 prob 了哪些类型、忽略了哪些。"
+}

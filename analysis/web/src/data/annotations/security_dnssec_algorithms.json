@@ -1,0 +1,10 @@
+{
+  "id": "security_dnssec_algorithms",
+  "titleZh": "DNSSEC 签名算法分布",
+  "titleEn": "DNSSEC Signing Algorithm Distribution",
+  "findings": [
+    "ECDSA-P256/SHA-256 约 67% 占比,替代老旧 RSA。",
+    "RSA-SHA256 仍有尾部存留,过渡迁移未完成。"
+  ],
+  "implications": "椭圆曲线是现代 DNSSEC 默认选择 — 签名更小、验证更快、抗量子研究亦优于 RSA。"
+}

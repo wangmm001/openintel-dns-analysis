@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/21-bgp-scorecard"
+  subtitle="深度洞察·第八章 —— BGP 前缀集中度、健康评分综合排名、章节全景总图。"
+>
+  <ChartCard id="deep_21" titleZh="Step 21 · BGP 前缀分析" titleEn="BGP Prefix Analysis" subtitle="/24 前缀 213.186.32.0/19 托管 1.56M 域名 —— /24 是共享托管的粒度标准。">
+    <PngChart src="/charts/deep/step_21_bgp_prefix_analysis/chart.png" alt="BGP 前缀分析" chartId="deep_21" />
+  </ChartCard>
+
+  <ChartCard id="deep_22" titleZh="Step 22 · 互联网健康评分" titleEn="Internet Health Scorecard" subtitle="综合评分 TOP:斯洛伐克 52、捷克 50、瑞士 50;爱沙尼亚 43 垫底。">
+    <PngChart src="/charts/deep/step_22_internet_health_scorecard/chart.png" alt="互联网健康评分" chartId="deep_22" />
+  </ChartCard>
+
+  <ChartCard id="deep_summary" titleZh="总览 · 22 步综合" titleEn="Summary · All 22 Steps" subtitle="一张图浓缩 22 步主要发现的全景摘要。">
+    <PngChart src="/charts/deep/summary_overview.png" alt="22 步综合总览" chartId="deep_summary" />
+  </ChartCard>
+</SectionLayout>

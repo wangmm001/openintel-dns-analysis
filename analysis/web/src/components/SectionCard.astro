@@ -1,0 +1,78 @@
+---
+import type { Tier } from "~/lib/navigation";
+interface Props {
+  tier: Tier;
+}
+const { tier } = Astro.props;
+const glowColors = {
+  blue: "#0071e3",
+  purple: "#5856d6",
+  green: "#30d158",
+  orange: "#ff9f0a",
+};
+const glow = glowColors[tier.glow];
+const totalCharts = tier.pages.reduce((n, p) => n + p.chartCount, 0);
+const interactive = tier.pages.reduce((n, p) => n + p.interactive, 0);
+---
+
+<a
+  href={tier.pages[0].path}
+  class="card group relative block overflow-hidden p-6 will-change-transform"
+  style={`--tier-glow:${glow};`}
+>
+  <div
+    class="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40"
+    style={`background:${glow};`}
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="flex items-start justify-between">
+    <div class="flex items-center gap-2">
+      <span class="font-mono text-[11px] text-[color:var(--color-text-3)]">TIER</span>
+      <span
+        class="flex h-6 w-6 items-center justify-center rounded-md font-mono text-[11px] font-bold"
+        style={`background:${glow}22;color:${glow};`}>{tier.key}</span
+      >
+    </div>
+    <span class="chip">{tier.pages.length} 子页 · {totalCharts} 图</span>
+  </div>
+
+  <h3 class="mt-4 text-[21px] font-semibold leading-tight text-[color:var(--color-text-0)]">
+    {tier.titleZh}
+  </h3>
+  <p class="mt-1 text-[12px] text-[color:var(--color-text-2)]">{tier.titleEn}</p>
+  <p class="mt-3 text-[13.5px] leading-relaxed text-[color:var(--color-text-1)]">
+    {tier.taglineZh}
+  </p>
+
+  <ul class="mt-5 space-y-1.5">
+    {
+      tier.pages.slice(0, 3).map((p) => (
+        <li class="flex items-center justify-between gap-3 text-[12.5px]">
+          <span class="truncate text-[color:var(--color-text-1)]">{p.titleZh}</span>
+          <span class="shrink-0 font-mono text-[10.5px] text-[color:var(--color-text-3)]">
+            {String(p.order).padStart(2, "0")}
+          </span>
+        </li>
+      ))
+    }
+    {
+      tier.pages.length > 3 && (
+        <li class="text-[11.5px] text-[color:var(--color-text-3)]">
+          +{tier.pages.length - 3} 更多
+        </li>
+      )
+    }
+  </ul>
+
+  <div class="mt-6 flex items-center justify-between border-t border-[color:var(--color-line)]/60 pt-4 text-[11px] text-[color:var(--color-text-2)]">
+    <span>交互图 {interactive} · PNG {totalCharts - interactive}</span>
+    <span class="flex items-center gap-1 text-[color:var(--color-accent)] opacity-0 transition group-hover:opacity-100">
+      进入
+      <svg viewBox="0 0 20 20" class="h-3 w-3" fill="currentColor" aria-hidden="true">
+        <path d="M7 4l6 6-6 6V4z" />
+      </svg>
+    </span>
+  </div>
+</a>

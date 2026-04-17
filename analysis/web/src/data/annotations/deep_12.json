@@ -1,0 +1,14 @@
+{
+  "id": "deep_12",
+  "titleZh": "Step 12 — CAA Certificate Authority Authorization",
+  "findings": [
+    "仅 0.7% 域名配置 CAA，\"letsencrypt.org\" 是最受信任的 CA",
+    "Total domains with CAA: 146,802 (0.67% of all)",
+    "\"letsencrypt.org\"                       :   97,290 domains",
+    "\"sectigo.com\"                           :   24,555 domains",
+    "\"letsencrypt.org;validationmethods=http-01\":   22,184 domains",
+    "\"pki.goog;validationmethods=http-01\"    :   22,161 domains",
+    "\"globalsign.com\"                        :   17,373 domains"
+  ],
+  "source": "analysis/deep_analysis/step_12_caa_authorization/result.txt"
+}

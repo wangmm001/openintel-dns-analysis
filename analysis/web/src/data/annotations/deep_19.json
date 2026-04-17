@@ -1,0 +1,14 @@
+{
+  "id": "deep_19",
+  "titleZh": "Step 19 — NXDOMAIN & Failure Taxonomy",
+  "findings": [
+    "DNS 失败总计 13M 条，NXDOMAIN 占 97%",
+    "ch — Top failure combos:",
+    "NXDOMAIN   × AFSDB   :  3,308,449",
+    "SERVFAIL   × SOA     :    128,372",
+    "TIMEOUT    × SOA     :     20,740",
+    "NXDOMAIN   × AAAA    :      3,559",
+    "NXDOMAIN   × A       :      3,551"
+  ],
+  "source": "analysis/deep_analysis/step_19_failure_taxonomy/result.txt"
+}

@@ -1,0 +1,105 @@
+---
+import Glow from "~/components/Glow.astro";
+---
+
+<section class="relative isolate overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
+  <Glow color="blue" size={900} x="85%" y="0%" opacity={0.3} />
+  <Glow color="purple" size={700} x="10%" y="100%" opacity={0.25} />
+
+  <div class="mx-auto max-w-6xl px-6">
+    <p class="fade-up text-[11px] uppercase tracking-[0.35em] text-[color:var(--color-text-2)]">
+      OpenINTEL · Internet Posture Atlas · 2026
+    </p>
+    <h1
+      class="fade-up mt-4 text-[46px] font-semibold leading-[1.05] text-[color:var(--color-text-0)] md:text-[68px]"
+      style="animation-delay:0.08s;"
+    >
+      看见互联网的<br />
+      <span
+        class="bg-clip-text text-transparent"
+        style="background-image: linear-gradient(135deg, #0071e3, #5856d6 50%, #30d158);"
+      >
+        全局态势
+      </span>
+    </h1>
+    <p
+      class="fade-up mt-5 max-w-2xl text-[15.5px] leading-relaxed text-[color:var(--color-text-1)] md:text-[17px]"
+      style="animation-delay:0.16s;"
+    >
+      基于 OpenINTEL 每日全量 DNS 测量与 Common Crawl WebGraph,覆盖
+      <strong class="text-[color:var(--color-text-0)]">8 个 ccTLD</strong>、
+      <strong class="text-[color:var(--color-text-0)]">4 大 TopList</strong>、
+      <strong class="text-[color:var(--color-text-0)]">134M 域名</strong>的 PageRank——
+      从协议健康、安全部署,到拓扑韧性与论文级复杂网络分析。
+    </p>
+
+    <div
+      class="fade-up mt-10 grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-4"
+      style="animation-delay:0.24s;"
+    >
+      <div>
+        <div class="mono-num text-[34px] font-semibold leading-none tracking-tight" data-counter data-target="232" data-suffix="M">0</div>
+        <div class="mt-1 text-[11px] text-[color:var(--color-text-2)]">DNS 记录</div>
+      </div>
+      <div>
+        <div class="mono-num text-[34px] font-semibold leading-none tracking-tight" data-counter data-target="33.5" data-suffix="M" data-decimals="1">0</div>
+        <div class="mt-1 text-[11px] text-[color:var(--color-text-2)]">独立域名</div>
+      </div>
+      <div>
+        <div class="mono-num text-[34px] font-semibold leading-none tracking-tight" data-counter data-target="134" data-suffix="M">0</div>
+        <div class="mt-1 text-[11px] text-[color:var(--color-text-2)]">WebGraph 域名</div>
+      </div>
+      <div>
+        <div class="mono-num text-[34px] font-semibold leading-none tracking-tight" data-counter data-target="81">0</div>
+        <div class="mt-1 text-[11px] text-[color:var(--color-text-2)]">分析图表</div>
+      </div>
+    </div>
+
+    <div class="fade-up mt-10 flex flex-wrap items-center gap-4" style="animation-delay:0.32s;">
+      <a
+        href="/overview/data-census"
+        class="rounded-full bg-[color:var(--color-accent)] px-5 py-2.5 text-[13px] font-medium text-white transition hover:bg-[color:var(--color-accent)]/90"
+      >
+        开始浏览 · Tier A
+      </a>
+      <button
+        type="button"
+        id="hero-toc"
+        class="rounded-full border border-[color:var(--color-line)] bg-[color:var(--color-bg-2)]/60 px-5 py-2.5 text-[13px] text-[color:var(--color-text-1)] transition hover:border-[color:var(--color-accent)] hover:text-white"
+      >
+        打开全局目录 <kbd class="ml-2 rounded bg-[color:var(--color-bg-3)] px-1.5 py-0.5 font-mono text-[10px]">G</kbd>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const run = () => {
+    const els = document.querySelectorAll<HTMLElement>("[data-counter]");
+    els.forEach((el) => {
+      const target = parseFloat(el.dataset.target || "0");
+      const decimals = parseInt(el.dataset.decimals || "0", 10);
+      const suffix = el.dataset.suffix || "";
+      const duration = 1400;
+      const start = performance.now();
+      const tick = (t: number) => {
+        const k = Math.min(1, (t - start) / duration);
+        const eased = 1 - Math.pow(1 - k, 3);
+        const v = target * eased;
+        el.textContent = v.toFixed(decimals) + suffix;
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    const heroToc = document.getElementById("hero-toc");
+    heroToc?.addEventListener("click", () => {
+      (document.getElementById("toc-trigger") as HTMLButtonElement | null)?.click();
+    });
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+  document.addEventListener("astro:page-load", run);
+</script>

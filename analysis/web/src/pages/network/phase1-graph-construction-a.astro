@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase1-graph-construction-a"
+  subtitle="复杂网络·阶段一 · I —— 多层图的第一步:Domain→NS 二分图、Domain→IP→AS 依赖、CNAME 链。"
+>
+  <ChartCard id="net_01" titleZh="Step 01 · Domain→NS 二分图" titleEn="Domain→NS Bipartite Graph" subtitle="8.87M 域名共享权威 NS —— 域名对 NS 的\u0022多对多\u0022依赖关系。">
+    <PngChart src="/charts/network/step_01_domain_ns_bipartite/chart.png" alt="Domain→NS 二分图" chartId="net_01" />
+  </ChartCard>
+  <ChartCard id="net_02" titleZh="Step 02 · Domain→IP→AS 依赖图" titleEn="Domain→IP→AS Dependency" subtitle="从域名到 IP 再到 AS —— 抽象层级揭示托管集中度。">
+    <PngChart src="/charts/network/step_02_domain_ip_as/chart.png" alt="Domain→IP→AS 依赖图" chartId="net_02" />
+  </ChartCard>
+  <ChartCard id="net_03" titleZh="Step 03 · CNAME 委托链" titleEn="CNAME Delegation Chain" subtitle="CNAME 链条与 CDN 委托拓扑 —— 现代 Web 的承运层。">
+    <PngChart src="/charts/network/step_03_cname_chains/chart.png" alt="CNAME 委托链" chartId="net_03" />
+  </ChartCard>
+</SectionLayout>

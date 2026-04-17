@@ -1,0 +1,11 @@
+{
+  "id": "dns_ipv4_vs_ipv6",
+  "titleZh": "IPv4 / IPv6 双栈部署率",
+  "titleEn": "IPv4 / IPv6 Dual-Stack Adoption",
+  "findings": [
+    ".ch / .se 等西欧小国双栈率领先,普遍 30%+,受运营商推动。",
+    ".fr / .sk 双栈率偏低,大型市场历史包袱重,迁移慢。",
+    "纯 IPv6-only 几乎为 0——没有域名愿意放弃 IPv4 兜底。"
+  ],
+  "implications": "IPv6 推进仍是政策 + 运营商驱动,市场化动力不足。双栈是现实路径,纯 IPv6 还远。"
+}

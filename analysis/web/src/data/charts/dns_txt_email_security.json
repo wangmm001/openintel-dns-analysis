@@ -1,0 +1,66 @@
+{
+  "id": "dns_txt_email_security",
+  "title_zh": "TXT · 邮件安全 (SPF / DMARC)",
+  "title_en": "Email Security · SPF / DMARC Adoption",
+  "description": "TXT 记录里声明 SPF 与 DMARC 的域名占比 — 抵御钓鱼伪造邮件的关键防线。",
+  "source_script": "analysis/scripts/02_dns_records.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "tld": "ch",
+      "total_with_txt": 2824451,
+      "spf_pct": 0.03,
+      "dmarc_pct": 33.98,
+      "both_pct": 0.17
+    },
+    {
+      "tld": "ee",
+      "total_with_txt": 182108,
+      "spf_pct": 0.03,
+      "dmarc_pct": 34.54,
+      "both_pct": 0.14
+    },
+    {
+      "tld": "fr",
+      "total_with_txt": 5019926,
+      "spf_pct": 0.02,
+      "dmarc_pct": 30.06,
+      "both_pct": 0.19
+    },
+    {
+      "tld": "gov",
+      "total_with_txt": 21691,
+      "spf_pct": 0.03,
+      "dmarc_pct": 39.8,
+      "both_pct": 0.74
+    },
+    {
+      "tld": "li",
+      "total_with_txt": 59885,
+      "spf_pct": 0.03,
+      "dmarc_pct": 29.78,
+      "both_pct": 0.22
+    },
+    {
+      "tld": "nu",
+      "total_with_txt": 145757,
+      "spf_pct": 0.04,
+      "dmarc_pct": 34.51,
+      "both_pct": 0.26
+    },
+    {
+      "tld": "se",
+      "total_with_txt": 924421,
+      "spf_pct": 0.05,
+      "dmarc_pct": 28.46,
+      "both_pct": 0.26
+    },
+    {
+      "tld": "sk",
+      "total_with_txt": 504472,
+      "spf_pct": 0.03,
+      "dmarc_pct": 28.61,
+      "both_pct": 0.17
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/pagerank/scatter-heat"
+  subtitle="从视觉定性到量化热力 —— 散点和热力是对比两榜最直观的两把尺子。"
+>
+  <ChartCard
+    id="pagerank_vs_tranco_scatter"
+    titleZh="PR vs Tranco · 散点"
+    titleEn="PR vs Tranco · Scatter"
+    subtitle="对角线为基线,远离对角线的点多为\u0022领域头部\u0022—— 媒体 / 电商 / SaaS。"
+  >
+    <PngChart src="/charts/output/pagerank_vs_tranco_scatter.png" alt="PR vs Tranco 散点" chartId="pagerank_vs_tranco_scatter" />
+  </ChartCard>
+
+  <ChartCard
+    id="pagerank_vs_tranco_heatmap"
+    titleZh="PR vs Tranco · 分位热力"
+    titleEn="PR vs Tranco · Quantile Heatmap"
+    subtitle="二维量化两榜的一致性 —— 对角密度是一致性指标。"
+  >
+    <PngChart src="/charts/output/pagerank_vs_tranco_heatmap.png" alt="PR vs Tranco 热力" chartId="pagerank_vs_tranco_heatmap" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_index_pr_health"
+    titleZh="CC CDX · 高 PR 域名健康度"
+    titleEn="CC CDX · High PR Domain Health"
+    subtitle="高 PR 域名的 HTTP 200 成功率显著高 —— PR 与运维投入正循环。"
+  >
+    <PngChart src="/charts/output/cc_index_pr_health.png" alt="CC CDX 高 PR 健康度" chartId="cc_index_pr_health" />
+  </ChartCard>
+</SectionLayout>

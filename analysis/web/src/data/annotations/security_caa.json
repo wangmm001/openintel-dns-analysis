@@ -1,0 +1,10 @@
+{
+  "id": "security_caa",
+  "titleZh": "CAA · 证书授权分布",
+  "titleEn": "CAA · Certificate Authority Authorization",
+  "findings": [
+    "CAA 部署率仅约 0.7%,letsencrypt.org 在授权方中居首。",
+    "CAA 虽简单却长期被忽略,是证书误签的一道便宜屏障。"
+  ],
+  "implications": "CAA 是低成本高收益的防线 — 但部署率低,说明运营习惯与工具链仍不友好。"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "infra_ns_redundancy",
+  "titleZh": "NS 冗余度分布",
+  "titleEn": "Nameserver Redundancy Distribution",
+  "findings": [
+    "约 80% 域名配置 2–4 个 NS,符合 RFC 建议的最低冗余。",
+    "单 NS 域名占比极低(<1%),但这些是单点故障候选。",
+    ">10 个 NS 的域名多为超大型品牌和主要注册局。"
+  ],
+  "implications": "冗余度是域名抗毁性的直接指标——单 NS 域名应警惕托管商故障。"
+}

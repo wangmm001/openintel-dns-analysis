@@ -1,0 +1,58 @@
+---
+interface Props {
+  id: string;
+  titleZh: string;
+  titleEn?: string;
+  subtitle?: string;
+  hasAnnotation?: boolean;
+}
+const {
+  id,
+  titleZh,
+  titleEn,
+  subtitle,
+  hasAnnotation = true,
+} = Astro.props;
+---
+
+<article
+  class="card relative overflow-hidden"
+  data-chart-card
+  data-chart-id={id}
+>
+  <header class="flex items-start justify-between gap-4 border-b border-[color:var(--color-line)]/60 px-5 py-4">
+    <div class="min-w-0">
+      <h3 class="text-[16.5px] font-semibold leading-snug text-[color:var(--color-text-0)]">
+        {titleZh}
+      </h3>
+      {
+        titleEn && (
+          <p class="mt-0.5 text-[11.5px] text-[color:var(--color-text-2)]">{titleEn}</p>
+        )
+      }
+      {
+        subtitle && (
+          <p class="mt-1.5 text-[12.5px] leading-relaxed text-[color:var(--color-text-1)]">
+            {subtitle}
+          </p>
+        )
+      }
+    </div>
+    {
+      hasAnnotation && (
+        <button
+          type="button"
+          class="shrink-0 rounded-full border border-[color:var(--color-line)] bg-[color:var(--color-bg-2)]/60 px-3 py-1.5 text-[11.5px] text-[color:var(--color-text-1)] transition hover:border-[color:var(--color-accent)] hover:text-white"
+          data-annotation-trigger={id}
+          aria-label={`查看图解:${titleZh}`}
+        >
+          <span class="mr-1.5">图解</span>
+          <kbd class="rounded bg-[color:var(--color-bg-3)] px-1.5 py-0.5 font-mono text-[10px] text-[color:var(--color-text-2)]">D</kbd>
+        </button>
+      )
+    }
+  </header>
+  <div class="p-4">
+    <slot />
+  </div>
+</article>

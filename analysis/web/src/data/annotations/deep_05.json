@@ -1,0 +1,14 @@
+{
+  "id": "deep_05",
+  "titleZh": "Step 05 — AS Concentration (Top 30)",
+  "findings": [
+    "Top 5 AS 托管了 39.0% 的域名，互联网托管高度集中",
+    "# 1 [16276]                                            2,971,159 domains (18.15%, cum 18.1%)",
+    "# 2 [13335]                                            1,077,085 domains (6.58%, cum 24.7%)",
+    "# 3 [8560]                                               862,583 domains (5.27%, cum 30.0%)",
+    "# 4 [16509]                                              803,558 domains (4.91%, cum 34.9%)",
+    "# 5 [29097]                                              676,885 domains (4.13%, cum 39.0%)",
+    "# 6 [39570]                                              597,120 domains (3.65%, cum 42.7%)"
+  ],
+  "source": "analysis/deep_analysis/step_05_as_concentration/result.txt"
+}

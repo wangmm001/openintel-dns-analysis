@@ -1,0 +1,10 @@
+{
+  "id": "geo_top_as",
+  "titleZh": "Top 主机托管 AS",
+  "titleEn": "Top Hosting Autonomous Systems",
+  "findings": [
+    "AWS / OVH / Cloudflare / Google 等大 AS 承载面极广。",
+    "Top 5 AS 合计托管近 40% 的被测域名。"
+  ],
+  "implications": "AS 级集中是 BGP 劫持与误导的潜在点 — 也是监管单点。"
+}

@@ -1,0 +1,92 @@
+---
+import { TIERS } from "~/lib/navigation";
+---
+
+<dialog
+  id="toc-overlay"
+  class="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 text-[color:var(--color-text-0)] backdrop:bg-black/70 backdrop:backdrop-blur-md"
+  aria-label="全局目录"
+>
+  <div class="flex min-h-full w-full items-start justify-center px-6 py-14">
+    <div class="glow-ring w-full max-w-6xl rounded-2xl bg-[color:var(--color-bg-1)]/95 p-8 shadow-2xl">
+      <header class="flex items-center justify-between pb-5">
+        <div>
+          <p class="text-xs tracking-[0.25em] text-[color:var(--color-text-2)]">GLOBAL INDEX · 全局目录</p>
+          <h2 class="mt-1 text-2xl font-semibold">30 个子页面 · 81 张图</h2>
+        </div>
+        <button
+          type="button"
+          id="toc-close"
+          class="rounded-full border border-[color:var(--color-line)] px-3 py-1.5 text-xs text-[color:var(--color-text-1)] transition hover:border-[color:var(--color-accent)] hover:text-white"
+          aria-label="关闭目录"
+        >
+          关闭 <kbd class="ml-1 rounded bg-[color:var(--color-bg-3)] px-1.5 py-0.5 font-mono text-[10px]">Esc</kbd>
+        </button>
+      </header>
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {
+          TIERS.map((t) => (
+            <section>
+              <h3 class="mb-2 flex items-center gap-2 text-[13px] text-[color:var(--color-text-1)]">
+                <span class="font-mono text-xs text-[color:var(--color-accent)]">{t.key}</span>
+                <span>{t.titleZh}</span>
+              </h3>
+              <ul class="space-y-1.5">
+                {t.pages.map((p) => (
+                  <li>
+                    <a
+                      href={p.path}
+                      class="group flex items-start justify-between gap-2 rounded-md px-2 py-1.5 text-[12.5px] text-[color:var(--color-text-1)] transition hover:bg-[color:var(--color-bg-2)] hover:text-white"
+                    >
+                      <span class="leading-tight">{p.titleZh}</span>
+                      <span class="mt-0.5 font-mono text-[10px] text-[color:var(--color-text-3)] group-hover:text-[color:var(--color-accent)]">
+                        {String(p.order).padStart(2, "0")}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("toc-overlay") as HTMLDialogElement | null;
+  const trigger = document.getElementById("toc-trigger");
+  const closeBtn = document.getElementById("toc-close");
+  if (dialog) {
+    const open = () => {
+      if (!dialog.open) dialog.showModal();
+    };
+    const close = () => {
+      if (dialog.open) dialog.close();
+    };
+    trigger?.addEventListener("click", open);
+    closeBtn?.addEventListener("click", close);
+    dialog.addEventListener("click", (e) => {
+      const rect = (dialog.firstElementChild as HTMLElement | null)?.getBoundingClientRect();
+      if (!rect) return;
+      if (
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom
+      ) {
+        close();
+      }
+    });
+    window.addEventListener("keydown", (e) => {
+      const tgt = e.target as HTMLElement | null;
+      if (tgt && ["INPUT", "TEXTAREA"].includes(tgt.tagName)) return;
+      if (e.key === "g" || e.key === "G") {
+        if (dialog.open) close();
+        else open();
+        e.preventDefault();
+      }
+    });
+  }
+</script>

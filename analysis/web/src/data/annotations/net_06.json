@@ -1,0 +1,13 @@
+{
+  "id": "net_06",
+  "titleZh": "Step 06 — Power-Law Fitting (Clauset et al. 2009 method)",
+  "findings": [
+    "[NS In-Degree]",
+    "α (exponent): 1.457",
+    "x_min:        2.0",
+    "σ (std err):  0.0019",
+    "vs lognormal                : R=-18.917, p=0.0000 → lognormal better",
+    "vs exponential              : R=+48.422, p=0.0000 → power_law better"
+  ],
+  "source": "analysis/network_analysis/step_06_power_law_fitting/result.txt"
+}

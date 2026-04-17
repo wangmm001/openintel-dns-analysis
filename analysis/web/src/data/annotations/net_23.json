@@ -1,0 +1,14 @@
+{
+  "id": "net_23",
+  "titleZh": "Step 23 — CC Crawl × Network Topology",
+  "findings": [
+    "CC爬取覆盖与拓扑度数/PageRank相关 — Web可见性反映DNS拓扑位置",
+    "ASes analyzed: 1449 (≥100 domains each)",
+    "CC CDX unique domains: 714,516",
+    "WebGraph domains: 134,222,466",
+    "Top ASes by CC crawl coverage:",
+    "AS    47302:      0/ 176,741 crawled (0.0%) | PR=0.000000 | deg=13",
+    "AS    13335:      0/1,077,085 crawled (0.0%) | PR=0.000000 | deg=57"
+  ],
+  "source": "analysis/network_analysis/step_23_cc_crawl_topology/result.txt"
+}

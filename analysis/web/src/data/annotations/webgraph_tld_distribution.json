@@ -1,0 +1,10 @@
+{
+  "id": "webgraph_tld_distribution",
+  "titleZh": "WebGraph · TLD 分布",
+  "titleEn": "WebGraph · TLD Distribution",
+  "findings": [
+    ".com 占据 WebGraph 域名集合约 40%,全球商业品牌聚焦。",
+    "ccTLD 与 .org / .net 总体构成长尾。"
+  ],
+  "implications": "Common Crawl 的 WebGraph 是跨语言、跨国家的\"可见网\"的快照。"
+}

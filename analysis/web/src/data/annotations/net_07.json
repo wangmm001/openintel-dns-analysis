@@ -1,0 +1,13 @@
+{
+  "id": "net_07",
+  "titleZh": "Step 07 — Degree-Degree Correlation (Assortativity)",
+  "findings": [
+    "AS graph assortativity (Newman r): -0.1629",
+    "→ Disassortative (hubs avoid hubs)",
+    "NS k_nn(k) — average neighbor degree vs NS degree:",
+    "k=       1: k_nn=2.40  (n=75,363)",
+    "k=       2: k_nn=2.81  (n=22,308)",
+    "k=       3: k_nn=2.83  (n=18,639)"
+  ],
+  "source": "analysis/network_analysis/step_07_assortativity/result.txt"
+}

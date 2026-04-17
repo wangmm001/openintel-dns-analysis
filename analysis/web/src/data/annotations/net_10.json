@@ -1,0 +1,13 @@
+{
+  "id": "net_10",
+  "titleZh": "Step 10 — Average Shortest Path Length",
+  "findings": [
+    "Giant component: 375 nodes, 1,288 edges",
+    "Sampled BFS:     375 source nodes",
+    "Average path length (L): 3.167",
+    "Estimated diameter:      9",
+    "Random graph L (ln N / ln ⟨k⟩): 3.076",
+    "Ratio L_real / L_random: 1.030"
+  ],
+  "source": "analysis/network_analysis/step_10_path_length/result.txt"
+}

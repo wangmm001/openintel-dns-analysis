@@ -1,0 +1,1009 @@
+{
+  "overview_tld_records": {
+    "id": "overview_tld_records",
+    "titleZh": "各 TLD 域名与记录数",
+    "titleEn": "Domains and Records per TLD",
+    "findings": [
+      "8 个 ccTLD 累计 1.7 亿条 DNS 记录,.fr 以 11.1M 域名居首。",
+      ".gov 虽只有 4 万域名,但聚焦美国政府机构,单域名查询密度远高于消费型 TLD。",
+      "小国 TLD(.li / .ee / .nu)记录量虽小,但常被海外品牌注册作创意域名。"
+    ],
+    "implications": "域名规模反映国家数字化渗透率;人均域名数(域名/人口)是衡量互联网普及的隐形指标。"
+  },
+  "overview_query_types": {
+    "id": "overview_query_types",
+    "titleZh": "DNS Query Type 分布",
+    "titleEn": "DNS Query Type Distribution",
+    "findings": [
+      "A + NS + AAAA 三大主力约占 80%,其余长尾代表次要记录类型。",
+      "AFSDB / RP 这类历史遗留类型仍在被主动查询,显示长尾协议尚未消退。",
+      "DNSKEY / DS 数量反映 DNSSEC 被动态发布的规模。"
+    ],
+    "implications": "Query type 分布是测量方法的镜子 — 它告诉你 OpenINTEL 探针 prob 了哪些类型、忽略了哪些。"
+  },
+  "overview_column_completeness": {
+    "id": "overview_column_completeness",
+    "titleZh": "关键列非空覆盖率",
+    "titleEn": "Key-Column Completeness",
+    "findings": [
+      "ip4_address 覆盖最高(几乎所有 A 查询都有值),ip6_address 覆盖约一半——IPv6 仍需努力。",
+      "DNSSEC 相关列(ds_key_tag / dnskey_flags)覆盖率低,反映部署面小。",
+      "GeoIP 字段覆盖率与 IP 列同步——因为它们由同一批解析结果派生。"
+    ],
+    "implications": "数据完整性直接决定哪些分析可行——列覆盖率也是数据质量评估的核心。"
+  },
+  "overview_status_codes": {
+    "id": "overview_status_codes",
+    "titleZh": "响应状态码分布",
+    "titleEn": "Response Status Code Distribution",
+    "findings": [
+      "NOERROR 约 93%,反映绝大多数域名可正常解析。",
+      "NXDOMAIN 是失败码中的主力——过期域名、打字错误或探测请求。",
+      "SERVFAIL 与 TIMEOUT 虽量小,但指向真实的可用性问题。"
+    ],
+    "implications": "NXDOMAIN 率高可能说明 OpenINTEL 的域名列表含过期注册 — 也提供了过期域名监测副产品。"
+  },
+  "dns_ipv4_vs_ipv6": {
+    "id": "dns_ipv4_vs_ipv6",
+    "titleZh": "IPv4 / IPv6 双栈部署率",
+    "titleEn": "IPv4 / IPv6 Dual-Stack Adoption",
+    "findings": [
+      ".ch / .se 等西欧小国双栈率领先,普遍 30%+,受运营商推动。",
+      ".fr / .sk 双栈率偏低,大型市场历史包袱重,迁移慢。",
+      "纯 IPv6-only 几乎为 0——没有域名愿意放弃 IPv4 兜底。"
+    ],
+    "implications": "IPv6 推进仍是政策 + 运营商驱动,市场化动力不足。双栈是现实路径,纯 IPv6 还远。"
+  },
+  "dns_mx_providers": {
+    "id": "dns_mx_providers",
+    "titleZh": "Top 15 邮件交换 (MX) 提供商",
+    "titleEn": "Top 15 MX Mail Providers",
+    "findings": [
+      "Google + Microsoft 合计占据企业邮件半壁江山。",
+      "OVH / 国家级 ISP 在本国 ccTLD 保留显著份额。",
+      "自建邮件(mx 指向自域)正在萎缩,趋向云化集中。"
+    ],
+    "implications": "邮件集中化意味着少数厂商故障即波及全球通讯链路——也是国家数字主权议题。"
+  },
+  "dns_txt_email_security": {
+    "id": "dns_txt_email_security",
+    "titleZh": "邮件安全 · SPF / DMARC",
+    "titleEn": "Email Security · SPF / DMARC Adoption",
+    "findings": [
+      "SPF 普及率约 26%,DMARC 远低于 SPF——部署门槛后者更高。",
+      ".ch / .se 等发达经济体 SPF+DMARC 组合率领先。",
+      "仅 SPF 无 DMARC 的域名缺乏可审计上报,易被伪造。"
+    ],
+    "implications": "SPF 普及仅是第一步——DMARC + DKIM 才是完整的钓鱼防线。"
+  },
+  "dns_ns_providers": {
+    "id": "dns_ns_providers",
+    "titleZh": "Top 15 权威 DNS 托管商",
+    "titleEn": "Top 15 Authoritative DNS Providers",
+    "findings": [
+      "Cloudflare / AWS Route53 / GoDaddy 等云 DNS 集中承载。",
+      "本国注册局/ccTLD 运营者常在其 TLD 中占据首位。",
+      "Top 5 合计承载的域名份额超过全样本 40%,显示高集中度。"
+    ],
+    "implications": "权威 DNS 集中化提升 DDoS 抵御能力,但也埋下少数云出现异常即全球波及的隐患。"
+  },
+  "dns_ttl_distribution": {
+    "id": "dns_ttl_distribution",
+    "titleZh": "A 记录 TTL 分布",
+    "titleEn": "A-Record TTL Distribution",
+    "findings": [
+      "大多数域名 TTL 处于 5分–1天 区间,平衡缓存效率与更新灵活。",
+      "超短 TTL(≤1min)占比 < 5%,多为负载均衡/CDN 边缘节点。",
+      "> 7 天的长 TTL 较少,反映运营商倾向动态运维。"
+    ],
+    "implications": "TTL 中位数是互联网运营节奏的显隐标度——越短代表越动态。"
+  },
+  "infra_ns_redundancy": {
+    "id": "infra_ns_redundancy",
+    "titleZh": "NS 冗余度分布",
+    "titleEn": "Nameserver Redundancy Distribution",
+    "findings": [
+      "约 80% 域名配置 2–4 个 NS,符合 RFC 建议的最低冗余。",
+      "单 NS 域名占比极低(<1%),但这些是单点故障候选。",
+      ">10 个 NS 的域名多为超大型品牌和主要注册局。"
+    ],
+    "implications": "冗余度是域名抗毁性的直接指标——单 NS 域名应警惕托管商故障。"
+  },
+  "geo_top_countries": {
+    "id": "geo_top_countries",
+    "titleZh": "Top 主机托管国家",
+    "titleEn": "Top Hosting Countries",
+    "findings": [
+      "US / DE / FR / NL 稳居前列,反映 IXP 与云数据中心的集中分布。",
+      "本国 ccTLD 托管者常将本国排名抬至前 5。"
+    ],
+    "implications": "地理集中决定了法律管辖 — 内容审查、数据跨境与隐私诉讼的适用法域。"
+  },
+  "geo_top_as": {
+    "id": "geo_top_as",
+    "titleZh": "Top 主机托管 AS",
+    "titleEn": "Top Hosting Autonomous Systems",
+    "findings": [
+      "AWS / OVH / Cloudflare / Google 等大 AS 承载面极广。",
+      "Top 5 AS 合计托管近 40% 的被测域名。"
+    ],
+    "implications": "AS 级集中是 BGP 劫持与误导的潜在点 — 也是监管单点。"
+  },
+  "geo_tld_heatmap": {
+    "id": "geo_tld_heatmap",
+    "titleZh": "TLD × 主机 AS 热力矩阵",
+    "titleEn": "TLD × Hosting AS Heatmap",
+    "findings": [
+      "ccTLD 与本国 AS 呈对角线高亮,反映地理偏好。",
+      "云 AS(AWS/GCP/Azure)呈横向均匀,是跨国通用平台。"
+    ],
+    "implications": "热力矩阵识别\"数字国界\"——AS 在多个 TLD 中的存在反映跨国内容托管版图。"
+  },
+  "security_dnssec_by_tld": {
+    "id": "security_dnssec_by_tld",
+    "titleZh": "DNSSEC · DS 部署率 by TLD",
+    "titleEn": "DNSSEC DS Deployment Rate by TLD",
+    "findings": [
+      "平均 DS 部署率 16.4%,.se 等北欧国家领先。",
+      ".fr 等规模 TLD 虽总数多但比例低。"
+    ],
+    "implications": "DNSSEC 的采纳仍靠政策推动,商业动力不足;签名的信任链从 TLD 向下。"
+  },
+  "security_dnssec_algorithms": {
+    "id": "security_dnssec_algorithms",
+    "titleZh": "DNSSEC 签名算法分布",
+    "titleEn": "DNSSEC Signing Algorithm Distribution",
+    "findings": [
+      "ECDSA-P256/SHA-256 约 67% 占比,替代老旧 RSA。",
+      "RSA-SHA256 仍有尾部存留,过渡迁移未完成。"
+    ],
+    "implications": "椭圆曲线是现代 DNSSEC 默认选择 — 签名更小、验证更快、抗量子研究亦优于 RSA。"
+  },
+  "security_caa": {
+    "id": "security_caa",
+    "titleZh": "CAA · 证书授权分布",
+    "titleEn": "CAA · Certificate Authority Authorization",
+    "findings": [
+      "CAA 部署率仅约 0.7%,letsencrypt.org 在授权方中居首。",
+      "CAA 虽简单却长期被忽略,是证书误签的一道便宜屏障。"
+    ],
+    "implications": "CAA 是低成本高收益的防线 — 但部署率低,说明运营习惯与工具链仍不友好。"
+  },
+  "security_cds_cdnskey": {
+    "id": "security_cds_cdnskey",
+    "titleZh": "CDS / CDNSKEY · DNSSEC 信任链自动化",
+    "titleEn": "CDS / CDNSKEY · DNSSEC Chain Automation",
+    "findings": [
+      "CDS / CDNSKEY 用于子域自动向父域传递 DS,降低手动错误。",
+      "部署仍集中在少数注册局/大型域名持有者。"
+    ],
+    "implications": "DNSSEC 链条自动化是大规模采纳的必经之路 — CDS 让 DS 更新无需人工。"
+  },
+  "infra_cname": {
+    "id": "infra_cname",
+    "titleZh": "CNAME 使用画像",
+    "titleEn": "CNAME Usage Profile",
+    "findings": [
+      "CNAME 频繁指向 CDN 与托管商 — Vercel / Cloudflare / Netlify。",
+      "电商与媒体站普遍用 CNAME 接入跨国 CDN。"
+    ],
+    "implications": "CNAME 链揭示内容分发版图 — 被指向的目标域名是现代 Web 的\"承运商\"。"
+  },
+  "infra_soa_params": {
+    "id": "infra_soa_params",
+    "titleZh": "SOA 生命周期参数",
+    "titleEn": "SOA Lifecycle Parameters",
+    "findings": [
+      "refresh / retry / expire / minimum 参数跨 TLD 分布差异大。",
+      "大 TLD 倾向保守配置(长 expire),小 TLD 更激进。"
+    ],
+    "implications": "SOA 参数决定次权威服务器在主服务器故障时的坚持时长,是隐形可用性开关。"
+  },
+  "anomaly_ttl_buckets": {
+    "id": "anomaly_ttl_buckets",
+    "titleZh": "TTL 异常分桶",
+    "titleEn": "TTL Anomaly Buckets",
+    "findings": [
+      "极短 TTL(<60s)集中在 CDN 边缘与负载均衡器。",
+      "> 30 天的超长 TTL 多为遗留配置,需警惕故障响应迟缓。"
+    ],
+    "implications": "TTL 极端值常是重要运维信号 — 太短浪费 DNS,太长牺牲敏捷。"
+  },
+  "anomaly_servfail_timeout": {
+    "id": "anomaly_servfail_timeout",
+    "titleZh": "SERVFAIL 与 TIMEOUT 异常",
+    "titleEn": "SERVFAIL & TIMEOUT Anomaly",
+    "findings": [
+      "SERVFAIL 常与 DNSSEC 验签失败或权威响应错误有关。",
+      "TIMEOUT 反映网络抖动或权威端超载。"
+    ],
+    "implications": "不可用域名的比例是 Internet 基础设施体检的主要指标。"
+  },
+  "anomaly_rtt_distribution": {
+    "id": "anomaly_rtt_distribution",
+    "titleZh": "DNS 查询 RTT 分布",
+    "titleEn": "DNS Query RTT Distribution",
+    "findings": [
+      "P50 通常在 0~几十毫秒,P99 长尾指向远端或拥塞权威。",
+      "慢尾部暴露全球部署不均 — 边缘缺失的地区响应明显慢。"
+    ],
+    "implications": "P95/P99 是用户感知的真实延迟 — 中位数易误导。"
+  },
+  "anomaly_nxdomain_rate": {
+    "id": "anomaly_nxdomain_rate",
+    "titleZh": "NXDOMAIN 失败率",
+    "titleEn": "NXDOMAIN Failure Rate",
+    "findings": [
+      "NXDOMAIN 主导失败——表征域名过期/停放/打字错误。",
+      "特定 TLD 的异常高 NXDOMAIN 率提示域名垃圾注册现象。"
+    ],
+    "implications": "高 NXDOMAIN 是域名投机(抢注 → 过期 → 再抢)的经济学镜子。"
+  },
+  "toplist_tld_distribution": {
+    "id": "toplist_tld_distribution",
+    "titleZh": "TopList · TLD 分布",
+    "titleEn": "TopList · TLD Distribution",
+    "findings": [
+      ".com 主导 Top 排行,反映全球商业品牌偏好。",
+      "国家 ccTLD 在本国排行内占比显著高于全球榜。"
+    ],
+    "implications": "ccTLD 是\"本地互联网\"的镜子,全球榜则偏向跨国商业 — 两者视角互补。"
+  },
+  "toplist_security_ipv6_comparison": {
+    "id": "toplist_security_ipv6_comparison",
+    "titleZh": "TopList vs Zone · 安全与 IPv6 对比",
+    "titleEn": "TopList vs Zone · Security & IPv6",
+    "findings": [
+      "TopList 域名的 DNSSEC/DMARC/IPv6 采纳率全面高于 Zone 平均。",
+      "头部域名以更快节奏拥抱安全,尾部落后明显。"
+    ],
+    "implications": "互联网\"精英域名\"的领先,对全网平均值带来显著拉升 — 长尾升级靠政策。"
+  },
+  "toplist_email_security": {
+    "id": "toplist_email_security",
+    "titleZh": "TopList · 邮件安全",
+    "titleEn": "TopList · Email Security",
+    "findings": [
+      "TopList 域名 SPF 普及超 80%,DMARC 超 50%,远高于 Zone 平均。",
+      "DMARC 采纳度反映品牌对钓鱼攻击的防御意识。"
+    ],
+    "implications": "邮件安全的\"头部驱动\"模式——主流品牌引领,长尾跟进。"
+  },
+  "webgraph_tld_distribution": {
+    "id": "webgraph_tld_distribution",
+    "titleZh": "WebGraph · TLD 分布",
+    "titleEn": "WebGraph · TLD Distribution",
+    "findings": [
+      ".com 占据 WebGraph 域名集合约 40%,全球商业品牌聚焦。",
+      "ccTLD 与 .org / .net 总体构成长尾。"
+    ],
+    "implications": "Common Crawl 的 WebGraph 是跨语言、跨国家的\"可见网\"的快照。"
+  },
+  "webgraph_pagerank_distribution": {
+    "id": "webgraph_pagerank_distribution",
+    "titleZh": "WebGraph · PageRank 分布",
+    "titleEn": "WebGraph · PageRank Distribution",
+    "findings": [
+      "PageRank 呈典型幂律 — 少数核心域名占据绝大部分权威。",
+      "Top 100 域名基本都是云/内容/社交平台。"
+    ],
+    "implications": "Web 的权威度像财富——集中度极高,与注册分布错位显著。"
+  },
+  "webgraph_cctld_ranking": {
+    "id": "webgraph_cctld_ranking",
+    "titleZh": "ccTLD · WebGraph 排名",
+    "titleEn": "ccTLD · WebGraph Ranking",
+    "findings": [
+      "主要 ccTLD 在 WebGraph 中的相对权威度不完全跟注册规模对齐。",
+      "小国 ccTLD 可因头部媒体/政府域拉高整体排名。"
+    ],
+    "implications": "WebGraph 排名是\"被引用度\",不是\"被注册\"——两种分布的差异是研究富矿。"
+  },
+  "pagerank_vs_tranco_distribution": {
+    "id": "pagerank_vs_tranco_distribution",
+    "titleZh": "PR vs Tranco · 分布",
+    "titleEn": "PR vs Tranco · Distribution",
+    "findings": [
+      "PageRank 与 Tranco 排名相关但非一一对应。",
+      "PageRank 更反映跨域引用,Tranco 更反映解析查询流量。"
+    ],
+    "implications": "两榜并用可以相互佐证 — 差值大的域名值得深挖(可能为异常或领域特化)。"
+  },
+  "pagerank_vs_tranco_tld_bias": {
+    "id": "pagerank_vs_tranco_tld_bias",
+    "titleZh": "PR vs Tranco · TLD 偏差",
+    "titleEn": "PR vs Tranco · TLD Bias",
+    "findings": [
+      "ccTLD 在 Tranco 更高、PageRank 较低 — 查询量未必转为被引。",
+      ".com / .org 通常 PageRank 领先 Tranco。"
+    ],
+    "implications": "榜单选择要考虑应用场景:安全研究更看 PageRank,运营更看 Tranco。"
+  },
+  "pagerank_vs_tranco_consensus": {
+    "id": "pagerank_vs_tranco_consensus",
+    "titleZh": "PR vs Tranco · 共识域名",
+    "titleEn": "PR vs Tranco · Consensus Set",
+    "findings": [
+      "两榜共识 Top N 收敛于全球品牌 + 基础设施域。",
+      "共识集合的规模反映榜单一致性程度。"
+    ],
+    "implications": "共识集合可作为\"金标准\"测试集合 — 各类方法可在其上交叉验证。"
+  },
+  "pagerank_vs_tranco_scatter": {
+    "id": "pagerank_vs_tranco_scatter",
+    "titleZh": "PR vs Tranco · 散点",
+    "titleEn": "PR vs Tranco · Scatter",
+    "findings": [
+      "对角分布为基线,偏离对角线揭示两榜的局部分歧。",
+      "远离对角的外点常为垂直领域的头部(媒体、电商、SaaS)。"
+    ],
+    "implications": "散点是定位\"领域头部\"的快速方法。"
+  },
+  "pagerank_vs_tranco_heatmap": {
+    "id": "pagerank_vs_tranco_heatmap",
+    "titleZh": "PR vs Tranco · 分位热力",
+    "titleEn": "PR vs Tranco · Quantile Heatmap",
+    "findings": [
+      "分位热力量化两榜的差异概率。",
+      "对角格子密度越高代表越一致。"
+    ],
+    "implications": "热力图是从视觉化 → 定量化两榜对齐的桥梁。"
+  },
+  "cc_index_status_distribution": {
+    "id": "cc_index_status_distribution",
+    "titleZh": "CC CDX · HTTP 状态码",
+    "titleEn": "CC CDX · HTTP Status Distribution",
+    "findings": [
+      "200 主导,但 301/302 重定向和 404 也有显著占比。",
+      "5xx 比例能反映服务器健康度与 CC 爬取遇到的障碍。"
+    ],
+    "implications": "CDX 状态码是 Web 健康度的补充维度 — DNS 可用 ≠ HTTP 可用。"
+  },
+  "cc_index_pr_health": {
+    "id": "cc_index_pr_health",
+    "titleZh": "CC CDX · 高 PR 域名健康度",
+    "titleEn": "CC CDX · High PageRank Health",
+    "findings": [
+      "高 PR 域名的 200 成功率显著高于长尾。",
+      "重要域名的运维投入与 Web 健康度成正比。"
+    ],
+    "implications": "PR 越高,Web 可用性越好 — 这是\"网络权威度 → 资源投入\"的正循环。"
+  },
+  "cc_index_domain_profile": {
+    "id": "cc_index_domain_profile",
+    "titleZh": "CC CDX · 域名画像",
+    "titleEn": "CC CDX · Domain Profile",
+    "findings": [
+      "语言、国家、MIME 类型、URL 模式共同构成域名的画像。",
+      "画像可辅助分类:企业/媒体/个人/孵化中站点。"
+    ],
+    "implications": "域名画像是研究\"Web 内容生态\"的基本单位。"
+  },
+  "deep_01": {
+    "id": "deep_01",
+    "titleZh": "Step 01 — 数据普查 (Data Census)",
+    "findings": [
+      "总计 232M 条记录覆盖 9 个 TLD 区域 + 4 个 TopList + WebGraph 134M 域名",
+      "Zone ch  :   52,192,076 rows | 7,113,423 domains | ts 1775693050000–1775756880000",
+      "Zone ee  :    2,921,064 rows |   465,026 domains | ts 1775692977000–1775754411000",
+      "Zone fr  :   69,296,979 rows | 11,105,923 domains | ts 1775692977000–1775715515000",
+      "Zone gov :      258,871 rows |    39,651 domains | ts 1775692982000–1775754382000",
+      "Zone li  :    1,073,229 rows |   167,156 domains | ts 1775693052000–1775756866000",
+      "Zone nu  :    4,033,983 rows |   531,631 domains | ts 1775692977000–1775754388000"
+    ],
+    "source": "analysis/deep_analysis/step_01_data_census/result.txt"
+  },
+  "deep_02": {
+    "id": "deep_02",
+    "titleZh": "Step 02 — DNS Query Type Distribution",
+    "findings": [
+      "最常见查询类型: A (31M), NS (27M), AFSDB (24M)",
+      "A           :     30,799,379  (13.28%)",
+      "NS          :     26,559,412  (11.45%)",
+      "AFSDB       :     23,597,417  (10.18%)",
+      "TXT         :     18,071,082  (7.79%)",
+      "MX          :     16,735,947  (7.22%)",
+      "AAAA        :     14,129,960  (6.09%)"
+    ],
+    "source": "analysis/deep_analysis/step_02_query_type_distribution/result.txt"
+  },
+  "deep_03": {
+    "id": "deep_03",
+    "titleZh": "Step 03 — Resolution Health by TLD",
+    "findings": [
+      "平均 NOERROR 率 93.4%，gov 区域健康度最高，NXDOMAIN 反映域名过期/停放",
+      "ch  : NOERROR 93.4% | NXDOMAIN 6.4% | SERVFAIL 0.2%",
+      "ee  : NOERROR 91.0% | NXDOMAIN 8.9% | SERVFAIL 0.2%",
+      "fr  : NOERROR 90.6% | NXDOMAIN 9.2% | SERVFAIL 0.1%",
+      "gov : NOERROR 97.2% | NXDOMAIN 2.6% | SERVFAIL 0.1%",
+      "li  : NOERROR 93.9% | NXDOMAIN 5.6% | SERVFAIL 0.4%",
+      "nu  : NOERROR 91.8% | NXDOMAIN 7.8% | SERVFAIL 0.3%"
+    ],
+    "source": "analysis/deep_analysis/step_03_resolution_health/result.txt"
+  },
+  "deep_04": {
+    "id": "deep_04",
+    "titleZh": "Step 04 — IPv4 vs IPv6 Dual-Stack Adoption",
+    "findings": [
+      "双栈平均部署率 30.9%，大多数域名仍为 IPv4-only",
+      "ch  : total 4,334,598 | dual-stack 41.0% | v4-only 58.8% | v6-only 0.1%",
+      "ee  : total   335,308 | dual-stack 7.5% | v4-only 92.2% | v6-only 0.0%",
+      "fr  : total 7,892,869 | dual-stack 32.9% | v4-only 66.9% | v6-only 0.0%",
+      "gov : total    26,319 | dual-stack 23.9% | v4-only 75.9% | v6-only 0.0%",
+      "li  : total   108,824 | dual-stack 30.3% | v4-only 69.4% | v6-only 0.0%",
+      "nu  : total   334,317 | dual-stack 34.0% | v4-only 65.9% | v6-only 0.0%"
+    ],
+    "source": "analysis/deep_analysis/step_04_ipv4_vs_ipv6/result.txt"
+  },
+  "deep_05": {
+    "id": "deep_05",
+    "titleZh": "Step 05 — AS Concentration (Top 30)",
+    "findings": [
+      "Top 5 AS 托管了 39.0% 的域名，互联网托管高度集中",
+      "# 1 [16276]                                            2,971,159 domains (18.15%, cum 18.1%)",
+      "# 2 [13335]                                            1,077,085 domains (6.58%, cum 24.7%)",
+      "# 3 [8560]                                               862,583 domains (5.27%, cum 30.0%)",
+      "# 4 [16509]                                              803,558 domains (4.91%, cum 34.9%)",
+      "# 5 [29097]                                              676,885 domains (4.13%, cum 39.0%)",
+      "# 6 [39570]                                              597,120 domains (3.65%, cum 42.7%)"
+    ],
+    "source": "analysis/deep_analysis/step_05_as_concentration/result.txt"
+  },
+  "deep_06": {
+    "id": "deep_06",
+    "titleZh": "Step 06 — Hosting Geography (Top 25 Countries)",
+    "findings": [
+      "Top 3 托管国家: FR, CH, US，占比 59.6%",
+      "# 1 FR  :  4,751,487 domains (29.08%)",
+      "# 2 CH  :  2,580,903 domains (15.80%)",
+      "# 3 US  :  2,407,549 domains (14.73%)",
+      "# 4 DE  :  2,091,915 domains (12.80%)",
+      "# 5 SE  :  1,287,724 domains (7.88%)",
+      "# 6 DK  :    641,438 domains (3.93%)"
+    ],
+    "source": "analysis/deep_analysis/step_06_hosting_geography/result.txt"
+  },
+  "deep_07": {
+    "id": "deep_07",
+    "titleZh": "Step 07 — TTL Caching Strategy",
+    "findings": [
+      "最大 TTL 分段: ≤1min (3%)，TTL 越短=越动态",
+      "≤1min     :      4,412,702 (2.8%)",
+      "1-5min    :     16,702,610 (10.5%)",
+      "5min-1h   :     98,486,847 (62.1%)",
+      "1h-1d     :     37,896,068 (23.9%)",
+      ">1d       :        975,861 (0.6%)",
+      "ch   median TTL: 3600s"
+    ],
+    "source": "analysis/deep_analysis/step_07_ttl_strategy/result.txt"
+  },
+  "deep_08": {
+    "id": "deep_08",
+    "titleZh": "Step 08 — DNS Round-Trip Time Performance",
+    "findings": [
+      "中位 RTT 平均 0.0ms，P99 尾延迟揭示基础设施瓶颈",
+      "ch  : avg 0.0ms | median 0.0ms | P95 0.0ms | P99 0.1ms",
+      "ee  : avg 0.1ms | median 0.0ms | P95 0.1ms | P99 0.8ms",
+      "fr  : avg 0.0ms | median 0.0ms | P95 0.0ms | P99 0.2ms",
+      "gov : avg 0.1ms | median 0.0ms | P95 0.2ms | P99 0.4ms",
+      "li  : avg 0.0ms | median 0.0ms | P95 0.1ms | P99 0.3ms",
+      "nu  : avg 0.0ms | median 0.0ms | P95 0.1ms | P99 0.1ms"
+    ],
+    "source": "analysis/deep_analysis/step_08_rtt_performance/result.txt"
+  },
+  "deep_09": {
+    "id": "deep_09",
+    "titleZh": "Step 09 — DNSSEC Deployment Depth",
+    "findings": [
+      "DNSSEC DS 平均部署率 16.4%，各 TLD 差异巨大",
+      "ch  : DS 21.5% | DNSKEY 21.8% | RRSIG 0.0% (of 6,258,234 domains)",
+      "ee  : DS 11.4% | DNSKEY 11.6% | RRSIG 0.0% (of 417,486 domains)",
+      "fr  : DS 9.8% | DNSKEY 10.9% | RRSIG 0.0% (of 9,864,748 domains)",
+      "gov : DS 5.3% | DNSKEY 6.2% | RRSIG 0.0% (of 38,205 domains)",
+      "li  : DS 15.0% | DNSKEY 15.5% | RRSIG 0.0% (of 149,412 domains)",
+      "nu  : DS 23.1% | DNSKEY 24.4% | RRSIG 0.0% (of 470,619 domains)"
+    ],
+    "source": "analysis/deep_analysis/step_09_dnssec_deployment/result.txt"
+  },
+  "deep_10": {
+    "id": "deep_10",
+    "titleZh": "Step 10 — DNSSEC Algorithm Distribution",
+    "findings": [
+      "主导算法: ECDSA-P256/SHA-256 (67%)，椭圆曲线逐步替代 RSA",
+      "Algo  13 (ECDSA-P256/SHA-256       ):  2,956,785 (66.9%)",
+      "Algo   8 (RSA/SHA-256              ):  1,385,738 (31.3%)",
+      "Algo  15 (Ed25519                  ):     49,199 (1.1%)",
+      "Algo   7 (RSASHA1-NSEC3-SHA1       ):     21,242 (0.5%)",
+      "Algo  10 (RSA/SHA-512              ):      6,017 (0.1%)",
+      "Algo  14 (ECDSA-P384/SHA-384       ):      2,724 (0.1%)"
+    ],
+    "source": "analysis/deep_analysis/step_10_dnssec_algorithms/result.txt"
+  },
+  "deep_11": {
+    "id": "deep_11",
+    "titleZh": "Step 11 — Email Security Stack (SPF/DMARC/MX)",
+    "findings": [
+      "SPF 平均部署率 26.3%，DMARC 显著落后，邮件安全仍有大量缺口",
+      "ch  : SPF 28.9% | DMARC 15.3% | MX 30.0%",
+      "ee  : SPF 26.8% | DMARC 15.1% | MX 29.5%",
+      "fr  : SPF 31.9% | DMARC 15.3% | MX 36.1%",
+      "gov : SPF 32.3% | DMARC 22.6% | MX 31.3%",
+      "li  : SPF 26.8% | DMARC 11.9% | MX 29.3%",
+      "nu  : SPF 19.4% | DMARC 10.7% | MX 23.3%"
+    ],
+    "source": "analysis/deep_analysis/step_11_email_security/result.txt"
+  },
+  "deep_12": {
+    "id": "deep_12",
+    "titleZh": "Step 12 — CAA Certificate Authority Authorization",
+    "findings": [
+      "仅 0.7% 域名配置 CAA，\"letsencrypt.org\" 是最受信任的 CA",
+      "Total domains with CAA: 146,802 (0.67% of all)",
+      "\"letsencrypt.org\"                       :   97,290 domains",
+      "\"sectigo.com\"                           :   24,555 domains",
+      "\"letsencrypt.org;validationmethods=http-01\":   22,184 domains",
+      "\"pki.goog;validationmethods=http-01\"    :   22,161 domains",
+      "\"globalsign.com\"                        :   17,373 domains"
+    ],
+    "source": "analysis/deep_analysis/step_12_caa_authorization/result.txt"
+  },
+  "deep_13": {
+    "id": "deep_13",
+    "titleZh": "Step 13 — Nameserver Redundancy",
+    "findings": [
+      "单 NS 域名平均占 0.3%，存在单点故障风险",
+      "ch  : avg 2.5 NS | single-NS 0.9% | ≥4 NS 8.5%",
+      "ee  : avg 2.9 NS | single-NS 0.0% | ≥4 NS 9.0%",
+      "fr  : avg 2.5 NS | single-NS 0.1% | ≥4 NS 18.6%",
+      "gov : avg 2.8 NS | single-NS 0.3% | ≥4 NS 27.7%",
+      "li  : avg 2.6 NS | single-NS 0.3% | ≥4 NS 13.2%",
+      "nu  : avg 2.6 NS | single-NS 0.1% | ≥4 NS 16.2%"
+    ],
+    "source": "analysis/deep_analysis/step_13_ns_redundancy/result.txt"
+  },
+  "deep_14": {
+    "id": "deep_14",
+    "titleZh": "Step 14 — CNAME/CDN Fingerprint",
+    "findings": [
+      "CNAME 域名 3,695,433，Vercel 领先 CDN (64,789 domains)",
+      "Total domains with CNAME: 3,695,433",
+      "Cloudflare          :   24,510 (0.66%)",
+      "AWS CloudFront      :   39,673 (1.07%)",
+      "Akamai              :   26,851 (0.73%)",
+      "Fastly              :    5,501 (0.15%)",
+      "Google              :   55,644 (1.51%)"
+    ],
+    "source": "analysis/deep_analysis/step_14_cname_cdn_fingerprint/result.txt"
+  },
+  "deep_15": {
+    "id": "deep_15",
+    "titleZh": "Step 15 — TopList vs Zone Domain Overlap",
+    "findings": [
+      "TopList 与 Zone 重叠率: majestic 3%, radar 3%, tranco 3%, umbrella 1%",
+      "majestic  : 2,456,668 unique domains |    72,816 in zone (3.0%)",
+      "radar     : 2,460,397 unique domains |    64,173 in zone (2.6%)",
+      "tranco    : 2,421,332 unique domains |    63,799 in zone (2.6%)",
+      "umbrella  : 1,530,331 unique domains |    11,135 in zone (0.7%)"
+    ],
+    "source": "analysis/deep_analysis/step_15_toplist_zone_overlap/result.txt"
+  },
+  "deep_16": {
+    "id": "deep_16",
+    "titleZh": "Step 16 — PageRank × DNS Security Correlation",
+    "findings": [
+      "高 PageRank 域名安全部署率显著更高，排名与安全正相关",
+      "Tier              Count   DNSSEC     IPv6      SPF      CAA"
+    ],
+    "source": "analysis/deep_analysis/step_16_pagerank_dns_security/result.txt"
+  },
+  "deep_17": {
+    "id": "deep_17",
+    "titleZh": "Step 17 — Shared Hosting / IP Concentration",
+    "findings": [
+      "最大共享 IP 213.186.33.5 承载 1,304,194 域名，虚拟主机集群化明显",
+      "Top 20 most-shared IPs:",
+      "213.186.33.5      : 1,304,194 domains",
+      "194.9.94.85       :  453,071 domains",
+      "194.9.94.86       :  451,935 domains",
+      "217.26.48.101     :  318,921 domains",
+      "188.114.97.0      :  270,591 domains"
+    ],
+    "source": "analysis/deep_analysis/step_17_shared_hosting_clusters/result.txt"
+  },
+  "deep_18": {
+    "id": "deep_18",
+    "titleZh": "Step 18 — SOA Lifecycle Signals",
+    "findings": [
+      "SOA 参数揭示 TLD 运营策略差异: refresh/retry/expire 跨区域有数量级差异",
+      "ch  : refresh 8.5h | retry 1.9h | expire 16.3d | min 19651s | primary_ns 28895",
+      "ee  : refresh 3.5h | retry 6.0h | expire 18.4d | min 12060s | primary_ns 4315",
+      "fr  : refresh 14.1h | retry 1.3h | expire 21.3d | min 14527s | primary_ns 29723",
+      "gov : refresh 41.8h | retry 1.0h | expire 12.6d | min 14560s | primary_ns 3045",
+      "li  : refresh 16.4h | retry 1.3h | expire 14.8d | min 24220s | primary_ns 5640",
+      "nu  : refresh 18.2h | retry 1.1h | expire 11.9d | min 45672s | primary_ns 6946"
+    ],
+    "source": "analysis/deep_analysis/step_18_soa_lifecycle/result.txt"
+  },
+  "deep_19": {
+    "id": "deep_19",
+    "titleZh": "Step 19 — NXDOMAIN & Failure Taxonomy",
+    "findings": [
+      "DNS 失败总计 13M 条，NXDOMAIN 占 97%",
+      "ch — Top failure combos:",
+      "NXDOMAIN   × AFSDB   :  3,308,449",
+      "SERVFAIL   × SOA     :    128,372",
+      "TIMEOUT    × SOA     :     20,740",
+      "NXDOMAIN   × AAAA    :      3,559",
+      "NXDOMAIN   × A       :      3,551"
+    ],
+    "source": "analysis/deep_analysis/step_19_failure_taxonomy/result.txt"
+  },
+  "deep_20": {
+    "id": "deep_20",
+    "titleZh": "Step 20 — TopList (Elite) vs Zone (General) Security Comparison",
+    "findings": [
+      "TopList 精英域名在 DNSSEC/IPv6/SPF 各维度均显著领先普通 Zone 域名",
+      "majestic  : DNSSEC 2.3% | IPv6 33.4% | SPF 26.3%",
+      "radar     : DNSSEC 2.6% | IPv6 31.4% | SPF 26.9%",
+      "tranco    : DNSSEC 2.4% | IPv6 30.9% | SPF 26.8%",
+      "umbrella  : DNSSEC 1.2% | IPv6 32.0% | SPF 14.2%",
+      "Zone avg : DNSSEC 16.5% | IPv6 26.5% | SPF 28.2%"
+    ],
+    "source": "analysis/deep_analysis/step_20_toplist_security_comparison/result.txt"
+  },
+  "deep_21": {
+    "id": "deep_21",
+    "titleZh": "Step 21 — BGP Prefix Analysis",
+    "findings": [
+      "最大前缀 213.186.32.0/19 承载 1,564,848 域名，/24 是最常见前缀粒度",
+      "Top 20 prefixes by domain count:",
+      "213.186.32.0/19     : 1,564,848 domains |    201 IPs | 1 AS",
+      "217.160.0.0/16      :  769,429 domains |  2,341 IPs | 1 AS",
+      "217.26.48.0/20      :  676,883 domains |  1,046 IPs | 1 AS",
+      "46.30.208.0/21      :  464,089 domains |    508 IPs | 1 AS",
+      "194.9.94.0/23       :  453,943 domains |     86 IPs | 1 AS"
+    ],
+    "source": "analysis/deep_analysis/step_21_bgp_prefix_analysis/result.txt"
+  },
+  "deep_22": {
+    "id": "deep_22",
+    "titleZh": "Step 22 — Cross-Dataset Internet Health Scorecard",
+    "findings": [
+      "综合健康得分: sk 最高 (52分), ee 最低 (43分)",
+      "ch  : Score 49.9/100 | NOERROR 93% | Dual 41% | DNSSEC 22% | SPF 29% | CAA 0.7% | NS 2.5 | RTT 0ms",
+      "ee  : Score 42.9/100 | NOERROR 91% | Dual 7% | DNSSEC 11% | SPF 27% | CAA 1.1% | NS 2.9 | RTT 0ms",
+      "fr  : Score 46.2/100 | NOERROR 91% | Dual 33% | DNSSEC 10% | SPF 32% | CAA 0.6% | NS 2.5 | RTT 0ms",
+      "gov : Score 46.0/100 | NOERROR 97% | Dual 24% | DNSSEC 5% | SPF 32% | CAA 1.0% | NS 2.8 | RTT 0ms",
+      "li  : Score 47.0/100 | NOERROR 94% | Dual 30% | DNSSEC 15% | SPF 27% | CAA 1.3% | NS 2.6 | RTT 0ms",
+      "nu  : Score 47.6/100 | NOERROR 92% | Dual 34% | DNSSEC 23% | SPF 19% | CAA 1.2% | NS 2.6 | RTT 0ms"
+    ],
+    "source": "analysis/deep_analysis/step_22_internet_health_scorecard/result.txt"
+  },
+  "net_01": {
+    "id": "net_01",
+    "titleZh": "Step 01 — Domain→NS Bipartite Graph",
+    "findings": [
+      "Edges:         22,751,515",
+      "Domains:        8,874,756",
+      "Nameservers:      132,558",
+      "Avg NS/domain: 2.56",
+      "Avg domains/NS: 171.6",
+      "Domain degree (NS per domain):"
+    ],
+    "source": "analysis/network_analysis/step_01_domain_ns_bipartite/result.txt"
+  },
+  "net_02": {
+    "id": "net_02",
+    "titleZh": "Step 02 — Domain→IP→AS Dependency Graph",
+    "findings": [
+      "Domain→IP edges:   19,709,071",
+      "Domains:           16,372,312",
+      "Unique IPs:           573,734",
+      "Unique ASNs:            8,715",
+      "Unique Prefixes:       38,294",
+      "Countries:                147"
+    ],
+    "source": "analysis/network_analysis/step_02_domain_ip_as/result.txt"
+  },
+  "net_03": {
+    "id": "net_03",
+    "titleZh": "Step 03 — CNAME Delegation Chain Graph",
+    "findings": [
+      "CNAME edges:     4,184,198",
+      "Source domains:  3,695,433",
+      "Target names:    1,906,151",
+      "Chain depth distribution:",
+      "Depth 1:  3,695,433 domains",
+      "Depth 2:      6,985 domains"
+    ],
+    "source": "analysis/network_analysis/step_03_cname_chains/result.txt"
+  },
+  "net_04": {
+    "id": "net_04",
+    "titleZh": "Step 04 — AS-Level Projected Graph",
+    "findings": [
+      "AS nodes:         472",
+      "AS-AS edges:    1,344  (weight ≥ 5 shared domains)",
+      "Density:     0.012091",
+      "Connected components: 46",
+      "Giant component: 375 nodes (79.4%)"
+    ],
+    "source": "analysis/network_analysis/step_04_as_projected_graph/result.txt"
+  },
+  "net_05": {
+    "id": "net_05",
+    "titleZh": "Step 05 — Multi-Layer Graph Census",
+    "findings": [
+      "Layer                          Nodes      Edges    Avg Deg    Max Deg",
+      "Domain→NS bipartite        9,007,314 22,751,515 2.56/172        416,954",
+      "Domain→IP bipartite       16,946,046 19,709,071 1.20/34      1,304,194",
+      "CNAME directed             5,601,584  4,184,198       —            —",
+      "AS projected                     472      1,344 5.7               133",
+      "NS degree:  mean=171.6, median=1, P99=2060, max=416954"
+    ],
+    "source": "analysis/network_analysis/step_05_graph_census/result.txt"
+  },
+  "net_06": {
+    "id": "net_06",
+    "titleZh": "Step 06 — Power-Law Fitting (Clauset et al. 2009 method)",
+    "findings": [
+      "[NS In-Degree]",
+      "α (exponent): 1.457",
+      "x_min:        2.0",
+      "σ (std err):  0.0019",
+      "vs lognormal                : R=-18.917, p=0.0000 → lognormal better",
+      "vs exponential              : R=+48.422, p=0.0000 → power_law better"
+    ],
+    "source": "analysis/network_analysis/step_06_power_law_fitting/result.txt"
+  },
+  "net_07": {
+    "id": "net_07",
+    "titleZh": "Step 07 — Degree-Degree Correlation (Assortativity)",
+    "findings": [
+      "AS graph assortativity (Newman r): -0.1629",
+      "→ Disassortative (hubs avoid hubs)",
+      "NS k_nn(k) — average neighbor degree vs NS degree:",
+      "k=       1: k_nn=2.40  (n=75,363)",
+      "k=       2: k_nn=2.81  (n=22,308)",
+      "k=       3: k_nn=2.83  (n=18,639)"
+    ],
+    "source": "analysis/network_analysis/step_07_assortativity/result.txt"
+  },
+  "net_08": {
+    "id": "net_08",
+    "titleZh": "Step 08 — Rich-Club Coefficient",
+    "findings": [
+      "k      φ(k)      φ_norm(k)    Interpretation",
+      "0  0.0121    1.1285       ★ RICH-CLUB",
+      "5  0.1619    1.2775       ★ RICH-CLUB",
+      "10  0.3231    1.4236       ★ RICH-CLUB",
+      "15  0.4672    1.5424       ★ RICH-CLUB",
+      "20  0.5282    1.4117       ★ RICH-CLUB"
+    ],
+    "source": "analysis/network_analysis/step_08_rich_club/result.txt"
+  },
+  "net_09": {
+    "id": "net_09",
+    "titleZh": "Step 09 — Clustering Coefficient",
+    "findings": [
+      "AS Graph:",
+      "Global transitivity (C_global):   0.3304",
+      "Average local clustering (C_avg): 0.6215",
+      "For Erdős–Rényi with same density: 0.012091",
+      "Ratio C_real / C_random:           27.3x",
+      "C(k) — clustering vs degree (sample):"
+    ],
+    "source": "analysis/network_analysis/step_09_clustering/result.txt"
+  },
+  "net_10": {
+    "id": "net_10",
+    "titleZh": "Step 10 — Average Shortest Path Length",
+    "findings": [
+      "Giant component: 375 nodes, 1,288 edges",
+      "Sampled BFS:     375 source nodes",
+      "Average path length (L): 3.167",
+      "Estimated diameter:      9",
+      "Random graph L (ln N / ln ⟨k⟩): 3.076",
+      "Ratio L_real / L_random: 1.030"
+    ],
+    "source": "analysis/network_analysis/step_10_path_length/result.txt"
+  },
+  "net_11": {
+    "id": "net_11",
+    "titleZh": "Step 11 — Small-World Quotient",
+    "findings": [
+      "Humphries σ = (C/C_rand)/(L/L_rand) = 17.471",
+      "C_real=0.3304, C_rand=0.018367, ratio=18.0",
+      "L_real=3.167, L_rand=3.076, ratio=1.030",
+      "→ σ >> 1 ✓ confirms small-world",
+      "Telesford ω = L_rand/L - C/C_latt = 0.530",
+      "ω ≈ 0: small-world  |  ω → -1: lattice-like  |  ω → 1: random-like"
+    ],
+    "source": "analysis/network_analysis/step_11_small_world/result.txt"
+  },
+  "net_12": {
+    "id": "net_12",
+    "titleZh": "Step 12 — Multi-Centrality Analysis (AS graph, giant component)",
+    "findings": [
+      "Top 15 by degree:",
+      "# 1 AS 16276      | deg=  133 | betw=26121.6 | eig=1.0000 | close=0.5335",
+      "# 2 AS 16509      | deg=  104 | betw=18207.2 | eig=0.7695 | close=0.5238",
+      "# 3 AS 24940      | deg=   65 | betw=5815.6 | eig=0.8281 | close=0.4675",
+      "# 4 AS --         | deg=   61 | betw=5184.2 | eig=0.8266 | close=0.4740",
+      "# 5 AS 13335      | deg=   57 | betw=4957.3 | eig=0.5614 | close=0.4623"
+    ],
+    "source": "analysis/network_analysis/step_12_multi_centrality/result.txt"
+  },
+  "net_13": {
+    "id": "net_13",
+    "titleZh": "Step 13 — DNS PageRank vs WebGraph PageRank",
+    "findings": [
+      "Paired AS nodes: 0"
+    ],
+    "source": "analysis/network_analysis/step_13_pagerank_comparison/result.txt"
+  },
+  "net_14": {
+    "id": "net_14",
+    "titleZh": "Step 14 — k-Core Decomposition",
+    "findings": [
+      "Maximum coreness: 23",
+      "Core distribution:",
+      "1-core:    157 nodes (41.9%)",
+      "2-core:     74 nodes (19.7%)",
+      "3-core:     27 nodes (7.2%)",
+      "4-core:     17 nodes (4.5%)"
+    ],
+    "source": "analysis/network_analysis/step_14_k_core/result.txt"
+  },
+  "net_15": {
+    "id": "net_15",
+    "titleZh": "Step 15 — Articulation Points & Bridges (Single Points of Failure)",
+    "findings": [
+      "AS graph:",
+      "Articulation points: 85 (22.7% of nodes)",
+      "Bridges (est.):      100+",
+      "NS layer — Single-NS domains: 26,135 (0.29%)",
+      "Critical sole-NS (failure impact):",
+      "sieg.dns1.ch.                                :   17,999 domains depend solely on this NS"
+    ],
+    "source": "analysis/network_analysis/step_15_articulation_points/result.txt"
+  },
+  "net_16": {
+    "id": "net_16",
+    "titleZh": "Step 16 — Community Detection (Leiden Algorithm)",
+    "findings": [
+      "Modularity Q: 0.5007",
+      "Communities:   15",
+      "Largest communities:",
+      "Community   0:   109 ASes | sample: 12312, 12347, 12488, 13030, 13335",
+      "Community   1:    79 ASes | sample: 12430, 12824, 13193, 136133, 13886",
+      "Community   2:    53 ASes | sample: --, 1136, 1221, 12693, 14061"
+    ],
+    "source": "analysis/network_analysis/step_16_community_detection/result.txt"
+  },
+  "net_17": {
+    "id": "net_17",
+    "titleZh": "Step 17 — Community ↔ Security Correlation",
+    "findings": [
+      "Community avg security profile (top 15 by size):",
+      "Comm   0 (n= 104): DNSSEC=17.6% | IPv6=21.4% | SPF=35.3%",
+      "Comm   1 (n=  61): DNSSEC=10.3% | IPv6=15.6% | SPF=33.5%",
+      "Comm   2 (n=  34): DNSSEC=11.5% | IPv6=12.4% | SPF=30.0%",
+      "Comm   3 (n=  30): DNSSEC=9.4% | IPv6=9.6% | SPF=31.3%",
+      "Comm   4 (n=  25): DNSSEC=21.9% | IPv6=10.4% | SPF=31.8%"
+    ],
+    "source": "analysis/network_analysis/step_17_community_security/result.txt"
+  },
+  "net_18": {
+    "id": "net_18",
+    "titleZh": "Step 18 — Bow-Tie Decomposition (CNAME Graph)",
+    "findings": [
+      "Bow-Tie: Sources 7% → SCC 0% → Sinks 0%",
+      "Nodes: 5,598,155 | Edges: 4,184,198",
+      "SCC:            1 (0.0%)",
+      "Sources:  418,283 (7.5%) — pure delegation origins",
+      "Sinks:          1 (0.0%) — final CNAME targets (CDN/hosting)",
+      "Other:          0 (0.0%)",
+      "Disconn: 5,179,871 (92.5%)"
+    ],
+    "source": "analysis/network_analysis/step_18_bow_tie/result.txt"
+  },
+  "net_19": {
+    "id": "net_19",
+    "titleZh": "Step 19 — Network Motif Census",
+    "findings": [
+      "Triangles: 47, Max clique: 24, CNAME 以链式 fan-in motif 为主",
+      "AS Graph (undirected):",
+      "Triangles:               47",
+      "Connected triples:   38,339",
+      "Transitivity:      0.3303",
+      "Max clique:        24",
+      "Hub motifs (AS nodes with degree ≥ k):"
+    ],
+    "source": "analysis/network_analysis/step_19_motifs/result.txt"
+  },
+  "net_20": {
+    "id": "net_20",
+    "titleZh": "Step 20 — Percolation Analysis",
+    "findings": [
+      "渗流: random f_c=0.29, targeted f_c=0.05, ratio 6× — 鲁棒而脆弱",
+      "Random f_c (GC<50%):   0.288 (28.8% removed)",
+      "Targeted f_c:          0.048 (4.8% removed)",
+      "Robustness ratio:      6.0×",
+      "R_random:              0.2868",
+      "R_targeted:            0.0566",
+      "R ratio:               5.1×"
+    ],
+    "source": "analysis/network_analysis/step_20_percolation/result.txt"
+  },
+  "net_21": {
+    "id": "net_21",
+    "titleZh": "Step 21 — Cascading Failure (NS Single-Point)",
+    "findings": [
+      "Top 10 NS 故障孤立 1,495 域名 — 基础设施集中化的代价",
+      "NS                                                    Reach Orphaned      %",
+      "ns11.infomaniak.ch.                                 148,340    1,299   0.9%",
+      "ns1.o2switch.net.                                   174,453       68   0.0%",
+      "dns200.anycast.me.                                  110,369       23   0.0%",
+      "ns200.anycast.me.                                   110,367       22   0.0%",
+      "ns100.ovh.net.                                       75,535       18   0.0%"
+    ],
+    "source": "analysis/network_analysis/step_21_cascading_failure/result.txt"
+  },
+  "net_22": {
+    "id": "net_22",
+    "titleZh": "Step 22 — Multi-Layer Cascade (AS→IP→Domain)",
+    "findings": [
+      "Top 5 AS 故障孤立 6,380,397 域名 — 多层级联放大效应",
+      "AS      IPs    Domains   Orphaned      %",
+      "16276   84,798  2,971,159  2,966,700  99.8%",
+      "13335   65,914  1,077,085  1,075,325  99.8%",
+      "8560   12,254    862,583    862,179 100.0%",
+      "16509   29,232    803,558    800,145  99.6%",
+      "29097    1,047    676,885    676,048  99.9%"
+    ],
+    "source": "analysis/network_analysis/step_22_multilayer_cascade/result.txt"
+  },
+  "net_23": {
+    "id": "net_23",
+    "titleZh": "Step 23 — CC Crawl × Network Topology",
+    "findings": [
+      "CC爬取覆盖与拓扑度数/PageRank相关 — Web可见性反映DNS拓扑位置",
+      "ASes analyzed: 1449 (≥100 domains each)",
+      "CC CDX unique domains: 714,516",
+      "WebGraph domains: 134,222,466",
+      "Top ASes by CC crawl coverage:",
+      "AS    47302:      0/ 176,741 crawled (0.0%) | PR=0.000000 | deg=13",
+      "AS    13335:      0/1,077,085 crawled (0.0%) | PR=0.000000 | deg=57"
+    ],
+    "source": "analysis/network_analysis/step_23_cc_crawl_topology/result.txt"
+  },
+  "net_24": {
+    "id": "net_24",
+    "titleZh": "Step 24 — Topology → Security Prediction",
+    "findings": [
+      "AUC=0.678 — 拓扑特征(度数/介数/核数)预测DNSSEC部署",
+      "Samples: 299 ASes (≥100 domains)",
+      "Features: degree, betweenness, coreness, comm_size, PageRank",
+      "Target: DNSSEC > median (5.2%)",
+      "AUC-ROC: 0.6777",
+      "Coefficients:",
+      "degree              : +0.3452"
+    ],
+    "source": "analysis/network_analysis/step_24_topology_security_model/result.txt"
+  },
+  "net_25": {
+    "id": "net_25",
+    "titleZh": "Step 25 — Publication Suite",
+    "findings": [
+      "N/A",
+      "Step 18: Bow-Tie: Sources 7% → SCC 0% → Sinks 0%",
+      "Step 19: Triangles: 47, Max clique: 24, CNAME 以链式 fan-in motif 为主",
+      "Step 20: 渗流: random f_c=0.29, targeted f_c=0.05, ratio 6× — 鲁棒而脆弱",
+      "Step 21: Top 10 NS 故障孤立 1,495 域名 — 基础设施集中化的代价",
+      "Step 22: Top 5 AS 故障孤立 6,380,397 域名 — 多层级联放大效应",
+      "Step 23: CC爬取覆盖与拓扑度数/PageRank相关 — Web可见性反映DNS拓扑位置"
+    ],
+    "source": "analysis/network_analysis/step_25_publication_suite/result.txt"
+  }
+}

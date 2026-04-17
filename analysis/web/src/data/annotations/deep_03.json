@@ -1,0 +1,14 @@
+{
+  "id": "deep_03",
+  "titleZh": "Step 03 — Resolution Health by TLD",
+  "findings": [
+    "平均 NOERROR 率 93.4%，gov 区域健康度最高，NXDOMAIN 反映域名过期/停放",
+    "ch  : NOERROR 93.4% | NXDOMAIN 6.4% | SERVFAIL 0.2%",
+    "ee  : NOERROR 91.0% | NXDOMAIN 8.9% | SERVFAIL 0.2%",
+    "fr  : NOERROR 90.6% | NXDOMAIN 9.2% | SERVFAIL 0.1%",
+    "gov : NOERROR 97.2% | NXDOMAIN 2.6% | SERVFAIL 0.1%",
+    "li  : NOERROR 93.9% | NXDOMAIN 5.6% | SERVFAIL 0.4%",
+    "nu  : NOERROR 91.8% | NXDOMAIN 7.8% | SERVFAIL 0.3%"
+  ],
+  "source": "analysis/deep_analysis/step_03_resolution_health/result.txt"
+}

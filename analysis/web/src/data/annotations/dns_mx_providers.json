@@ -1,0 +1,11 @@
+{
+  "id": "dns_mx_providers",
+  "titleZh": "Top 15 邮件交换 (MX) 提供商",
+  "titleEn": "Top 15 MX Mail Providers",
+  "findings": [
+    "Google + Microsoft 合计占据企业邮件半壁江山。",
+    "OVH / 国家级 ISP 在本国 ccTLD 保留显著份额。",
+    "自建邮件(mx 指向自域)正在萎缩,趋向云化集中。"
+  ],
+  "implications": "邮件集中化意味着少数厂商故障即波及全球通讯链路——也是国家数字主权议题。"
+}

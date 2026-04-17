@@ -1,0 +1,13 @@
+{
+  "id": "net_05",
+  "titleZh": "Step 05 — Multi-Layer Graph Census",
+  "findings": [
+    "Layer                          Nodes      Edges    Avg Deg    Max Deg",
+    "Domain→NS bipartite        9,007,314 22,751,515 2.56/172        416,954",
+    "Domain→IP bipartite       16,946,046 19,709,071 1.20/34      1,304,194",
+    "CNAME directed             5,601,584  4,184,198       —            —",
+    "AS projected                     472      1,344 5.7               133",
+    "NS degree:  mean=171.6, median=1, P99=2060, max=416954"
+  ],
+  "source": "analysis/network_analysis/step_05_graph_census/result.txt"
+}

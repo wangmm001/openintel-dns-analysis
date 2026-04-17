@@ -1,0 +1,14 @@
+{
+  "id": "deep_17",
+  "titleZh": "Step 17 — Shared Hosting / IP Concentration",
+  "findings": [
+    "最大共享 IP 213.186.33.5 承载 1,304,194 域名，虚拟主机集群化明显",
+    "Top 20 most-shared IPs:",
+    "213.186.33.5      : 1,304,194 domains",
+    "194.9.94.85       :  453,071 domains",
+    "194.9.94.86       :  451,935 domains",
+    "217.26.48.101     :  318,921 domains",
+    "188.114.97.0      :  270,591 domains"
+  ],
+  "source": "analysis/deep_analysis/step_17_shared_hosting_clusters/result.txt"
+}

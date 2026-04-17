@@ -1,0 +1,10 @@
+{
+  "id": "pagerank_vs_tranco_consensus",
+  "titleZh": "PR vs Tranco · 共识域名",
+  "titleEn": "PR vs Tranco · Consensus Set",
+  "findings": [
+    "两榜共识 Top N 收敛于全球品牌 + 基础设施域。",
+    "共识集合的规模反映榜单一致性程度。"
+  ],
+  "implications": "共识集合可作为\"金标准\"测试集合 — 各类方法可在其上交叉验证。"
+}

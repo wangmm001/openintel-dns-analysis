@@ -1,0 +1,49 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import EChart from "~/components/EChart.astro";
+import tldRecordsData from "~/data/charts/overview_tld_records.json";
+import queryTypesData from "~/data/charts/overview_query_types.json";
+import completenessData from "~/data/charts/overview_column_completeness.json";
+import {
+  optOverviewTldRecords,
+  optQueryTypes,
+  optColumnCompleteness,
+} from "~/lib/chart-builders";
+
+const opt1 = optOverviewTldRecords(tldRecordsData);
+const opt2 = optQueryTypes(queryTypesData);
+const opt3 = optColumnCompleteness(completenessData);
+---
+
+<SectionLayout
+  path="/overview/data-census"
+  subtitle="以 OpenINTEL 8 大 ccTLD 的 1.7 亿条 DNS 记录为起点——先看域名规模、查询类型、字段覆盖率,建立后续深度分析的基线。"
+>
+  <ChartCard
+    id="overview_tld_records"
+    titleZh="各 TLD 域名与记录数"
+    titleEn="Domains and Records per TLD"
+    subtitle="柱为独立域名数,折线为解析记录总数。.fr 与 .ch 占据规模头部,.gov 小而聚焦。"
+  >
+    <EChart id="overview_tld_records" option={opt1} height={380} ariaLabel="各 TLD 域名与记录数" />
+  </ChartCard>
+
+  <ChartCard
+    id="overview_query_types"
+    titleZh="DNS 查询类型分布 · Top 12"
+    titleEn="DNS Query Type · Top 12"
+    subtitle="全库汇总的 query_type 排名 —— A / NS / AAAA 三大主力占据绝大多数,AFSDB / RP 等长尾显示测量覆盖面广。"
+  >
+    <EChart id="overview_query_types" option={opt2} height={420} ariaLabel="DNS 查询类型分布" />
+  </ChartCard>
+
+  <ChartCard
+    id="overview_column_completeness"
+    titleZh="12 个关键字段的非空覆盖率"
+    titleEn="Key Column Completeness"
+    subtitle="记录字段的可用性画像 —— IP 与国家类字段充盈,DNSSEC 相关字段稀疏,反映功能采纳差异。"
+  >
+    <EChart id="overview_column_completeness" option={opt3} height={420} ariaLabel="关键字段非空覆盖率" />
+  </ChartCard>
+</SectionLayout>

@@ -1,0 +1,8 @@
+{
+  "id": "net_13",
+  "titleZh": "Step 13 — DNS PageRank vs WebGraph PageRank",
+  "findings": [
+    "Paired AS nodes: 0"
+  ],
+  "source": "analysis/network_analysis/step_13_pagerank_comparison/result.txt"
+}

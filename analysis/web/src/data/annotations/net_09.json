@@ -1,0 +1,13 @@
+{
+  "id": "net_09",
+  "titleZh": "Step 09 — Clustering Coefficient",
+  "findings": [
+    "AS Graph:",
+    "Global transitivity (C_global):   0.3304",
+    "Average local clustering (C_avg): 0.6215",
+    "For Erdős–Rényi with same density: 0.012091",
+    "Ratio C_real / C_random:           27.3x",
+    "C(k) — clustering vs degree (sample):"
+  ],
+  "source": "analysis/network_analysis/step_09_clustering/result.txt"
+}

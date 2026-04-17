@@ -1,0 +1,45 @@
+{
+  "id": "dns_ttl_distribution",
+  "title_zh": "A 记录 TTL 分布",
+  "title_en": "A-Record TTL Distribution",
+  "description": "A 记录 Time-To-Live 分桶 — 缓存窗口长短反映域名动态程度。",
+  "source_script": "analysis/scripts/02_dns_records.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "bucket": "≤1min",
+      "count": 1259379,
+      "pct": 4.09
+    },
+    {
+      "bucket": "1–5min",
+      "count": 6157451,
+      "pct": 19.99
+    },
+    {
+      "bucket": "5–60min",
+      "count": 17258098,
+      "pct": 56.04
+    },
+    {
+      "bucket": "1–6h",
+      "count": 4081927,
+      "pct": 13.25
+    },
+    {
+      "bucket": "6–24h",
+      "count": 2015905,
+      "pct": 6.55
+    },
+    {
+      "bucket": "1–7d",
+      "count": 23170,
+      "pct": 0.08
+    },
+    {
+      "bucket": ">7d",
+      "count": 1166,
+      "pct": 0.0
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "overview_status_codes",
+  "title_zh": "响应状态码分布",
+  "title_en": "Response Status Code Distribution",
+  "description": "DNS 响应 rcode 的全局占比 — NOERROR 主导,NXDOMAIN/SERVFAIL 暴露解析失败。",
+  "source_script": "analysis/scripts/01_overview.py",
+  "updated_at": "2026-04-17",
+  "total_records": 171970627,
+  "rows": [
+    {
+      "code": 0,
+      "name": "NOERROR",
+      "count": 158474088,
+      "pct": 92.15
+    },
+    {
+      "code": 3,
+      "name": "NXDOMAIN",
+      "count": 13128559,
+      "pct": 7.63
+    },
+    {
+      "code": 2,
+      "name": "SERVFAIL",
+      "count": 328572,
+      "pct": 0.19
+    },
+    {
+      "code": 65533,
+      "name": "TIMEOUT",
+      "count": 39280,
+      "pct": 0.02
+    },
+    {
+      "code": 6,
+      "name": "CODE_6",
+      "count": 128,
+      "pct": 0.0
+    }
+  ]
+}

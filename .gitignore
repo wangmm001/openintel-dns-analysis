@@ -13,5 +13,11 @@ __pycache__/
 *.pyc
 .venv/
 
+# analysis/web Astro frontend
+analysis/web/node_modules/
+analysis/web/.astro/
+analysis/web/public/charts/
+dist/
+
 # OS
 .DS_Store

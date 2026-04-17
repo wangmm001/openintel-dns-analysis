@@ -1,0 +1,13 @@
+{
+  "id": "net_14",
+  "titleZh": "Step 14 — k-Core Decomposition",
+  "findings": [
+    "Maximum coreness: 23",
+    "Core distribution:",
+    "1-core:    157 nodes (41.9%)",
+    "2-core:     74 nodes (19.7%)",
+    "3-core:     27 nodes (7.2%)",
+    "4-core:     17 nodes (4.5%)"
+  ],
+  "source": "analysis/network_analysis/step_14_k_core/result.txt"
+}

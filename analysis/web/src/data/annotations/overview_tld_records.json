@@ -1,0 +1,11 @@
+{
+  "id": "overview_tld_records",
+  "titleZh": "各 TLD 域名与记录数",
+  "titleEn": "Domains and Records per TLD",
+  "findings": [
+    "8 个 ccTLD 累计 1.7 亿条 DNS 记录,.fr 以 11.1M 域名居首。",
+    ".gov 虽只有 4 万域名,但聚焦美国政府机构,单域名查询密度远高于消费型 TLD。",
+    "小国 TLD(.li / .ee / .nu)记录量虽小,但常被海外品牌注册作创意域名。"
+  ],
+  "implications": "域名规模反映国家数字化渗透率;人均域名数(域名/人口)是衡量互联网普及的隐形指标。"
+}

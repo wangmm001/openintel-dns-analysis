@@ -1,0 +1,14 @@
+{
+  "id": "deep_02",
+  "titleZh": "Step 02 — DNS Query Type Distribution",
+  "findings": [
+    "最常见查询类型: A (31M), NS (27M), AFSDB (24M)",
+    "A           :     30,799,379  (13.28%)",
+    "NS          :     26,559,412  (11.45%)",
+    "AFSDB       :     23,597,417  (10.18%)",
+    "TXT         :     18,071,082  (7.79%)",
+    "MX          :     16,735,947  (7.22%)",
+    "AAAA        :     14,129,960  (6.09%)"
+  ],
+  "source": "analysis/deep_analysis/step_02_query_type_distribution/result.txt"
+}

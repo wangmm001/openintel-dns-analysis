@@ -1,0 +1,58 @@
+{
+  "id": "overview_column_completeness",
+  "title_zh": "关键列非空覆盖率",
+  "title_en": "Key-Column Completeness",
+  "description": "12 个核心字段在全量 DNS 记录中的非空占比 — 反映数据完整性与功能覆盖面。",
+  "source_script": "analysis/scripts/01_overview.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "column": "country",
+      "non_null_pct": 15.47
+    },
+    {
+      "column": "as",
+      "non_null_pct": 15.47
+    },
+    {
+      "column": "ns_address",
+      "non_null_pct": 13.23
+    },
+    {
+      "column": "ip4_address",
+      "non_null_pct": 11.46
+    },
+    {
+      "column": "mx_address",
+      "non_null_pct": 7.95
+    },
+    {
+      "column": "txt_text",
+      "non_null_pct": 7.68
+    },
+    {
+      "column": "soa_mname",
+      "non_null_pct": 7.36
+    },
+    {
+      "column": "cname_name",
+      "non_null_pct": 4.43
+    },
+    {
+      "column": "dnskey_flags",
+      "non_null_pct": 4.14
+    },
+    {
+      "column": "ip6_address",
+      "non_null_pct": 4.01
+    },
+    {
+      "column": "ds_key_tag",
+      "non_null_pct": 2.57
+    },
+    {
+      "column": "caa_tag",
+      "non_null_pct": 0.35
+    }
+  ]
+}

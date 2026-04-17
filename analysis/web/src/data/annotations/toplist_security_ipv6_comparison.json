@@ -1,0 +1,10 @@
+{
+  "id": "toplist_security_ipv6_comparison",
+  "titleZh": "TopList vs Zone · 安全与 IPv6 对比",
+  "titleEn": "TopList vs Zone · Security & IPv6",
+  "findings": [
+    "TopList 域名的 DNSSEC/DMARC/IPv6 采纳率全面高于 Zone 平均。",
+    "头部域名以更快节奏拥抱安全,尾部落后明显。"
+  ],
+  "implications": "互联网\"精英域名\"的领先,对全网平均值带来显著拉升 — 长尾升级靠政策。"
+}

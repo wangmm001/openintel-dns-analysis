@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/04-protocol-health"
+  subtitle="深度洞察·第二章 —— IPv6、AS 集中度、托管地理三把尺量基础设施健康。"
+>
+  <ChartCard id="deep_04" titleZh="Step 04 · IPv4 vs IPv6" titleEn="IPv4 vs IPv6" subtitle="双栈平均部署率 30.9%,仍以 IPv4-only 为主。">
+    <PngChart src="/charts/deep/step_04_ipv4_vs_ipv6/chart.png" alt="IPv4 vs IPv6" chartId="deep_04" />
+  </ChartCard>
+
+  <ChartCard id="deep_05" titleZh="Step 05 · AS 集中度" titleEn="AS Concentration" subtitle="Top 5 AS 托管 39.0% 域名 —— 互联网托管高度集中化。">
+    <PngChart src="/charts/deep/step_05_as_concentration/chart.png" alt="AS 集中度" chartId="deep_05" />
+  </ChartCard>
+
+  <ChartCard id="deep_06" titleZh="Step 06 · 托管地理" titleEn="Hosting Geography" subtitle="Top 3 国家(FR, CH, US)占 59.6% —— 地理基础设施版图。">
+    <PngChart src="/charts/deep/step_06_hosting_geography/chart.png" alt="托管地理" chartId="deep_06" />
+  </ChartCard>
+</SectionLayout>

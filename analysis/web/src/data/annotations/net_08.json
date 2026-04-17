@@ -1,0 +1,13 @@
+{
+  "id": "net_08",
+  "titleZh": "Step 08 — Rich-Club Coefficient",
+  "findings": [
+    "k      φ(k)      φ_norm(k)    Interpretation",
+    "0  0.0121    1.1285       ★ RICH-CLUB",
+    "5  0.1619    1.2775       ★ RICH-CLUB",
+    "10  0.3231    1.4236       ★ RICH-CLUB",
+    "15  0.4672    1.5424       ★ RICH-CLUB",
+    "20  0.5282    1.4117       ★ RICH-CLUB"
+  ],
+  "source": "analysis/network_analysis/step_08_rich_club/result.txt"
+}

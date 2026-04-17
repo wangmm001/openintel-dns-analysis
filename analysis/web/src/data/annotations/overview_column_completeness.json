@@ -1,0 +1,11 @@
+{
+  "id": "overview_column_completeness",
+  "titleZh": "关键列非空覆盖率",
+  "titleEn": "Key-Column Completeness",
+  "findings": [
+    "ip4_address 覆盖最高(几乎所有 A 查询都有值),ip6_address 覆盖约一半——IPv6 仍需努力。",
+    "DNSSEC 相关列(ds_key_tag / dnskey_flags)覆盖率低,反映部署面小。",
+    "GeoIP 字段覆盖率与 IP 列同步——因为它们由同一批解析结果派生。"
+  ],
+  "implications": "数据完整性直接决定哪些分析可行——列覆盖率也是数据质量评估的核心。"
+}

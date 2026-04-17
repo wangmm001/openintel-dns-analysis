@@ -1,0 +1,11 @@
+{
+  "id": "dns_txt_email_security",
+  "titleZh": "邮件安全 · SPF / DMARC",
+  "titleEn": "Email Security · SPF / DMARC Adoption",
+  "findings": [
+    "SPF 普及率约 26%,DMARC 远低于 SPF——部署门槛后者更高。",
+    ".ch / .se 等发达经济体 SPF+DMARC 组合率领先。",
+    "仅 SPF 无 DMARC 的域名缺乏可审计上报,易被伪造。"
+  ],
+  "implications": "SPF 普及仅是第一步——DMARC + DKIM 才是完整的钓鱼防线。"
+}

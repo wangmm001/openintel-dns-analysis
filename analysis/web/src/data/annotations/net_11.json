@@ -1,0 +1,13 @@
+{
+  "id": "net_11",
+  "titleZh": "Step 11 — Small-World Quotient",
+  "findings": [
+    "Humphries σ = (C/C_rand)/(L/L_rand) = 17.471",
+    "C_real=0.3304, C_rand=0.018367, ratio=18.0",
+    "L_real=3.167, L_rand=3.076, ratio=1.030",
+    "→ σ >> 1 ✓ confirms small-world",
+    "Telesford ω = L_rand/L - C/C_latt = 0.530",
+    "ω ≈ 0: small-world  |  ω → -1: lattice-like  |  ω → 1: random-like"
+  ],
+  "source": "analysis/network_analysis/step_11_small_world/result.txt"
+}

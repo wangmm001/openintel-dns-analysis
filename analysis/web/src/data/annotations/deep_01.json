@@ -1,0 +1,14 @@
+{
+  "id": "deep_01",
+  "titleZh": "Step 01 — 数据普查 (Data Census)",
+  "findings": [
+    "总计 232M 条记录覆盖 9 个 TLD 区域 + 4 个 TopList + WebGraph 134M 域名",
+    "Zone ch  :   52,192,076 rows | 7,113,423 domains | ts 1775693050000–1775756880000",
+    "Zone ee  :    2,921,064 rows |   465,026 domains | ts 1775692977000–1775754411000",
+    "Zone fr  :   69,296,979 rows | 11,105,923 domains | ts 1775692977000–1775715515000",
+    "Zone gov :      258,871 rows |    39,651 domains | ts 1775692982000–1775754382000",
+    "Zone li  :    1,073,229 rows |   167,156 domains | ts 1775693052000–1775756866000",
+    "Zone nu  :    4,033,983 rows |   531,631 domains | ts 1775692977000–1775754388000"
+  ],
+  "source": "analysis/deep_analysis/step_01_data_census/result.txt"
+}

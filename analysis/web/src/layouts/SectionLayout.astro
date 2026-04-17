@@ -1,0 +1,116 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import AnnotationDrawer from "~/components/AnnotationDrawer.astro";
+import { neighbors, pageByPath } from "~/lib/navigation";
+import annotations from "~/data/annotations_bundle.json";
+
+interface Props {
+  path: string;
+  subtitle?: string;
+}
+const { path, subtitle } = Astro.props;
+const page = pageByPath(path);
+const { prev, next, tier } = neighbors(path);
+
+const annotationList = Object.values(annotations as Record<string, any>);
+---
+
+<BaseLayout
+  title={page ? `${page.titleZh} · ${tier?.titleZh ?? ""}` : "OpenINTEL"}
+  activeTier={page?.tier}
+>
+  <AnnotationDrawer annotations={annotationList} />
+
+  <article class="mx-auto max-w-6xl px-6 pt-10 pb-24">
+    <nav class="flex flex-wrap items-center gap-2 text-[12px] text-[color:var(--color-text-2)]">
+      <a href="/" class="hover:text-[color:var(--color-text-0)]">首页</a>
+      <span>›</span>
+      {
+        tier && (
+          <a
+            href={tier.pages[0].path}
+            class="hover:text-[color:var(--color-text-0)]"
+          >
+            {tier.titleZh}
+          </a>
+        )
+      }
+      <span>›</span>
+      <span class="text-[color:var(--color-text-1)]">{page?.titleZh ?? ""}</span>
+    </nav>
+
+    <header class="mt-5 border-b border-[color:var(--color-line)]/60 pb-8">
+      <div class="flex items-center gap-3">
+        <span
+          class="flex h-7 w-7 items-center justify-center rounded-md font-mono text-[12px] font-bold"
+          style="background:var(--color-accent-soft);color:var(--color-accent);"
+        >
+          {page?.tier}
+        </span>
+        <p class="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-text-2)]">
+          {tier?.titleEn} · {String(page?.order ?? "").padStart(2, "0")} / 30
+        </p>
+      </div>
+      <h1 class="mt-4 text-[36px] font-semibold leading-tight text-[color:var(--color-text-0)] md:text-[44px]">
+        {page?.titleZh}
+      </h1>
+      <p class="mt-1.5 text-[14px] text-[color:var(--color-text-2)]">{page?.titleEn}</p>
+      {
+        subtitle && (
+          <p class="mt-5 max-w-3xl text-[15px] leading-relaxed text-[color:var(--color-text-1)]">
+            {subtitle}
+          </p>
+        )
+      }
+    </header>
+
+    <section class="mt-10 space-y-8">
+      <slot />
+    </section>
+
+    <nav class="mt-16 flex flex-col gap-4 border-t border-[color:var(--color-line)]/60 pt-8 sm:flex-row sm:items-stretch sm:justify-between">
+      {
+        prev ? (
+          <a
+            href={prev.path}
+            data-nav-prev
+            class="card block max-w-md flex-1 p-5 text-left"
+          >
+            <div class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-text-2)]">
+              ← 上一页 · {prev.tier}
+            </div>
+            <div class="mt-2 text-[16px] font-semibold text-[color:var(--color-text-0)]">
+              {prev.titleZh}
+            </div>
+            <div class="mt-1 text-[12px] text-[color:var(--color-text-2)]">
+              {prev.titleEn}
+            </div>
+          </a>
+        ) : (
+          <span class="hidden sm:block sm:flex-1" />
+        )
+      }
+      {
+        next ? (
+          <a
+            href={next.path}
+            data-nav-next
+            class="card block max-w-md flex-1 p-5 text-right"
+          >
+            <div class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-text-2)]">
+              {next.tier} · 下一页 →
+            </div>
+            <div class="mt-2 text-[16px] font-semibold text-[color:var(--color-text-0)]">
+              {next.titleZh}
+            </div>
+            <div class="mt-1 text-[12px] text-[color:var(--color-text-2)]">
+              {next.titleEn}
+            </div>
+          </a>
+        ) : (
+          <span class="hidden sm:block sm:flex-1" />
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>

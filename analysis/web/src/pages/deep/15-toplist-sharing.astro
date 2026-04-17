@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/15-toplist-sharing"
+  subtitle="深度洞察·第六章 —— TopList 与 ccTLD 的重叠度、PageRank 与安全的相关性、超大规模共享托管。"
+>
+  <ChartCard id="deep_15" titleZh="Step 15 · TopList × Zone 重叠度" titleEn="TopList–Zone Overlap" subtitle="重叠仅 1–3% —— 可见网与注册网的结构性错位。">
+    <PngChart src="/charts/deep/step_15_toplist_zone_overlap/chart.png" alt="TopList × Zone 重叠度" chartId="deep_15" />
+  </ChartCard>
+
+  <ChartCard id="deep_16" titleZh="Step 16 · PageRank × DNS 安全" titleEn="PageRank × DNS Security" subtitle="高 PR 域名在 DNSSEC/SPF/CAA 采纳上显著领先。">
+    <PngChart src="/charts/deep/step_16_pagerank_dns_security/chart.png" alt="PageRank × DNS 安全" chartId="deep_16" />
+  </ChartCard>
+
+  <ChartCard id="deep_17" titleZh="Step 17 · 共享托管簇" titleEn="Shared Hosting Clusters" subtitle="IP 213.186.33.5 共享 1.3M 域名 —— 巨型虚拟主机集群的压强。">
+    <PngChart src="/charts/deep/step_17_shared_hosting_clusters/chart.png" alt="共享托管簇" chartId="deep_17" />
+  </ChartCard>
+</SectionLayout>

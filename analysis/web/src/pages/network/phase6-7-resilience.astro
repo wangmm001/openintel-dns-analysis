@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase6-7-resilience"
+  subtitle="复杂网络·阶段六—七 —— 级联失败、多层放大、拓扑 → 安全预测,收束于 IMC 论文级结论。"
+>
+  <ChartCard id="net_21" titleZh="Step 21 · NS 级联失败" titleEn="Cascading NS Failure" subtitle="Top 10 NS 故障孤立 1,495 域名 —— 基础设施集中化的代价。">
+    <PngChart src="/charts/network/step_21_cascading_failure/chart.png" alt="级联失败" chartId="net_21" />
+  </ChartCard>
+  <ChartCard id="net_22" titleZh="Step 22 · 多层级联" titleEn="Multi-Layer Cascade" subtitle="Top 5 AS 故障孤立 6.38M 域名 —— 多层级联放大效应。">
+    <PngChart src="/charts/network/step_22_multilayer_cascade/chart.png" alt="多层级联" chartId="net_22" />
+  </ChartCard>
+  <ChartCard id="net_24" titleZh="Step 24 · 拓扑 → 安全预测" titleEn="Topology → Security Prediction" subtitle="AUC=0.678 —— 度数/介数/核数仅凭拓扑位置即可预测 DNSSEC 部署。">
+    <PngChart src="/charts/network/step_24_topology_security_model/chart.png" alt="拓扑 → 安全预测" chartId="net_24" />
+  </ChartCard>
+</SectionLayout>

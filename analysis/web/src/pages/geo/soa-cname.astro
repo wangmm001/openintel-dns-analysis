@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/geo/soa-cname"
+  subtitle="基础设施的\u0022心跳\u0022三件套 —— SOA 生命周期参数、CNAME 别名链、查询 RTT。它们共同决定互联网的运维节奏。"
+>
+  <ChartCard
+    id="infra_soa_params"
+    titleZh="SOA 生命周期参数"
+    titleEn="SOA Lifecycle Parameters"
+    subtitle="refresh / retry / expire / minimum 跨 TLD 差异极大 —— 注册运营的隐形开关。"
+  >
+    <PngChart src="/charts/output/infra_soa_params.png" alt="SOA 生命周期参数" chartId="infra_soa_params" />
+  </ChartCard>
+
+  <ChartCard
+    id="infra_cname"
+    titleZh="CNAME 别名与 CDN 指纹"
+    titleEn="CNAME Aliases & CDN Fingerprints"
+    subtitle="CNAME 指向 Vercel / Cloudflare / Netlify 等 CDN —— 现代 Web 的\u0022承运商\u0022版图。"
+  >
+    <PngChart src="/charts/output/infra_cname.png" alt="CNAME 别名与 CDN" chartId="infra_cname" />
+  </ChartCard>
+
+  <ChartCard
+    id="anomaly_rtt_distribution"
+    titleZh="DNS 查询 RTT 分布"
+    titleEn="DNS Query RTT Distribution"
+    subtitle="P50 近即时,但 P99 长尾暴露边缘缺失地区 —— 中位数骗人,尾部才是真实延迟。"
+  >
+    <PngChart src="/charts/output/anomaly_rtt_distribution.png" alt="DNS 查询 RTT 分布" chartId="anomaly_rtt_distribution" />
+  </ChartCard>
+</SectionLayout>

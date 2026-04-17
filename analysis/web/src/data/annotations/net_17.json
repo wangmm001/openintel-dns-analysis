@@ -1,0 +1,13 @@
+{
+  "id": "net_17",
+  "titleZh": "Step 17 — Community ↔ Security Correlation",
+  "findings": [
+    "Community avg security profile (top 15 by size):",
+    "Comm   0 (n= 104): DNSSEC=17.6% | IPv6=21.4% | SPF=35.3%",
+    "Comm   1 (n=  61): DNSSEC=10.3% | IPv6=15.6% | SPF=33.5%",
+    "Comm   2 (n=  34): DNSSEC=11.5% | IPv6=12.4% | SPF=30.0%",
+    "Comm   3 (n=  30): DNSSEC=9.4% | IPv6=9.6% | SPF=31.3%",
+    "Comm   4 (n=  25): DNSSEC=21.9% | IPv6=10.4% | SPF=31.8%"
+  ],
+  "source": "analysis/network_analysis/step_17_community_security/result.txt"
+}

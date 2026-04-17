@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/geo/global-distribution"
+  subtitle="域名的 IP 落地在地图上 —— 国家、AS、TLD × AS 热力三张图,揭示互联网的\u0022数字国界\u0022。"
+>
+  <ChartCard
+    id="geo_top_countries"
+    titleZh="Top 主机托管国家"
+    titleEn="Top Hosting Countries"
+    subtitle="按域名的 A/AAAA 指向 IP 所属国家统计 —— 法律管辖与内容监管的底层图。"
+  >
+    <PngChart src="/charts/output/geo_top_countries.png" alt="Top 主机托管国家" chartId="geo_top_countries" />
+  </ChartCard>
+
+  <ChartCard
+    id="geo_top_as"
+    titleZh="Top 主机托管 AS"
+    titleEn="Top Hosting Autonomous Systems"
+    subtitle="Top 5 AS 合计承载近 40% 的域名 —— 基础设施高度集中化的佐证。"
+  >
+    <PngChart src="/charts/output/geo_top_as.png" alt="Top 主机托管 AS" chartId="geo_top_as" />
+  </ChartCard>
+
+  <ChartCard
+    id="geo_tld_heatmap"
+    titleZh="TLD × 主机 AS 热力矩阵"
+    titleEn="TLD × Hosting AS Heatmap"
+    subtitle="对角高亮揭示\u0022本国 ccTLD × 本国 AS\u0022的经典偏好;横向云 AS 则跨国通用。"
+  >
+    <PngChart src="/charts/output/geo_tld_heatmap.png" alt="TLD × AS 热力矩阵" chartId="geo_tld_heatmap" />
+  </ChartCard>
+</SectionLayout>

@@ -1,0 +1,76 @@
+{
+  "id": "overview_query_types",
+  "title_zh": "Query Type 全局分布",
+  "title_en": "DNS Query Type Distribution",
+  "description": "全部 8 个 ccTLD 汇总的 DNS 查询类型分布 — A / NS / AAAA / MX / SOA / DNSKEY 等。",
+  "source_script": "analysis/scripts/01_overview.py",
+  "updated_at": "2026-04-17",
+  "total_records": 171970627,
+  "rows": [
+    {
+      "type": "A",
+      "count": 30799379,
+      "pct": 17.91
+    },
+    {
+      "type": "NS",
+      "count": 26559412,
+      "pct": 15.44
+    },
+    {
+      "type": "AFSDB",
+      "count": 23597417,
+      "pct": 13.72
+    },
+    {
+      "type": "TXT",
+      "count": 18071082,
+      "pct": 10.51
+    },
+    {
+      "type": "MX",
+      "count": 16735947,
+      "pct": 9.73
+    },
+    {
+      "type": "AAAA",
+      "count": 14129960,
+      "pct": 8.22
+    },
+    {
+      "type": "SOA",
+      "count": 13252677,
+      "pct": 7.71
+    },
+    {
+      "type": "DNSKEY",
+      "count": 12399035,
+      "pct": 7.21
+    },
+    {
+      "type": "DS",
+      "count": 8024992,
+      "pct": 4.67
+    },
+    {
+      "type": "NSEC3PARAM",
+      "count": 5271123,
+      "pct": 3.07
+    },
+    {
+      "type": "CDS",
+      "count": 1586225,
+      "pct": 0.92
+    },
+    {
+      "type": "CDNSKEY",
+      "count": 880881,
+      "pct": 0.51
+    },
+    {
+      "type": "CAA",
+      "count": 662497,
+      "pct": 0.39
+    }
+  ]
+}

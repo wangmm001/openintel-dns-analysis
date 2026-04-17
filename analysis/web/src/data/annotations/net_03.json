@@ -1,0 +1,13 @@
+{
+  "id": "net_03",
+  "titleZh": "Step 03 — CNAME Delegation Chain Graph",
+  "findings": [
+    "CNAME edges:     4,184,198",
+    "Source domains:  3,695,433",
+    "Target names:    1,906,151",
+    "Chain depth distribution:",
+    "Depth 1:  3,695,433 domains",
+    "Depth 2:      6,985 domains"
+  ],
+  "source": "analysis/network_analysis/step_03_cname_chains/result.txt"
+}

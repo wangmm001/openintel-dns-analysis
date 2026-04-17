@@ -1,0 +1,53 @@
+---
+import { TIERS } from "~/lib/navigation";
+interface Props {
+  activeTier?: string;
+  homeHref?: string;
+}
+const { activeTier, homeHref = "/" } = Astro.props;
+---
+
+<nav class="glass fixed top-0 z-50 flex h-14 w-full items-center justify-between border-b border-[color:var(--color-line)] px-5">
+  <a
+    href={homeHref}
+    class="flex items-center gap-3 text-[15px] font-medium tracking-wide text-[color:var(--color-text-0)] transition hover:text-white"
+    aria-label="OpenINTEL Atlas"
+  >
+    <span
+      class="relative flex h-7 w-7 items-center justify-center rounded-md"
+      style="background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));"
+    >
+      <span class="text-[10px] font-bold text-white">OI</span>
+    </span>
+    <span class="hidden sm:inline">OpenINTEL · 全局态势</span>
+    <span class="sm:hidden">OpenINTEL</span>
+  </a>
+
+  <div class="hidden items-center gap-1 md:flex">
+    {
+      TIERS.map((t) => (
+        <a
+          href={`${t.pages[0].path}`}
+          data-active={activeTier === t.key ? "true" : "false"}
+          class="rounded-full px-3 py-1 text-[12.5px] text-[color:var(--color-text-2)] transition data-[active=true]:bg-[color:var(--color-bg-3)] data-[active=true]:text-[color:var(--color-text-0)] hover:text-[color:var(--color-text-0)]"
+        >
+          <span class="mr-1 font-mono text-[11px] text-[color:var(--color-text-3)]">{t.key}.</span>
+          {t.titleZh}
+        </a>
+      ))
+    }
+  </div>
+
+  <button
+    id="toc-trigger"
+    class="flex items-center gap-2 rounded-full border border-[color:var(--color-line)] bg-[color:var(--color-bg-2)]/60 px-3 py-1.5 text-xs text-[color:var(--color-text-1)] transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-text-0)]"
+    aria-label="打开全局目录 (G)"
+    type="button"
+  >
+    <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
+      <path d="M3 5h14v2H3zM3 9h14v2H3zM3 13h14v2H3z" />
+    </svg>
+    <span class="hidden sm:inline">目录</span>
+    <kbd class="rounded bg-[color:var(--color-bg-3)] px-1.5 py-0.5 font-mono text-[10px] text-[color:var(--color-text-2)]">G</kbd>
+  </button>
+</nav>

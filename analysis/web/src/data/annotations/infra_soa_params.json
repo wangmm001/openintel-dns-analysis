@@ -1,0 +1,10 @@
+{
+  "id": "infra_soa_params",
+  "titleZh": "SOA 生命周期参数",
+  "titleEn": "SOA Lifecycle Parameters",
+  "findings": [
+    "refresh / retry / expire / minimum 参数跨 TLD 分布差异大。",
+    "大 TLD 倾向保守配置(长 expire),小 TLD 更激进。"
+  ],
+  "implications": "SOA 参数决定次权威服务器在主服务器故障时的坚持时长,是隐形可用性开关。"
+}

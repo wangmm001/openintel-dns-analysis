@@ -1,0 +1,14 @@
+{
+  "id": "net_24",
+  "titleZh": "Step 24 — Topology → Security Prediction",
+  "findings": [
+    "AUC=0.678 — 拓扑特征(度数/介数/核数)预测DNSSEC部署",
+    "Samples: 299 ASes (≥100 domains)",
+    "Features: degree, betweenness, coreness, comm_size, PageRank",
+    "Target: DNSSEC > median (5.2%)",
+    "AUC-ROC: 0.6777",
+    "Coefficients:",
+    "degree              : +0.3452"
+  ],
+  "source": "analysis/network_analysis/step_24_topology_security_model/result.txt"
+}

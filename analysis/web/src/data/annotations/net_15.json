@@ -1,0 +1,13 @@
+{
+  "id": "net_15",
+  "titleZh": "Step 15 — Articulation Points & Bridges (Single Points of Failure)",
+  "findings": [
+    "AS graph:",
+    "Articulation points: 85 (22.7% of nodes)",
+    "Bridges (est.):      100+",
+    "NS layer — Single-NS domains: 26,135 (0.29%)",
+    "Critical sole-NS (failure impact):",
+    "sieg.dns1.ch.                                :   17,999 domains depend solely on this NS"
+  ],
+  "source": "analysis/network_analysis/step_15_articulation_points/result.txt"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "deep_21",
+  "titleZh": "Step 21 — BGP Prefix Analysis",
+  "findings": [
+    "最大前缀 213.186.32.0/19 承载 1,564,848 域名，/24 是最常见前缀粒度",
+    "Top 20 prefixes by domain count:",
+    "213.186.32.0/19     : 1,564,848 domains |    201 IPs | 1 AS",
+    "217.160.0.0/16      :  769,429 domains |  2,341 IPs | 1 AS",
+    "217.26.48.0/20      :  676,883 domains |  1,046 IPs | 1 AS",
+    "46.30.208.0/21      :  464,089 domains |    508 IPs | 1 AS",
+    "194.9.94.0/23       :  453,943 domains |     86 IPs | 1 AS"
+  ],
+  "source": "analysis/deep_analysis/step_21_bgp_prefix_analysis/result.txt"
+}

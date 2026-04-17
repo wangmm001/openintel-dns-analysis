@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/pagerank/distribution"
+  subtitle="Common Crawl WebGraph 的 1.34 亿域名,按 PageRank 显示互联网\u0022权威度\u0022的幂律分布。"
+>
+  <ChartCard
+    id="webgraph_pagerank_distribution"
+    titleZh="WebGraph · PageRank 分布"
+    titleEn="WebGraph · PageRank Distribution"
+    subtitle="典型幂律 —— 头部百名域名集中权威,长尾平摊 —— 与财富分布如出一辙。"
+  >
+    <PngChart src="/charts/output/webgraph_pagerank_distribution.png" alt="WebGraph PageRank 分布" chartId="webgraph_pagerank_distribution" />
+  </ChartCard>
+
+  <ChartCard
+    id="webgraph_cctld_ranking"
+    titleZh="ccTLD · WebGraph 排名"
+    titleEn="ccTLD · WebGraph Ranking"
+    subtitle="小国 ccTLD 因少数头部域而\u0022被抬高\u0022;规模并非排名的唯一决定因素。"
+  >
+    <PngChart src="/charts/output/webgraph_cctld_ranking.png" alt="ccTLD WebGraph 排名" chartId="webgraph_cctld_ranking" />
+  </ChartCard>
+
+  <ChartCard
+    id="webgraph_tld_distribution"
+    titleZh="WebGraph · TLD 分布"
+    titleEn="WebGraph · TLD Distribution"
+    subtitle=".com 占 WebGraph 约 40% —— 被引用视角下的品牌聚焦。"
+  >
+    <PngChart src="/charts/output/webgraph_tld_distribution.png" alt="WebGraph TLD 分布" chartId="webgraph_tld_distribution" />
+  </ChartCard>
+</SectionLayout>

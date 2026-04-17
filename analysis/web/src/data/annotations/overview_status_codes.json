@@ -1,0 +1,11 @@
+{
+  "id": "overview_status_codes",
+  "titleZh": "响应状态码分布",
+  "titleEn": "Response Status Code Distribution",
+  "findings": [
+    "NOERROR 约 93%,反映绝大多数域名可正常解析。",
+    "NXDOMAIN 是失败码中的主力——过期域名、打字错误或探测请求。",
+    "SERVFAIL 与 TIMEOUT 虽量小,但指向真实的可用性问题。"
+  ],
+  "implications": "NXDOMAIN 率高可能说明 OpenINTEL 的域名列表含过期注册 — 也提供了过期域名监测副产品。"
+}

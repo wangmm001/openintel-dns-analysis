@@ -1,0 +1,10 @@
+{
+  "id": "webgraph_cctld_ranking",
+  "titleZh": "ccTLD · WebGraph 排名",
+  "titleEn": "ccTLD · WebGraph Ranking",
+  "findings": [
+    "主要 ccTLD 在 WebGraph 中的相对权威度不完全跟注册规模对齐。",
+    "小国 ccTLD 可因头部媒体/政府域拉高整体排名。"
+  ],
+  "implications": "WebGraph 排名是\"被引用度\",不是\"被注册\"——两种分布的差异是研究富矿。"
+}

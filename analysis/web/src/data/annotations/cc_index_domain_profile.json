@@ -1,0 +1,10 @@
+{
+  "id": "cc_index_domain_profile",
+  "titleZh": "CC CDX · 域名画像",
+  "titleEn": "CC CDX · Domain Profile",
+  "findings": [
+    "语言、国家、MIME 类型、URL 模式共同构成域名的画像。",
+    "画像可辅助分类:企业/媒体/个人/孵化中站点。"
+  ],
+  "implications": "域名画像是研究\"Web 内容生态\"的基本单位。"
+}

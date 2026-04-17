@@ -1,0 +1,14 @@
+{
+  "id": "deep_14",
+  "titleZh": "Step 14 — CNAME/CDN Fingerprint",
+  "findings": [
+    "CNAME 域名 3,695,433，Vercel 领先 CDN (64,789 domains)",
+    "Total domains with CNAME: 3,695,433",
+    "Cloudflare          :   24,510 (0.66%)",
+    "AWS CloudFront      :   39,673 (1.07%)",
+    "Akamai              :   26,851 (0.73%)",
+    "Fastly              :    5,501 (0.15%)",
+    "Google              :   55,644 (1.51%)"
+  ],
+  "source": "analysis/deep_analysis/step_14_cname_cdn_fingerprint/result.txt"
+}

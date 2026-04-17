@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/geo/toplist-mirror"
+  subtitle="把 4 大主流 TopList(Tranco / Umbrella / Radar / Majestic)作为互联网的\u0022精英镜子\u0022,对比它们与全量 ccTLD 的分布差异。"
+>
+  <ChartCard
+    id="toplist_tld_distribution"
+    titleZh="TopList · TLD 分布"
+    titleEn="TopList · TLD Distribution"
+    subtitle=".com 主导全球榜,ccTLD 在本国榜中重要性被放大。两种视角互补。"
+  >
+    <PngChart src="/charts/output/toplist_tld_distribution.png" alt="TopList TLD 分布" chartId="toplist_tld_distribution" />
+  </ChartCard>
+
+  <ChartCard
+    id="toplist_security_ipv6_comparison"
+    titleZh="TopList vs Zone · 安全与 IPv6 对比"
+    titleEn="TopList vs Zone · Security & IPv6"
+    subtitle="精英域名在 DNSSEC / DMARC / IPv6 上全面领先 —— 头部驱动长尾跟进。"
+  >
+    <PngChart src="/charts/output/toplist_security_ipv6_comparison.png" alt="TopList vs Zone 安全与 IPv6" chartId="toplist_security_ipv6_comparison" />
+  </ChartCard>
+
+  <ChartCard
+    id="toplist_email_security"
+    titleZh="TopList · 邮件安全"
+    titleEn="TopList · Email Security"
+    subtitle="TopList 域名 SPF 超 80%、DMARC 超 50% —— 头部品牌对钓鱼防御的真实投入。"
+  >
+    <PngChart src="/charts/output/toplist_email_security.png" alt="TopList 邮件安全" chartId="toplist_email_security" />
+  </ChartCard>
+</SectionLayout>

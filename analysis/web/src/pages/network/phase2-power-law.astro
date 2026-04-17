@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase2-power-law"
+  subtitle="复杂网络·阶段二 —— 度分布幂律、度相关性、富俱乐部系数,构成\u0022标度无关\u0022的三把尺。"
+>
+  <ChartCard id="net_06" titleZh="Step 06 · 幂律拟合 (Clauset et al.)" titleEn="Power-Law Fitting" subtitle="NS α=1.75,IP α=1.29 —— 标度无关 + 少数节点垄断连接。">
+    <PngChart src="/charts/network/step_06_power_law_fitting/chart.png" alt="幂律拟合" chartId="net_06" />
+  </ChartCard>
+  <ChartCard id="net_07" titleZh="Step 07 · 度相关性" titleEn="Degree Assortativity" subtitle="高度节点倾向相互连接 —— 富者愈富。">
+    <PngChart src="/charts/network/step_07_assortativity/chart.png" alt="度相关性" chartId="net_07" />
+  </ChartCard>
+  <ChartCard id="net_08" titleZh="Step 08 · 富俱乐部系数" titleEn="Rich-Club Coefficient" subtitle="φ_norm > 1 的核心 AS 构成\u0022核心寡头\u0022—— DNS 信任的集中。">
+    <PngChart src="/charts/network/step_08_rich_club/chart.png" alt="富俱乐部系数" chartId="net_08" />
+  </ChartCard>
+</SectionLayout>

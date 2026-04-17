@@ -1,0 +1,10 @@
+{
+  "id": "toplist_tld_distribution",
+  "titleZh": "TopList · TLD 分布",
+  "titleEn": "TopList · TLD Distribution",
+  "findings": [
+    ".com 主导 Top 排行,反映全球商业品牌偏好。",
+    "国家 ccTLD 在本国排行内占比显著高于全球榜。"
+  ],
+  "implications": "ccTLD 是\"本地互联网\"的镜子,全球榜则偏向跨国商业 — 两者视角互补。"
+}

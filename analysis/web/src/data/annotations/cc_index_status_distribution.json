@@ -1,0 +1,10 @@
+{
+  "id": "cc_index_status_distribution",
+  "titleZh": "CC CDX · HTTP 状态码",
+  "titleEn": "CC CDX · HTTP Status Distribution",
+  "findings": [
+    "200 主导,但 301/302 重定向和 404 也有显著占比。",
+    "5xx 比例能反映服务器健康度与 CC 爬取遇到的障碍。"
+  ],
+  "implications": "CDX 状态码是 Web 健康度的补充维度 — DNS 可用 ≠ HTTP 可用。"
+}

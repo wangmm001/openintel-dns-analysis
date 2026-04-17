@@ -1,0 +1,18 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/07-performance"
+  subtitle="深度洞察·第三章 —— 缓存策略与查询延迟的真实画像。"
+>
+  <ChartCard id="deep_07" titleZh="Step 07 · TTL 策略" titleEn="TTL Strategy" subtitle="≤1min TTL 仅 3% —— TTL 越短越动态,主流是分钟-小时尺度。">
+    <PngChart src="/charts/deep/step_07_ttl_strategy/chart.png" alt="TTL 策略" chartId="deep_07" />
+  </ChartCard>
+
+  <ChartCard id="deep_08" titleZh="Step 08 · RTT 性能" titleEn="RTT Performance" subtitle="中位 RTT 近 0ms,但 P99 尾部暴露边缘部署差异。">
+    <PngChart src="/charts/deep/step_08_rtt_performance/chart.png" alt="RTT 性能" chartId="deep_08" />
+  </ChartCard>
+</SectionLayout>

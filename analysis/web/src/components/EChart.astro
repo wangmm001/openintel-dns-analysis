@@ -1,0 +1,41 @@
+---
+interface Props {
+  id: string;
+  option: Record<string, unknown>;
+  height?: number;
+  class?: string;
+  ariaLabel?: string;
+}
+const {
+  id,
+  option,
+  height = 360,
+  class: className = "",
+  ariaLabel = "",
+} = Astro.props;
+const optionJson = JSON.stringify(option);
+---
+
+<div
+  data-echart
+  id={`echart-${id}`}
+  data-option={optionJson}
+  class={`echart-target w-full ${className}`}
+  style={`height:${height}px;`}
+  role="img"
+  aria-label={ariaLabel}
+>
+</div>
+
+<script>
+  import { mountAll, disposeAll } from "~/lib/echarts-runtime";
+
+  const up = () => mountAll();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", up);
+  } else {
+    up();
+  }
+  document.addEventListener("astro:page-load", up);
+  document.addEventListener("astro:before-swap", () => disposeAll());
+</script>

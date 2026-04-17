@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase5-bow-tie-motifs"
+  subtitle="复杂网络·阶段五 —— bow-tie 宏观结构、motif 微观建构、渗流阈值。"
+>
+  <ChartCard id="net_18" titleZh="Step 18 · Bow-Tie 宏观分解" titleEn="Bow-Tie Decomposition" subtitle="源 7% → SCC → 汇 0% —— 委托关系由多到少的单向结构。">
+    <PngChart src="/charts/network/step_18_bow_tie/chart.png" alt="Bow-Tie 分解" chartId="net_18" />
+  </ChartCard>
+  <ChartCard id="net_19" titleZh="Step 19 · Motif 普查" titleEn="Network Motif Census" subtitle="三角形 47 / 最大团 24 / CNAME 链式 fan-in 主导的微观模式。">
+    <PngChart src="/charts/network/step_19_motifs/chart.png" alt="Motif 普查" chartId="net_19" />
+  </ChartCard>
+  <ChartCard id="net_20" titleZh="Step 20 · 渗流阈值" titleEn="Site Percolation" subtitle="随机 f_c=0.29,靶向 f_c=0.05 —— 6 倍差,鲁棒而脆弱。">
+    <PngChart src="/charts/network/step_20_percolation/chart.png" alt="渗流阈值" chartId="net_20" />
+  </ChartCard>
+</SectionLayout>

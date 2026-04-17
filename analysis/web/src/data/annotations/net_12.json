@@ -1,0 +1,13 @@
+{
+  "id": "net_12",
+  "titleZh": "Step 12 — Multi-Centrality Analysis (AS graph, giant component)",
+  "findings": [
+    "Top 15 by degree:",
+    "# 1 AS 16276      | deg=  133 | betw=26121.6 | eig=1.0000 | close=0.5335",
+    "# 2 AS 16509      | deg=  104 | betw=18207.2 | eig=0.7695 | close=0.5238",
+    "# 3 AS 24940      | deg=   65 | betw=5815.6 | eig=0.8281 | close=0.4675",
+    "# 4 AS --         | deg=   61 | betw=5184.2 | eig=0.8266 | close=0.4740",
+    "# 5 AS 13335      | deg=   57 | betw=4957.3 | eig=0.5614 | close=0.4623"
+  ],
+  "source": "analysis/network_analysis/step_12_multi_centrality/result.txt"
+}

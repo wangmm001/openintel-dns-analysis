@@ -1,0 +1,10 @@
+{
+  "id": "pagerank_vs_tranco_scatter",
+  "titleZh": "PR vs Tranco · 散点",
+  "titleEn": "PR vs Tranco · Scatter",
+  "findings": [
+    "对角分布为基线,偏离对角线揭示两榜的局部分歧。",
+    "远离对角的外点常为垂直领域的头部(媒体、电商、SaaS)。"
+  ],
+  "implications": "散点是定位\"领域头部\"的快速方法。"
+}

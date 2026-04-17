@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase3-small-world"
+  subtitle="复杂网络·阶段三 —— 聚类系数 + 最短路径 + 小世界量 σ/ω 构成互联网的六度距离证据链。"
+>
+  <ChartCard id="net_09" titleZh="Step 09 · 聚类系数" titleEn="Clustering Coefficient" subtitle="局部 + 全局聚类揭示密集互联的子群。">
+    <PngChart src="/charts/network/step_09_clustering/chart.png" alt="聚类系数" chartId="net_09" />
+  </ChartCard>
+  <ChartCard id="net_10" titleZh="Step 10 · 最短路径" titleEn="Shortest Path Length" subtitle="平均 L ≈ 3,路径短而高聚类 —— 小世界特征。">
+    <PngChart src="/charts/network/step_10_path_length/chart.png" alt="最短路径长度" chartId="net_10" />
+  </ChartCard>
+  <ChartCard id="net_11" titleZh="Step 11 · 小世界指数 σ / ω" titleEn="Small-World Quotient" subtitle="σ ≫ 1,证实 DNS 是典型小世界 —— 短路径 + 高聚类。">
+    <PngChart src="/charts/network/step_11_small_world/chart.png" alt="小世界指数" chartId="net_11" />
+  </ChartCard>
+</SectionLayout>

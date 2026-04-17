@@ -1,0 +1,50 @@
+{
+  "id": "overview_tld_records",
+  "title_zh": "各 TLD 域名与记录数",
+  "title_en": "Domains and Records per TLD",
+  "description": "8 个公共 ccTLD 分区的规模对比 — 域名数与解析记录总数双轴显示。",
+  "source_script": "analysis/scripts/01_overview.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "tld": "fr",
+      "records": 69296979,
+      "domains": 11105923
+    },
+    {
+      "tld": "ch",
+      "records": 52192076,
+      "domains": 7113423
+    },
+    {
+      "tld": "se",
+      "records": 30744314,
+      "domains": 3786257
+    },
+    {
+      "tld": "sk",
+      "records": 11450111,
+      "domains": 1385540
+    },
+    {
+      "tld": "nu",
+      "records": 4033983,
+      "domains": 531631
+    },
+    {
+      "tld": "ee",
+      "records": 2921064,
+      "domains": 465026
+    },
+    {
+      "tld": "li",
+      "records": 1073229,
+      "domains": 167156
+    },
+    {
+      "tld": "gov",
+      "records": 258871,
+      "domains": 39651
+    }
+  ]
+}

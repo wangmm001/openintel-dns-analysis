@@ -1,0 +1,14 @@
+{
+  "id": "deep_04",
+  "titleZh": "Step 04 — IPv4 vs IPv6 Dual-Stack Adoption",
+  "findings": [
+    "双栈平均部署率 30.9%，大多数域名仍为 IPv4-only",
+    "ch  : total 4,334,598 | dual-stack 41.0% | v4-only 58.8% | v6-only 0.1%",
+    "ee  : total   335,308 | dual-stack 7.5% | v4-only 92.2% | v6-only 0.0%",
+    "fr  : total 7,892,869 | dual-stack 32.9% | v4-only 66.9% | v6-only 0.0%",
+    "gov : total    26,319 | dual-stack 23.9% | v4-only 75.9% | v6-only 0.0%",
+    "li  : total   108,824 | dual-stack 30.3% | v4-only 69.4% | v6-only 0.0%",
+    "nu  : total   334,317 | dual-stack 34.0% | v4-only 65.9% | v6-only 0.0%"
+  ],
+  "source": "analysis/deep_analysis/step_04_ipv4_vs_ipv6/result.txt"
+}

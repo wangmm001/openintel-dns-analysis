@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase4-centrality-b"
+  subtitle="复杂网络·阶段四 · II + 介观 —— 关节点/桥梁 + 社区检测 + 社区×安全关联。"
+>
+  <ChartCard id="net_15" titleZh="Step 15 · 关节点与桥梁" titleEn="Articulation Points & Bridges" subtitle="单点故障候选 —— 删除后分裂子图的关键节点。">
+    <PngChart src="/charts/network/step_15_articulation_points/chart.png" alt="关节点与桥梁" chartId="net_15" />
+  </ChartCard>
+  <ChartCard id="net_16" titleZh="Step 16 · Louvain 社区检测" titleEn="Louvain Community Detection" subtitle="模块度最大化的社区划分 —— 自然聚合的\u0022域名部落\u0022。">
+    <PngChart src="/charts/network/step_16_community_detection/chart.png" alt="社区检测" chartId="net_16" />
+  </ChartCard>
+  <ChartCard id="net_17" titleZh="Step 17 · 社区 × 安全" titleEn="Community × Security" subtitle="社区归属预测 DNSSEC 采纳率 —— 拓扑位置的安全含义。">
+    <PngChart src="/charts/network/step_17_community_security/chart.png" alt="社区 × 安全" chartId="net_17" />
+  </ChartCard>
+</SectionLayout>

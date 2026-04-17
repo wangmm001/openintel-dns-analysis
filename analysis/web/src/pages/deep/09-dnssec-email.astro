@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/09-dnssec-email"
+  subtitle="深度洞察·第四章 —— 安全部署的三根支柱:DNSSEC 签名、算法迁移、邮件认证。"
+>
+  <ChartCard id="deep_09" titleZh="Step 09 · DNSSEC 部署" titleEn="DNSSEC Deployment" subtitle="DS 记录部署率仅 16.4% —— 全球信任根的少数派。">
+    <PngChart src="/charts/deep/step_09_dnssec_deployment/chart.png" alt="DNSSEC 部署" chartId="deep_09" />
+  </ChartCard>
+
+  <ChartCard id="deep_10" titleZh="Step 10 · DNSSEC 算法" titleEn="DNSSEC Algorithms" subtitle="ECDSA-P256/SHA-256 领先 67%;RSA 正在被替代。">
+    <PngChart src="/charts/deep/step_10_dnssec_algorithms/chart.png" alt="DNSSEC 算法" chartId="deep_10" />
+  </ChartCard>
+
+  <ChartCard id="deep_11" titleZh="Step 11 · 邮件安全" titleEn="Email Security" subtitle="SPF 部署 26.3%,DMARC 远低于 SPF —— 钓鱼防线缺口。">
+    <PngChart src="/charts/deep/step_11_email_security/chart.png" alt="邮件安全" chartId="deep_11" />
+  </ChartCard>
+</SectionLayout>

@@ -1,0 +1,14 @@
+{
+  "id": "net_18",
+  "titleZh": "Step 18 — Bow-Tie Decomposition (CNAME Graph)",
+  "findings": [
+    "Bow-Tie: Sources 7% → SCC 0% → Sinks 0%",
+    "Nodes: 5,598,155 | Edges: 4,184,198",
+    "SCC:            1 (0.0%)",
+    "Sources:  418,283 (7.5%) — pure delegation origins",
+    "Sinks:          1 (0.0%) — final CNAME targets (CDN/hosting)",
+    "Other:          0 (0.0%)",
+    "Disconn: 5,179,871 (92.5%)"
+  ],
+  "source": "analysis/network_analysis/step_18_bow_tie/result.txt"
+}

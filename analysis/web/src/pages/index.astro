@@ -1,0 +1,68 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Hero from "~/components/Hero.astro";
+import SectionCard from "~/components/SectionCard.astro";
+import { TIERS } from "~/lib/navigation";
+---
+
+<BaseLayout title="OpenINTEL · 互联网全局态势分析">
+  <Hero />
+
+  <section class="mx-auto max-w-6xl px-6 py-10">
+    <header class="mb-8">
+      <p class="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-text-2)]">
+        TIERS · 7 大板块 · 30 个子页面
+      </p>
+      <h2 class="mt-2 text-[28px] font-semibold text-[color:var(--color-text-0)] md:text-[34px]">
+        按专业维度浏览
+      </h2>
+      <p class="mt-2 max-w-2xl text-[14px] leading-relaxed text-[color:var(--color-text-1)]">
+        从基础画像、安全态势,到 PageRank、CC 爬取,再到 22 步深度洞察与 25 步复杂网络分析——
+        每页 ≤ 3 图,配点击展开的文字图解。
+      </p>
+    </header>
+
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {TIERS.map((t) => <SectionCard tier={t} />)}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 pb-16">
+    <div
+      class="glow-ring relative overflow-hidden rounded-2xl border border-[color:var(--color-line)] bg-[color:var(--color-bg-1)] p-8 md:p-10"
+    >
+      <div class="grid gap-8 md:grid-cols-2">
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-[color:var(--color-text-2)]">
+            键盘快捷键
+          </p>
+          <h3 class="mt-2 text-[22px] font-semibold">像阅读器一样浏览</h3>
+          <p class="mt-3 text-[13.5px] leading-relaxed text-[color:var(--color-text-1)]">
+            在任意子页面使用 ←/→ 翻页;G 打开全局目录;D 打开当前图的文字图解;Esc 关闭。
+          </p>
+        </div>
+        <ul class="space-y-3 text-[13.5px] text-[color:var(--color-text-1)]">
+          <li class="flex items-center justify-between gap-4 border-b border-[color:var(--color-line)]/60 pb-3">
+            <span>上一页 / 下一页</span>
+            <span>
+              <kbd class="mr-1 rounded bg-[color:var(--color-bg-3)] px-2 py-1 font-mono text-[11px]">←</kbd>
+              <kbd class="rounded bg-[color:var(--color-bg-3)] px-2 py-1 font-mono text-[11px]">→</kbd>
+            </span>
+          </li>
+          <li class="flex items-center justify-between gap-4 border-b border-[color:var(--color-line)]/60 pb-3">
+            <span>全局目录</span>
+            <kbd class="rounded bg-[color:var(--color-bg-3)] px-2 py-1 font-mono text-[11px]">G</kbd>
+          </li>
+          <li class="flex items-center justify-between gap-4 border-b border-[color:var(--color-line)]/60 pb-3">
+            <span>展开当前图解</span>
+            <kbd class="rounded bg-[color:var(--color-bg-3)] px-2 py-1 font-mono text-[11px]">D</kbd>
+          </li>
+          <li class="flex items-center justify-between gap-4">
+            <span>关闭浮层</span>
+            <kbd class="rounded bg-[color:var(--color-bg-3)] px-2 py-1 font-mono text-[11px]">Esc</kbd>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

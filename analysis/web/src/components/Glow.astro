@@ -1,0 +1,33 @@
+---
+interface Props {
+  color?: "blue" | "purple" | "green" | "orange";
+  size?: number;
+  x?: string;
+  y?: string;
+  opacity?: number;
+  class?: string;
+}
+const {
+  color = "blue",
+  size = 600,
+  x = "50%",
+  y = "50%",
+  opacity = 0.35,
+  class: className = "",
+} = Astro.props;
+
+const colorMap: Record<string, string> = {
+  blue: "#0071e3",
+  purple: "#5856d6",
+  green: "#30d158",
+  orange: "#ff9f0a",
+};
+const c = colorMap[color] ?? colorMap.blue;
+---
+
+<div
+  class={`pointer-events-none absolute ${className}`}
+  aria-hidden="true"
+  style={`left:${x};top:${y};transform:translate(-50%,-50%);width:${size}px;height:${size}px;background:radial-gradient(closest-side, ${c} 0%, transparent 70%);filter:blur(80px);opacity:${opacity};`}
+>
+</div>

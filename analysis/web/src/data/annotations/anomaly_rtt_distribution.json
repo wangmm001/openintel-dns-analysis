@@ -1,0 +1,10 @@
+{
+  "id": "anomaly_rtt_distribution",
+  "titleZh": "DNS 查询 RTT 分布",
+  "titleEn": "DNS Query RTT Distribution",
+  "findings": [
+    "P50 通常在 0~几十毫秒,P99 长尾指向远端或拥塞权威。",
+    "慢尾部暴露全球部署不均 — 边缘缺失的地区响应明显慢。"
+  ],
+  "implications": "P95/P99 是用户感知的真实延迟 — 中位数易误导。"
+}

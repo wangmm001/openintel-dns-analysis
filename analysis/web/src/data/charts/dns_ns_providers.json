@@ -1,0 +1,70 @@
+{
+  "id": "dns_ns_providers",
+  "title_zh": "Top 15 权威 DNS 托管商",
+  "title_en": "Top 15 Authoritative DNS Providers",
+  "description": "权威 NS 记录指向的托管商市占率 — Cloudflare / AWS / 本国注册局 等。",
+  "source_script": "analysis/scripts/02_dns_records.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "provider": "ovh.net",
+      "domains": 1417837
+    },
+    {
+      "provider": "ui-dns.com",
+      "domains": 499139
+    },
+    {
+      "provider": "ui-dns.de",
+      "domains": 499137
+    },
+    {
+      "provider": "ui-dns.org",
+      "domains": 499135
+    },
+    {
+      "provider": "ui-dns.biz",
+      "domains": 499134
+    },
+    {
+      "provider": "hostpoint.ch",
+      "domains": 420060
+    },
+    {
+      "provider": "loopia.se",
+      "domains": 391284
+    },
+    {
+      "provider": "cloudflare.com",
+      "domains": 390044
+    },
+    {
+      "provider": "gandi.net",
+      "domains": 329241
+    },
+    {
+      "provider": "one.com",
+      "domains": 300282
+    },
+    {
+      "provider": "infomaniak.com",
+      "domains": 239255
+    },
+    {
+      "provider": "dns-parking.com",
+      "domains": 208666
+    },
+    {
+      "provider": "infomaniak.ch",
+      "domains": 192143
+    },
+    {
+      "provider": "wixdns.net",
+      "domains": 177528
+    },
+    {
+      "provider": "o2switch.net",
+      "domains": 174455
+    }
+  ]
+}

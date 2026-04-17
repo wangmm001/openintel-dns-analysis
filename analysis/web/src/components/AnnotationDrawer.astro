@@ -1,0 +1,216 @@
+---
+interface AnnotationData {
+  id: string;
+  titleZh: string;
+  titleEn?: string;
+  findings?: string[];
+  data?: Array<{ label: string; value: string }>;
+  implications?: string;
+  source?: string;
+  sourceLink?: string;
+}
+interface Props {
+  annotations: AnnotationData[];
+}
+const { annotations } = Astro.props;
+const data = Object.fromEntries(annotations.map((a) => [a.id, a]));
+const dataJson = JSON.stringify(data);
+---
+
+<dialog
+  id="annotation-drawer"
+  class="fixed inset-y-0 right-0 m-0 ml-auto h-full max-h-none w-full max-w-[520px] border-l border-[color:var(--color-line)] bg-[color:var(--color-bg-1)] p-0 text-[color:var(--color-text-0)] shadow-[-30px_0_60px_-30px_rgba(0,113,227,0.25)] backdrop:bg-black/40 backdrop:backdrop-blur-sm"
+  aria-label="图解详情"
+>
+  <div class="flex h-full flex-col">
+    <header class="flex items-start justify-between gap-4 border-b border-[color:var(--color-line)] px-6 py-5">
+      <div class="min-w-0">
+        <p class="text-[10.5px] uppercase tracking-[0.28em] text-[color:var(--color-text-2)]">
+          Chart Annotation · 图解
+        </p>
+        <h2
+          id="ann-title-zh"
+          class="mt-2 text-[18px] font-semibold leading-snug text-[color:var(--color-text-0)]"
+        ></h2>
+        <p
+          id="ann-title-en"
+          class="mt-1 text-[12px] text-[color:var(--color-text-2)]"
+        ></p>
+      </div>
+      <button
+        type="button"
+        id="ann-close"
+        class="shrink-0 rounded-full border border-[color:var(--color-line)] bg-[color:var(--color-bg-2)] px-3 py-1.5 text-[11px] text-[color:var(--color-text-1)] transition hover:border-[color:var(--color-accent)] hover:text-white"
+        aria-label="关闭图解"
+      >
+        关闭 <kbd class="ml-1 rounded bg-[color:var(--color-bg-3)] px-1.5 py-0.5 font-mono text-[10px]">Esc</kbd>
+      </button>
+    </header>
+
+    <div class="flex-1 space-y-6 overflow-y-auto px-6 py-6">
+      <section id="ann-findings" hidden>
+        <h3 class="text-[12px] uppercase tracking-[0.18em] text-[color:var(--color-text-2)]">
+          关键发现 · Findings
+        </h3>
+        <ul id="ann-findings-list" class="mt-3 space-y-2.5 text-[13.5px] leading-relaxed text-[color:var(--color-text-1)]"></ul>
+      </section>
+
+      <section id="ann-data" hidden>
+        <h3 class="text-[12px] uppercase tracking-[0.18em] text-[color:var(--color-text-2)]">
+          关键数据 · Data
+        </h3>
+        <dl id="ann-data-list" class="mt-3 grid grid-cols-2 gap-2"></dl>
+      </section>
+
+      <section id="ann-implications" hidden>
+        <h3 class="text-[12px] uppercase tracking-[0.18em] text-[color:var(--color-text-2)]">
+          启示 · Implications
+        </h3>
+        <p id="ann-implications-text" class="mt-3 text-[13.5px] leading-relaxed text-[color:var(--color-text-1)]"></p>
+      </section>
+
+      <section id="ann-source" hidden class="pt-4 text-[11.5px] text-[color:var(--color-text-3)]">
+        <span>来源:</span>
+        <code id="ann-source-text" class="font-mono text-[11px] text-[color:var(--color-text-2)]"></code>
+      </section>
+    </div>
+  </div>
+</dialog>
+
+<script type="application/json" id="ann-data-json" is:inline set:html={dataJson}></script>
+
+<script>
+  interface AnnotationData {
+    id: string;
+    titleZh: string;
+    titleEn?: string;
+    findings?: string[];
+    data?: Array<{ label: string; value: string }>;
+    implications?: string;
+    source?: string;
+    sourceLink?: string;
+  }
+
+  const bootstrap = () => {
+    const raw = document.getElementById("ann-data-json")?.textContent;
+    const store: Record<string, AnnotationData> = raw ? JSON.parse(raw) : {};
+    const dialog = document.getElementById("annotation-drawer") as HTMLDialogElement | null;
+    if (!dialog) return;
+
+    const qs = <T extends HTMLElement>(sel: string) => dialog.querySelector<T>(sel);
+
+    const render = (id: string) => {
+      const d = store[id];
+      if (!d) {
+        console.warn("[annotation] no data for", id);
+        return;
+      }
+      qs<HTMLElement>("#ann-title-zh")!.textContent = d.titleZh || "";
+      qs<HTMLElement>("#ann-title-en")!.textContent = d.titleEn || "";
+
+      const findingsSec = qs<HTMLElement>("#ann-findings")!;
+      const findingsList = qs<HTMLElement>("#ann-findings-list")!;
+      if (d.findings?.length) {
+        findingsSec.hidden = false;
+        findingsList.innerHTML = d.findings
+          .map(
+            (f) =>
+              `<li class="flex gap-2.5"><span class="mt-[9px] h-1 w-1 shrink-0 rounded-full" style="background:var(--color-accent);"></span><span>${escapeHtml(
+                f,
+              )}</span></li>`,
+          )
+          .join("");
+      } else {
+        findingsSec.hidden = true;
+      }
+
+      const dataSec = qs<HTMLElement>("#ann-data")!;
+      const dataList = qs<HTMLElement>("#ann-data-list")!;
+      if (d.data?.length) {
+        dataSec.hidden = false;
+        dataList.innerHTML = d.data
+          .map(
+            (kv) =>
+              `<div class="rounded-lg border border-[color:var(--color-line)] bg-[color:var(--color-bg-2)]/60 px-3 py-2.5"><dt class="text-[11px] text-[color:var(--color-text-2)]">${escapeHtml(
+                kv.label,
+              )}</dt><dd class="mono-num mt-1 text-[15px] font-semibold text-[color:var(--color-text-0)]">${escapeHtml(
+                kv.value,
+              )}</dd></div>`,
+          )
+          .join("");
+      } else {
+        dataSec.hidden = true;
+      }
+
+      const implSec = qs<HTMLElement>("#ann-implications")!;
+      if (d.implications) {
+        implSec.hidden = false;
+        qs<HTMLElement>("#ann-implications-text")!.textContent = d.implications;
+      } else {
+        implSec.hidden = true;
+      }
+
+      const srcSec = qs<HTMLElement>("#ann-source")!;
+      if (d.source) {
+        srcSec.hidden = false;
+        qs<HTMLElement>("#ann-source-text")!.textContent = d.source;
+      } else {
+        srcSec.hidden = true;
+      }
+    };
+
+    const escapeHtml = (s: string) =>
+      s.replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!),
+      );
+
+    const open = (id: string) => {
+      render(id);
+      if (!dialog.open) dialog.showModal();
+      dialog.dataset.chartId = id;
+    };
+    const close = () => {
+      if (dialog.open) dialog.close();
+      delete dialog.dataset.chartId;
+    };
+
+    document.querySelectorAll<HTMLButtonElement>("[data-annotation-trigger]").forEach((b) => {
+      if (b.dataset.wired === "1") return;
+      b.dataset.wired = "1";
+      b.addEventListener("click", () => open(b.dataset.annotationTrigger!));
+    });
+
+    qs<HTMLButtonElement>("#ann-close")?.addEventListener("click", close);
+    dialog.addEventListener("click", (e) => {
+      const t = e.target as HTMLElement;
+      if (t === dialog) close();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      const tgt = e.target as HTMLElement | null;
+      if (tgt && ["INPUT", "TEXTAREA"].includes(tgt.tagName)) return;
+      if (e.key === "Escape" && dialog.open) {
+        close();
+      } else if ((e.key === "d" || e.key === "D") && !dialog.open) {
+        const first = document.querySelector<HTMLElement>("[data-annotation-trigger]");
+        if (first) {
+          open(first.dataset.annotationTrigger!);
+          e.preventDefault();
+        }
+      }
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const autoOpen = params.get("chart");
+    if (autoOpen && store[autoOpen] && params.get("details") === "1") {
+      setTimeout(() => open(autoOpen), 200);
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootstrap);
+  } else {
+    bootstrap();
+  }
+  document.addEventListener("astro:page-load", bootstrap);
+</script>

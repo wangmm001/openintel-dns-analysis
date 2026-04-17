@@ -1,0 +1,10 @@
+{
+  "id": "toplist_email_security",
+  "titleZh": "TopList · 邮件安全",
+  "titleEn": "TopList · Email Security",
+  "findings": [
+    "TopList 域名 SPF 普及超 80%,DMARC 超 50%,远高于 Zone 平均。",
+    "DMARC 采纳度反映品牌对钓鱼攻击的防御意识。"
+  ],
+  "implications": "邮件安全的\"头部驱动\"模式——主流品牌引领,长尾跟进。"
+}

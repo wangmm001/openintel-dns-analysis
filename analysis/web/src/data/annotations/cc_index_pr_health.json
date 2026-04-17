@@ -1,0 +1,10 @@
+{
+  "id": "cc_index_pr_health",
+  "titleZh": "CC CDX · 高 PR 域名健康度",
+  "titleEn": "CC CDX · High PageRank Health",
+  "findings": [
+    "高 PR 域名的 200 成功率显著高于长尾。",
+    "重要域名的运维投入与 Web 健康度成正比。"
+  ],
+  "implications": "PR 越高,Web 可用性越好 — 这是\"网络权威度 → 资源投入\"的正循环。"
+}

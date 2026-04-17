@@ -1,0 +1,31 @@
+{
+  "name": "openintel-web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "sync-charts": "node scripts/sync-charts.mjs",
+    "predev": "node scripts/sync-charts.mjs",
+    "prebuild": "node scripts/sync-charts.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^5.5.0",
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "echarts": "^5.5.1",
+    "d3": "^7.9.0",
+    "motion": "^11.13.0",
+    "lucide-astro": "^0.468.0",
+    "typescript": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3"
+  }
+}

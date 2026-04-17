@@ -1,0 +1,10 @@
+{
+  "id": "security_cds_cdnskey",
+  "titleZh": "CDS / CDNSKEY · DNSSEC 信任链自动化",
+  "titleEn": "CDS / CDNSKEY · DNSSEC Chain Automation",
+  "findings": [
+    "CDS / CDNSKEY 用于子域自动向父域传递 DS,降低手动错误。",
+    "部署仍集中在少数注册局/大型域名持有者。"
+  ],
+  "implications": "DNSSEC 链条自动化是大规模采纳的必经之路 — CDS 让 DS 更新无需人工。"
+}

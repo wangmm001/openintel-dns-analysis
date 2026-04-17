@@ -1,0 +1,10 @@
+{
+  "id": "pagerank_vs_tranco_tld_bias",
+  "titleZh": "PR vs Tranco · TLD 偏差",
+  "titleEn": "PR vs Tranco · TLD Bias",
+  "findings": [
+    "ccTLD 在 Tranco 更高、PageRank 较低 — 查询量未必转为被引。",
+    ".com / .org 通常 PageRank 领先 Tranco。"
+  ],
+  "implications": "榜单选择要考虑应用场景:安全研究更看 PageRank,运营更看 Tranco。"
+}

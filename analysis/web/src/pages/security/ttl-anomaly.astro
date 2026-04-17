@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/security/ttl-anomaly"
+  subtitle="TTL 是互联网运营节奏的标度 —— 本页看异常值、策略分布与 RTT 性能,理解动态/陈旧的边界。"
+>
+  <ChartCard
+    id="anomaly_ttl_buckets"
+    titleZh="TTL 异常分桶"
+    titleEn="TTL Anomaly Buckets"
+    subtitle="极短 TTL 多为 CDN/LB,极长 TTL 多为遗留配置 —— 两端都是运维信号。"
+  >
+    <PngChart src="/charts/output/anomaly_ttl_buckets.png" alt="TTL 异常分桶" chartId="anomaly_ttl_buckets" />
+  </ChartCard>
+
+  <ChartCard
+    id="deep_07"
+    titleZh="深度 · TTL 策略分布"
+    titleEn="Deep · TTL Strategy Distribution"
+    subtitle="≤1min 的超动态占比仅 3% —— 运营商倾向稳定缓存、避免权威风暴。"
+  >
+    <PngChart src="/charts/deep/step_07_ttl_strategy/chart.png" alt="TTL 策略分布" chartId="deep_07" />
+  </ChartCard>
+
+  <ChartCard
+    id="deep_08"
+    titleZh="深度 · RTT 性能尾部"
+    titleEn="Deep · RTT Performance Tail"
+    subtitle="P50 近 0ms,P99 暴露慢解析区域 —— 真实用户感知在尾部。"
+  >
+    <PngChart src="/charts/deep/step_08_rtt_performance/chart.png" alt="RTT 性能" chartId="deep_08" />
+  </ChartCard>
+</SectionLayout>

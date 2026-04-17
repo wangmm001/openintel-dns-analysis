@@ -1,0 +1,73 @@
+---
+import "~/styles/global.css";
+import Nav from "~/components/Nav.astro";
+import TocOverlay from "~/components/TocOverlay.astro";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title: string;
+  description?: string;
+  activeTier?: string;
+}
+const {
+  title,
+  description = "OpenINTEL DNS · 互联网全局态势数据分析站",
+  activeTier,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Nav activeTier={activeTier} />
+    <TocOverlay />
+    <main class="pt-14">
+      <slot />
+    </main>
+    <footer class="mx-auto mt-24 max-w-6xl px-6 pb-10 text-center text-[12px] text-[color:var(--color-text-3)]">
+      <p>
+        数据来源:<a
+          href="https://openintel.nl"
+          target="_blank"
+          rel="noopener"
+          class="text-[color:var(--color-text-2)] underline decoration-dotted underline-offset-4 hover:text-[color:var(--color-accent)]"
+          >OpenINTEL</a
+        > ·
+        <a
+          href="https://commoncrawl.org"
+          target="_blank"
+          rel="noopener"
+          class="text-[color:var(--color-text-2)] underline decoration-dotted underline-offset-4 hover:text-[color:var(--color-accent)]"
+          >Common Crawl</a
+        > · 许可:CC BY-NC-SA 4.0
+      </p>
+      <p class="mt-2 text-[color:var(--color-text-3)]/70">
+        Build:Astro · ECharts · D3 · Tailwind v4 · Motion
+      </p>
+    </footer>
+
+    <script>
+      window.addEventListener("keydown", (e) => {
+        const tgt = e.target as HTMLElement | null;
+        if (tgt && ["INPUT", "TEXTAREA"].includes(tgt.tagName)) return;
+        const prevLink = document.querySelector<HTMLAnchorElement>("[data-nav-prev]");
+        const nextLink = document.querySelector<HTMLAnchorElement>("[data-nav-next]");
+        if (e.key === "ArrowLeft" && prevLink) {
+          e.preventDefault();
+          prevLink.click();
+        } else if (e.key === "ArrowRight" && nextLink) {
+          e.preventDefault();
+          nextLink.click();
+        }
+      });
+    </script>
+  </body>
+</html>

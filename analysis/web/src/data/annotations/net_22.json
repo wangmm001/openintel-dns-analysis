@@ -1,0 +1,14 @@
+{
+  "id": "net_22",
+  "titleZh": "Step 22 — Multi-Layer Cascade (AS→IP→Domain)",
+  "findings": [
+    "Top 5 AS 故障孤立 6,380,397 域名 — 多层级联放大效应",
+    "AS      IPs    Domains   Orphaned      %",
+    "16276   84,798  2,971,159  2,966,700  99.8%",
+    "13335   65,914  1,077,085  1,075,325  99.8%",
+    "8560   12,254    862,583    862,179 100.0%",
+    "16509   29,232    803,558    800,145  99.6%",
+    "29097    1,047    676,885    676,048  99.9%"
+  ],
+  "source": "analysis/network_analysis/step_22_multilayer_cascade/result.txt"
+}

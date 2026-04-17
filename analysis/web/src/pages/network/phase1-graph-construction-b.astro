@@ -1,0 +1,17 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase1-graph-construction-b"
+  subtitle="复杂网络·阶段一 · II —— AS 投影图与全局图普查,锁定多层网络的拓扑骨架。"
+>
+  <ChartCard id="net_04" titleZh="Step 04 · AS 投影图" titleEn="AS-Level Projected Graph" subtitle="从域名连通性投影出 AS 间的连通图 —— 互联网\u0022国家\u0022之间的对话。">
+    <PngChart src="/charts/network/step_04_as_projected_graph/chart.png" alt="AS 投影图" chartId="net_04" />
+  </ChartCard>
+  <ChartCard id="net_05" titleZh="Step 05 · 多层图普查" titleEn="Multi-Layer Graph Census" subtitle="22.75M NS 边 + 各层节点规模 —— 多层复杂网络的度量骨架。">
+    <PngChart src="/charts/network/step_05_graph_census/chart.png" alt="多层图普查" chartId="net_05" />
+  </ChartCard>
+</SectionLayout>

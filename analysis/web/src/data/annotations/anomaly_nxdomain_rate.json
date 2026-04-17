@@ -1,0 +1,10 @@
+{
+  "id": "anomaly_nxdomain_rate",
+  "titleZh": "NXDOMAIN 失败率",
+  "titleEn": "NXDOMAIN Failure Rate",
+  "findings": [
+    "NXDOMAIN 主导失败——表征域名过期/停放/打字错误。",
+    "特定 TLD 的异常高 NXDOMAIN 率提示域名垃圾注册现象。"
+  ],
+  "implications": "高 NXDOMAIN 是域名投机(抢注 → 过期 → 再抢)的经济学镜子。"
+}

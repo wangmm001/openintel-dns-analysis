@@ -1,0 +1,10 @@
+{
+  "id": "anomaly_ttl_buckets",
+  "titleZh": "TTL 异常分桶",
+  "titleEn": "TTL Anomaly Buckets",
+  "findings": [
+    "极短 TTL(<60s)集中在 CDN 边缘与负载均衡器。",
+    "> 30 天的超长 TTL 多为遗留配置,需警惕故障响应迟缓。"
+  ],
+  "implications": "TTL 极端值常是重要运维信号 — 太短浪费 DNS,太长牺牲敏捷。"
+}

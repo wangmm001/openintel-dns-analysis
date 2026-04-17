@@ -1,0 +1,13 @@
+{
+  "id": "net_01",
+  "titleZh": "Step 01 — Domain→NS Bipartite Graph",
+  "findings": [
+    "Edges:         22,751,515",
+    "Domains:        8,874,756",
+    "Nameservers:      132,558",
+    "Avg NS/domain: 2.56",
+    "Avg domains/NS: 171.6",
+    "Domain degree (NS per domain):"
+  ],
+  "source": "analysis/network_analysis/step_01_domain_ns_bipartite/result.txt"
+}

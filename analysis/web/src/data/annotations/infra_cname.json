@@ -1,0 +1,10 @@
+{
+  "id": "infra_cname",
+  "titleZh": "CNAME 使用画像",
+  "titleEn": "CNAME Usage Profile",
+  "findings": [
+    "CNAME 频繁指向 CDN 与托管商 — Vercel / Cloudflare / Netlify。",
+    "电商与媒体站普遍用 CNAME 接入跨国 CDN。"
+  ],
+  "implications": "CNAME 链揭示内容分发版图 — 被指向的目标域名是现代 Web 的\"承运商\"。"
+}

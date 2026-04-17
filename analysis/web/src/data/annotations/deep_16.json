@@ -1,0 +1,9 @@
+{
+  "id": "deep_16",
+  "titleZh": "Step 16 — PageRank × DNS Security Correlation",
+  "findings": [
+    "高 PageRank 域名安全部署率显著更高，排名与安全正相关",
+    "Tier              Count   DNSSEC     IPv6      SPF      CAA"
+  ],
+  "source": "analysis/deep_analysis/step_16_pagerank_dns_security/result.txt"
+}

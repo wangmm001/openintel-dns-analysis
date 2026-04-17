@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/security/caa-email"
+  subtitle="两道便宜屏障的对比 —— CAA 证书授权只有 0.7% 部署,SPF 邮件认证 26.3%。差距背后是运营习惯与工具链成熟度。"
+>
+  <ChartCard
+    id="security_caa"
+    titleZh="CAA · 证书授权分布"
+    titleEn="CAA · Certificate Authority Authorization"
+    subtitle="letsencrypt.org 在授权方居首 —— 最便宜的一道证书误签屏障,却长期被忽略。"
+  >
+    <PngChart src="/charts/output/security_caa.png" alt="CAA 证书授权" chartId="security_caa" />
+  </ChartCard>
+
+  <ChartCard
+    id="deep_11"
+    titleZh="深度 · 邮件安全部署"
+    titleEn="Deep · Email Security Deployment"
+    subtitle="SPF 普及 26.3%,DMARC 远低于 SPF —— 部署成本差异导致的\u0022防御半身瘫痪\u0022。"
+  >
+    <PngChart src="/charts/deep/step_11_email_security/chart.png" alt="邮件安全部署" chartId="deep_11" />
+  </ChartCard>
+
+  <ChartCard
+    id="deep_12"
+    titleZh="深度 · CAA 证书授权"
+    titleEn="Deep · CAA Certificate Authorization"
+    subtitle="CAA 0.7% 部署率,letsencrypt.org 最受信任 —— CA 授权生态的集中化。"
+  >
+    <PngChart src="/charts/deep/step_12_caa_authorization/chart.png" alt="CAA 证书授权" chartId="deep_12" />
+  </ChartCard>
+</SectionLayout>

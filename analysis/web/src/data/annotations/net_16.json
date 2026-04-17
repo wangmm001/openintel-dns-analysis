@@ -1,0 +1,13 @@
+{
+  "id": "net_16",
+  "titleZh": "Step 16 — Community Detection (Leiden Algorithm)",
+  "findings": [
+    "Modularity Q: 0.5007",
+    "Communities:   15",
+    "Largest communities:",
+    "Community   0:   109 ASes | sample: 12312, 12347, 12488, 13030, 13335",
+    "Community   1:    79 ASes | sample: 12430, 12824, 13193, 136133, 13886",
+    "Community   2:    53 ASes | sample: --, 1136, 1221, 12693, 14061"
+  ],
+  "source": "analysis/network_analysis/step_16_community_detection/result.txt"
+}

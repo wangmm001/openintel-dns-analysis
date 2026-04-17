@@ -1,0 +1,14 @@
+{
+  "id": "net_19",
+  "titleZh": "Step 19 — Network Motif Census",
+  "findings": [
+    "Triangles: 47, Max clique: 24, CNAME 以链式 fan-in motif 为主",
+    "AS Graph (undirected):",
+    "Triangles:               47",
+    "Connected triples:   38,339",
+    "Transitivity:      0.3303",
+    "Max clique:        24",
+    "Hub motifs (AS nodes with degree ≥ k):"
+  ],
+  "source": "analysis/network_analysis/step_19_motifs/result.txt"
+}

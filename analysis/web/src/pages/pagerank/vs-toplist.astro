@@ -1,0 +1,37 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/pagerank/vs-toplist"
+  subtitle="PageRank 是\u0022被引用度\u0022,Tranco 是\u0022查询流量\u0022—— 两个视角的错位是研究富矿。"
+>
+  <ChartCard
+    id="pagerank_vs_tranco_distribution"
+    titleZh="PR vs Tranco · 排名分布"
+    titleEn="PR vs Tranco · Rank Distribution"
+    subtitle="两榜相关但非一一对应 —— PageRank 看跨域引用,Tranco 看解析查询。"
+  >
+    <PngChart src="/charts/output/pagerank_vs_tranco_distribution.png" alt="PR vs Tranco 分布" chartId="pagerank_vs_tranco_distribution" />
+  </ChartCard>
+
+  <ChartCard
+    id="pagerank_vs_tranco_tld_bias"
+    titleZh="PR vs Tranco · TLD 偏差"
+    titleEn="PR vs Tranco · TLD Bias"
+    subtitle="ccTLD 在 Tranco 相对更高、PageRank 偏低 —— 查询量 ≠ 被引量。"
+  >
+    <PngChart src="/charts/output/pagerank_vs_tranco_tld_bias.png" alt="PR vs Tranco TLD 偏差" chartId="pagerank_vs_tranco_tld_bias" />
+  </ChartCard>
+
+  <ChartCard
+    id="pagerank_vs_tranco_consensus"
+    titleZh="PR vs Tranco · 共识集合"
+    titleEn="PR vs Tranco · Consensus Set"
+    subtitle="两榜共识的 Top N 收敛于全球品牌 + 基础设施域 —— 可作测试\u0022金标\u0022。"
+  >
+    <PngChart src="/charts/output/pagerank_vs_tranco_consensus.png" alt="PR vs Tranco 共识" chartId="pagerank_vs_tranco_consensus" />
+  </ChartCard>
+</SectionLayout>

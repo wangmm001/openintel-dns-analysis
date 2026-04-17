@@ -1,0 +1,22 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/deep/12-caa-ns-cname"
+  subtitle="深度洞察·第五章 —— 证书授权、NS 冗余、CNAME CDN 指纹三个易被忽略的基础设施面。"
+>
+  <ChartCard id="deep_12" titleZh="Step 12 · CAA 证书授权" titleEn="CAA Authorization" subtitle="CAA 部署率 0.7%,letsencrypt.org 最受信任。">
+    <PngChart src="/charts/deep/step_12_caa_authorization/chart.png" alt="CAA 证书授权" chartId="deep_12" />
+  </ChartCard>
+
+  <ChartCard id="deep_13" titleZh="Step 13 · NS 冗余度" titleEn="NS Redundancy" subtitle="中位 2.5 台 NS/域名;单 NS 域名 <1% 为单点故障候选。">
+    <PngChart src="/charts/deep/step_13_ns_redundancy/chart.png" alt="NS 冗余度" chartId="deep_13" />
+  </ChartCard>
+
+  <ChartCard id="deep_14" titleZh="Step 14 · CNAME · CDN 指纹" titleEn="CNAME · CDN Fingerprints" subtitle="3.7M CNAME;Vercel 主导 CDN,64.8K 域名托管。">
+    <PngChart src="/charts/deep/step_14_cname_cdn_fingerprint/chart.png" alt="CNAME CDN 指纹" chartId="deep_14" />
+  </ChartCard>
+</SectionLayout>

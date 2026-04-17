@@ -1,0 +1,14 @@
+{
+  "id": "net_20",
+  "titleZh": "Step 20 — Percolation Analysis",
+  "findings": [
+    "渗流: random f_c=0.29, targeted f_c=0.05, ratio 6× — 鲁棒而脆弱",
+    "Random f_c (GC<50%):   0.288 (28.8% removed)",
+    "Targeted f_c:          0.048 (4.8% removed)",
+    "Robustness ratio:      6.0×",
+    "R_random:              0.2868",
+    "R_targeted:            0.0566",
+    "R ratio:               5.1×"
+  ],
+  "source": "analysis/network_analysis/step_20_percolation/result.txt"
+}

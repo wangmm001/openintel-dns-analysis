@@ -1,0 +1,14 @@
+{
+  "id": "net_21",
+  "titleZh": "Step 21 — Cascading Failure (NS Single-Point)",
+  "findings": [
+    "Top 10 NS 故障孤立 1,495 域名 — 基础设施集中化的代价",
+    "NS                                                    Reach Orphaned      %",
+    "ns11.infomaniak.ch.                                 148,340    1,299   0.9%",
+    "ns1.o2switch.net.                                   174,453       68   0.0%",
+    "dns200.anycast.me.                                  110,369       23   0.0%",
+    "ns200.anycast.me.                                   110,367       22   0.0%",
+    "ns100.ovh.net.                                       75,535       18   0.0%"
+  ],
+  "source": "analysis/network_analysis/step_21_cascading_failure/result.txt"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "infra_ns_redundancy",
+  "title_zh": "NS 冗余度分布",
+  "title_en": "Nameserver Redundancy Distribution",
+  "description": "每个域名配置的独立 NS 服务器数量 — 反映抗故障能力。",
+  "source_script": "analysis/scripts/05_domain_infra.py",
+  "updated_at": "2026-04-17",
+  "rows": [
+    {
+      "bucket": "1",
+      "domains": 26135,
+      "pct": 0.29
+    },
+    {
+      "bucket": "2",
+      "domains": 5363608,
+      "pct": 60.44
+    },
+    {
+      "bucket": "3",
+      "domains": 2166060,
+      "pct": 24.41
+    },
+    {
+      "bucket": "4",
+      "domains": 1193872,
+      "pct": 13.45
+    },
+    {
+      "bucket": "5–6",
+      "domains": 105212,
+      "pct": 1.19
+    },
+    {
+      "bucket": "7–10",
+      "domains": 19709,
+      "pct": 0.22
+    },
+    {
+      "bucket": ">10",
+      "domains": 160,
+      "pct": 0.0
+    }
+  ]
+}

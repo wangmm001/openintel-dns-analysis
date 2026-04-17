@@ -1,0 +1,20 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/network/phase4-centrality-a"
+  subtitle="复杂网络·阶段四 · I —— 多维中心性、PageRank 对比、k-core 洋葱结构,找出\u0022关键基础设施\u0022。"
+>
+  <ChartCard id="net_12" titleZh="Step 12 · 多维中心性" titleEn="Multi-Centrality Ranking" subtitle="度 / 介数 / 特征向量三种中心性的排名融合。">
+    <PngChart src="/charts/network/step_12_multi_centrality/chart.png" alt="多维中心性" chartId="net_12" />
+  </ChartCard>
+  <ChartCard id="net_13" titleZh="Step 13 · PageRank 对比" titleEn="PageRank Comparison" subtitle="DNS 图 PageRank vs WebGraph PageRank 的交叉相关性。">
+    <PngChart src="/charts/network/step_13_pagerank_comparison/chart.png" alt="PageRank 对比" chartId="net_13" />
+  </ChartCard>
+  <ChartCard id="net_14" titleZh="Step 14 · k-core 洋葱" titleEn="k-Core Decomposition" subtitle="层层剥去低度节点后显露的核心结构。">
+    <PngChart src="/charts/network/step_14_k_core/chart.png" alt="k-core 分解" chartId="net_14" />
+  </ChartCard>
+</SectionLayout>

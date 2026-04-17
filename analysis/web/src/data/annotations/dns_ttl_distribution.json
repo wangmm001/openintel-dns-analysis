@@ -1,0 +1,11 @@
+{
+  "id": "dns_ttl_distribution",
+  "titleZh": "A 记录 TTL 分布",
+  "titleEn": "A-Record TTL Distribution",
+  "findings": [
+    "大多数域名 TTL 处于 5分–1天 区间,平衡缓存效率与更新灵活。",
+    "超短 TTL(≤1min)占比 < 5%,多为负载均衡/CDN 边缘节点。",
+    "> 7 天的长 TTL 较少,反映运营商倾向动态运维。"
+  ],
+  "implications": "TTL 中位数是互联网运营节奏的显隐标度——越短代表越动态。"
+}
