@@ -114,7 +114,24 @@ python analysis/scripts/13_rir_enrichment.py
 
 前端在 `/phase1/rir-enrichment/` 新增一页 Tier H。
 
-### 2. 下载基础设施
+### 2. Common Crawl 独立分析（standalone 5 步）
+
+```bash
+python analysis/scripts/14_cc_standalone.py
+```
+
+输出到 `analysis/cc_standalone/step_{01..05}_*/`。数据源仅为 CC webgraph + cluster.idx，不跨库 join，避开 OpenINTEL 依赖。关键发现：
+
+- 134.2M 域名 + 288.6M host（host ≈ 2.15 × domain）
+- PageRank 极度集中：median = 3.72e-9（最小值地板），p99 仅 2.95e-8；`google.com` + `googleapis.com` 分别 0.015 和 0.015 独占前 2
+- `.com` 在域名 top-1k 占 57%、top-10k 占 47%、top-100k 占 44% — 长尾里 ccTLD 占比回升
+- Hostname 长度中位数 15，11–15 字符这个桶占 36.6%（49.2M）
+- host PR 比 domain PR 更均匀（p99 10×小），top-host 是 `twitter.com`，不同于 top-domain 的 `google.com`
+- cluster.idx 80.7 万条里 YouTube 独占 142 条（CDX 索引页最广），其次 `forsale.godaddy.com`（125 条）
+
+前端在 `/phase1/cc-standalone/` 新增 Tier H 第二页。
+
+### 3. 下载基础设施
 
 新建 `analysis/scripts/download_data.py`（OpenINTEL + Common Crawl 幂等下载器，`MANIFEST.json` 续传）。子命令：
 
@@ -126,9 +143,9 @@ python analysis/scripts/download_data.py verify
 
 CC webgraph 使用最新发布的 slug `cc-main-2025-26-dec-jan-feb`（CC-MAIN-2026-12 的图还未发布，预计 2026-06）。
 
-### 3. Checkpoint 基础设施
+### 4. Checkpoint 基础设施
 
-新建 `analysis/scripts/_checkpoint.py`：通过 `.ok` sentinel + 环境变量 `FORCE=1` 支持 11/12/13 的断点续跑。每步目录下有 `result.txt` + `chart.png` + `.ok` 就视为已完成。
+新建 `analysis/scripts/_checkpoint.py`：通过 `.ok` sentinel + 环境变量 `FORCE=1` 支持 13/14 的断点续跑。每步目录下有 `result.txt` + `chart.png` + `.ok` 就视为已完成。
 
 ### 带宽限制与 scope 调整
 
