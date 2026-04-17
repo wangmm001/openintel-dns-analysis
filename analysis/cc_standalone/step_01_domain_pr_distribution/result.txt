@@ -1,0 +1,45 @@
+Step 01 — Domain PageRank Distribution
+==================================================
+Total domains : 134,222,466
+PR min        : 3.7147e-09
+PR max        : 1.5441e-02
+PR median     : 3.7204e-09
+PR p99        : 2.9519e-08
+PR p99.9      : 2.5879e-07
+
+Percentiles (sampled):
+  p 250‰ = 3.7147e-09
+  p 500‰ = 3.7204e-09
+  p 750‰ = 3.9862e-09
+  p 900‰ = 5.3137e-09
+  p 950‰ = 8.2777e-09
+  p 990‰ = 2.9654e-08
+  p 999‰ = 1.9642e-07
+
+Top-10 domains by PageRank:
+            hostname   pr_val  pr_pos
+          google.com 0.015441       1
+      googleapis.com 0.014653       2
+        facebook.com 0.008508       3
+googletagmanager.com 0.007044       4
+      cloudflare.com 0.006182       5
+       instagram.com 0.006028       6
+         gstatic.com 0.004817       7
+         youtube.com 0.004595       8
+            gmpg.org 0.004501       9
+         twitter.com 0.003946      10
+
+Bottom-10 domains by PageRank (lowest):
+                   hostname       pr_val    pr_pos
+                 zgc.org.zw 3.714698e-09 134222466
+sacredheartcathedral.org.zw 3.714698e-09 134222465
+          mufazccbsc.org.zw 3.714698e-09 134222464
+              majlis.org.zw 3.714698e-09 134222463
+             jscelms.org.zw 3.714698e-09 134222462
+               ictaz.org.zw 3.714698e-09 134222461
+          dreamalive.org.zw 3.714698e-09 134222460
+      caritaszim-hre.org.zw 3.714698e-09 134222459
+        baptunionzim.org.zw 3.714698e-09 134222458
+                  zoa.co.zw 3.714698e-09 134222457
+
+Runtime: 98.9s

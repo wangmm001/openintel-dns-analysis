@@ -1,0 +1,28 @@
+Step 05 — cluster.idx Domain Frequency
+==================================================
+Total cluster.idx entries : 806,776
+
+Top-20 domains by entry count:
+                 domain  entry_count
+            youtube.com          142
+    forsale.godaddy.com          125
+           afternic.com           83
+        music.apple.com           83
+         apps.apple.com           73
+                doi.org           70
+  commons.wikimedia.org           70
+             dx.doi.org           69
+pubmed.ncbi.nlm.nih.gov           66
+    community.adobe.com           65
+    learn.microsoft.com           64
+               bing.com           64
+           tv.apple.com           57
+  docs.cloud.google.com           57
+       itunes.apple.com           54
+       ncbi.nlm.nih.gov           53
+     support.google.com           53
+        web.archive.org           53
+            news.qq.com           52
+     podcasts.apple.com           52
+
+Runtime: 0.4s

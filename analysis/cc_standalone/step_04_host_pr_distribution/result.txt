@@ -1,0 +1,27 @@
+Step 04 — Host-Level PageRank Distribution
+==================================================
+Total hosts   : 288,604,261
+PR min        : 2.3701e-09
+PR max        : 8.7191e-03
+PR median     : 2.3744e-09
+PR p99        : 1.0049e-08
+
+Domain vs Host tail ratio (p99):
+  domain p99  : 2.9649e-08
+  host p99    : 9.9831e-09
+  ratio       : 0.34x
+
+Top-10 hosts by PageRank:
+                hostname   pr_val  pr_pos
+             twitter.com 0.008719       1
+          www.google.com 0.008300       2
+                   x.com 0.007897       3
+    fonts.googleapis.com 0.006355       4
+        www.facebook.com 0.004897       5
+www.googletagmanager.com 0.004303       6
+         www.youtube.com 0.003549       7
+       www.instagram.com 0.002938       8
+                gmpg.org 0.002772       9
+       fonts.gstatic.com 0.002742      10
+
+Runtime: 188.4s

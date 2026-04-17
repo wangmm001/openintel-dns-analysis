@@ -1,0 +1,43 @@
+Step 03 — Domain Name-Length Distribution
+==================================================
+min_len : 4
+max_len : 77
+avg_len : 16.20
+med_len : 15
+
+Bucket counts:
+len_bucket      cnt
+     01-05    47318
+     06-10 19635877
+     11-15 49152888
+     16-20 39219595
+     21-30 23026072
+       31+  3140716
+
+Shortest hostnames:
+hostname  hlen
+    g.co     4
+    t.me     4
+    u.ae     4
+    m.me     4
+    x.ai     4
+    j.mp     4
+    a.co     4
+    t.co     4
+    t.ly     4
+    s.id     4
+
+Longest hostnames:
+                                                                     hostname  hlen
+theofficialabsolutelongestdomainnameregisteredontheworldwideweb.international    77
+xn---999-f5i4ba1cycd1izab5gce3aca6gwadj9bxjd9ml9cb1c1mpen0cdfdb.xn--h2brj9c8c    77
+dollarsdollarsdollarsdollarsdollarsdollarsdollarsdollarsdollars.international    77
+8100126786826954085.77746066698626135250407304344748256554770851050040.sch.uk    77
+atbbroculdiyftwg2ghthidkjklolmmbnvmomwqaproflsmhtbchurvxlntyolo.international    77
+  12354jhgbvfdcxe345vqwangolmnbv67lh8765cxzs32456789iknbvfdrewxz0.motorcycles    75
+  xn-----0b4asja7ccgu2b4b0gd0eejfg2jpa1b1e9zva7a0347s4da2797e8qri.xn--1ck2e1b    75
+  xn-----0b4asja8cbew2b4b0gd0edbjm2jpa1b1e9zva7a0347s4da2797e8qri.xn--1ck2e1b    75
+  xn-----0b4asja8cbew2b4b0gd0edbjm2jpa1b1e9zva7a0347s4da2797e7qri.xn--1ck2e1b    75
+     12345678901234567890123456789012345678901234567890abcdeabcde.xn--ses554g    72
+
+Runtime: 116.5s

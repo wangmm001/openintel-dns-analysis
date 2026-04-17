@@ -1,0 +1,59 @@
+Step 02 — Top-TLD Concentration
+==================================================
+
+
+TOP 1K (by PR rank):
+tld  cnt
+com  571
+org  120
+net   61
+gov   32
+ io   19
+ de   17
+ cn   14
+ uk   14
+ me   11
+ ru   10
+edu    9
+ jp    8
+ co    5
+ ca    5
+dev    5
+
+TOP 10K (by PR rank):
+tld  cnt
+com 4709
+org 1141
+net  380
+ io  284
+ de  284
+ cn  276
+ ru  259
+gov  199
+ uk  186
+edu  166
+ jp  163
+ fr  101
+ ca   92
+ au   78
+ co   69
+
+TOP 100K (by PR rank):
+tld   cnt
+com 44512
+org 11066
+ de  3848
+net  3489
+ jp  2516
+ uk  2502
+ io  2055
+ ru  1954
+ cn  1723
+ fr  1414
+ au  1008
+edu   927
+ ca   909
+ it   890
+ nl   858
+
+Runtime: 65.4s
