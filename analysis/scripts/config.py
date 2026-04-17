@@ -25,17 +25,30 @@ TOPLIST_DIR = DATA_DIR / "toplist"
 OUTPUT_DIR = BASE_DIR / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
+# ── Common Crawl ─────────────────────────────────────
+CC_DIR = REPO_DIR / "downloads" / "common-crawl"
+WG_DIR = CC_DIR / "webgraph"
+WG_DOMAIN_DIR = WG_DIR / "domain"
+WG_HOST_DIR = WG_DIR / "host"
+
+# ── RIR rDNS (already under data/rir-data, not downloads/) ─────────────
+RIR_DIR = REPO_DIR / "data" / "rir-data" / "rirs-rdns-formatted" / "type=enriched"
+
+def rir_glob(year="2026", month="03", day="29") -> str:
+    """Default to 2026-03-29 (closest snapshot to 2026-04-10 DNS data)."""
+    return str(RIR_DIR / f"year={year}" / f"month={month}" / f"day={day}" / "hour=00" / "*.parquet")
+
 # ── TLD 区域列表 ─────────────────────────────────────
 ZONE_TLDS = sorted(
     [d.name for d in ZONE_DIR.iterdir()
      if d.is_dir() and d.name != "root" and any(d.glob("*.parquet"))]
-)
+) if ZONE_DIR.exists() else []
 
 # ── TopList 列表 ─────────────────────────────────────
 TOPLISTS = sorted(
     [d.name for d in TOPLIST_DIR.iterdir()
      if d.is_dir() and any(d.glob("*.parquet"))]
-)
+) if TOPLIST_DIR.exists() else []
 
 # ── DuckDB ────────────────────────────────────────────
 def get_conn():
