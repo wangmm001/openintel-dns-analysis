@@ -91,4 +91,10 @@ const rir = await copySteps(
 );
 console.log(`[sync-charts] rir_enrichment step charts copied: ${rir}`);
 
+const cc = await copySteps(
+  join(ANALYSIS, 'cc_standalone'),
+  join(PUBLIC_CHARTS, 'cc'),
+);
+console.log(`[sync-charts] cc_standalone step charts copied: ${cc}`);
+
 console.log('[sync-charts] done.');

@@ -1,0 +1,11 @@
+{
+  "id": "cc_top_tld_concentration",
+  "titleZh": "Top-TLD 在高 PR 域名中的浓度",
+  "titleEn": "Top-TLD Concentration in High-PR Domains",
+  "findings": [
+    "PR Top 1K 中 .com 占 57.1%,远超其在全域名池中的比例——商业域名主导 Web 权威度。",
+    ".gov 以 3.2% 进入前四,超过多个国家 ccTLD,体现政府网站的高度被引用性。",
+    ".io / .de / .cn 等技术与国家 TLD 在 Top 1K 中各占 1–2%,反映技术社区与主要经济体的影响力。"
+  ],
+  "implications": "TLD 浓度分析揭示 Web 权威度的结构性偏向;监管政策、注册成本与域名信誉共同塑造了这一格局。"
+}

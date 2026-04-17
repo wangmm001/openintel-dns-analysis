@@ -929,6 +929,60 @@ RIR_ANNOTATIONS: dict[str, dict] = {
     ),
 }
 
+# Annotations for CC WebGraph standalone analysis (5 charts, tier H page 2).
+CC_STANDALONE_ANNOTATIONS: dict[str, dict] = {
+    "cc_domain_pr_distribution": dict(
+        titleZh="域名级 PageRank 分布",
+        titleEn="Domain-Level PageRank Distribution",
+        findings=[
+            "134M 域名 PR 中位数 3.72e-09,接近理论最小值——绝大多数域名几乎不被链接。",
+            "p99 = 2.95e-08,p99.9 = 2.59e-07,最大值 1.54e-02;分布呈现极度重尾特征。",
+            "前 10 名域名 PR 合计约占全网总权重的相当比例,权威度高度集中。",
+        ],
+        implications="重尾 PR 分布是无标度网络的典型特征;绝大多数域名处于 Web 图的边缘,只有少数枢纽汇聚了海量入链。",
+    ),
+    "cc_top_tld_concentration": dict(
+        titleZh="Top-TLD 在高 PR 域名中的浓度",
+        titleEn="Top-TLD Concentration in High-PR Domains",
+        findings=[
+            "PR Top 1K 中 .com 占 57.1%,远超其在全域名池中的比例——商业域名主导 Web 权威度。",
+            ".gov 以 3.2% 进入前四,超过多个国家 ccTLD,体现政府网站的高度被引用性。",
+            ".io / .de / .cn 等技术与国家 TLD 在 Top 1K 中各占 1–2%,反映技术社区与主要经济体的影响力。",
+        ],
+        implications="TLD 浓度分析揭示 Web 权威度的结构性偏向;监管政策、注册成本与域名信誉共同塑造了这一格局。",
+    ),
+    "cc_domain_name_length": dict(
+        titleZh="域名长度分布",
+        titleEn="Domain Name Length Distribution",
+        findings=[
+            "平均 16.2 字符,中位数 15;11–15 字符桶含 49M 域名,是最大单一桶。",
+            "极短域名(≤5 字符)仅 4.7 万条——短域名的稀缺性与其高市场价值高度吻合。",
+            "31+ 字符长域名 314 万条,多为自动生成或程序化注册的域名。",
+        ],
+        implications="域名长度分布可用作垃圾域名/停放域名检测的弱特征——过长域名往往由算法生成,过短域名往往为高价值资产。",
+    ),
+    "cc_host_pr_distribution": dict(
+        titleZh="Host 级 PageRank 分布",
+        titleEn="Host-Level PageRank Distribution",
+        findings=[
+            "288M host 的 PR p99(1.00e-08)仅为域名级 p99 的 34%——子域名稀释了 PR 分布的尾部。",
+            "twitter.com(0.00872)与 www.google.com(0.00830)领衔;前五中有 3 个是社交/搜索平台。",
+            "fonts.googleapis.com(0.00636)高居第四——静态资源 CDN 的大量被嵌入使其 PR 极高。",
+        ],
+        implications="Host 级 PR 比域名级更细粒度地反映实际流量入口;CDN 与嵌入式资源域名的高 PR 提示 Web 图中存在大量非内容性链接。",
+    ),
+    "cc_cluster_idx_domain_freq": dict(
+        titleZh="cluster.idx 域名频次 Top-20",
+        titleEn="cluster.idx Domain Frequency Top-20",
+        findings=[
+            "youtube.com(142 次)居首,反映视频内容在 Common Crawl 覆盖中的主导地位。",
+            "forsale.godaddy.com(125)与 afternic.com(83)高频出现——域名停放平台的大量页面被系统性爬取。",
+            "学术域名(doi.org 70、pubmed 66)与技术文档(learn.microsoft.com 64、docs.cloud.google.com 57)入围前 20。",
+        ],
+        implications="cluster.idx 频次揭示爬虫覆盖的结构性偏差——停放域名、技术文档与学术内容的高频出现提示 Web 图与\"真实用户流量\"之间存在系统性偏移。",
+    ),
+}
+
 
 # ────────────────────────────────────────────────────────────────
 # Main
@@ -971,6 +1025,10 @@ def run_annotations() -> None:
 
     # rir_enrichment (Phase 1, hand-curated)
     for cid, fields in RIR_ANNOTATIONS.items():
+        all_anns.append(Annotation(id=cid, **fields))
+
+    # cc_standalone (Phase 1, hand-curated)
+    for cid, fields in CC_STANDALONE_ANNOTATIONS.items():
         all_anns.append(Annotation(id=cid, **fields))
 
     # Persist per-annotation + bundle

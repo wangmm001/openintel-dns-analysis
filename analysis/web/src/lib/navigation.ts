@@ -179,12 +179,15 @@ export const TIERS: Tier[] = [
     key: "H",
     titleZh: "Phase 1 · RIR 富化",
     titleEn: "Phase 1 · RIR Enrichment",
-    taglineZh: "3.7M IPv4 prefix · 5 大 RIR · 反向 DNS 命名模式聚类",
+    taglineZh: "RIR rDNS 3.7M 前缀 + CC 134M 域名 WebGraph — 两个新正交维度",
     glow: "orange",
     pages: [
       { slug: "rir-enrichment", path: "/phase1/rir-enrichment", tier: "H", order: 31,
         titleZh: "RIR rDNS 全景", titleEn: "RIR rDNS Landscape",
         tagline: "委派分布 · 前缀尺寸 · rtype 分布 · 托管者聚类 · 国家维度", chartCount: 5, interactive: 0 },
+      { slug: "cc-standalone", path: "/phase1/cc-standalone", tier: "H", order: 32,
+        titleZh: "CC WebGraph 独立分析", titleEn: "CC WebGraph Standalone",
+        tagline: "134M 域名 + 288M host · PR 分布 · TLD 浓度 · cluster.idx 频次", chartCount: 5, interactive: 0 },
     ],
   },
 ];

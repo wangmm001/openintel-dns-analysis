@@ -1,0 +1,11 @@
+{
+  "id": "cc_host_pr_distribution",
+  "titleZh": "Host 级 PageRank 分布",
+  "titleEn": "Host-Level PageRank Distribution",
+  "findings": [
+    "288M host 的 PR p99(1.00e-08)仅为域名级 p99 的 34%——子域名稀释了 PR 分布的尾部。",
+    "twitter.com(0.00872)与 www.google.com(0.00830)领衔;前五中有 3 个是社交/搜索平台。",
+    "fonts.googleapis.com(0.00636)高居第四——静态资源 CDN 的大量被嵌入使其 PR 极高。"
+  ],
+  "implications": "Host 级 PR 比域名级更细粒度地反映实际流量入口;CDN 与嵌入式资源域名的高 PR 提示 Web 图中存在大量非内容性链接。"
+}

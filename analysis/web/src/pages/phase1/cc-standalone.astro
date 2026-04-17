@@ -1,0 +1,55 @@
+---
+import SectionLayout from "~/layouts/SectionLayout.astro";
+import ChartCard from "~/components/ChartCard.astro";
+import PngChart from "~/components/PngChart.astro";
+---
+
+<SectionLayout
+  path="/phase1/cc-standalone"
+  subtitle="对 Common Crawl WebGraph 的独立解析：134M 域名级 PageRank 重尾分布、TLD 在高 PR 域名中的浓度、域名长度规律、288M host 级 PR 全景,以及 cluster.idx 顶级入口域名频次排行。"
+>
+  <ChartCard
+    id="cc_domain_pr_distribution"
+    titleZh="域名级 PageRank 分布"
+    titleEn="Domain-Level PageRank Distribution"
+    subtitle="134M 域名的 PR 中位数仅 3.72e-09；p99 = 2.95e-08,p99.9 = 2.59e-07 —— 极度重尾,绝大多数域名 PR 趋近最小值。"
+  >
+    <PngChart src="/charts/cc/step_01_domain_pr_distribution/chart.png" alt="域名级 PageRank 分布" chartId="cc_domain_pr_distribution" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_top_tld_concentration"
+    titleZh="Top-TLD 在高 PR 域名中的浓度"
+    titleEn="Top-TLD Concentration in High-PR Domains"
+    subtitle="PR Top 1K 中 .com 独占 57.1%，.org 12%，.net 6.1%；.gov 以 3.2% 位居第四,凸显政府域名的高影响力。"
+  >
+    <PngChart src="/charts/cc/step_02_top_tld_concentration/chart.png" alt="Top-TLD 浓度" chartId="cc_top_tld_concentration" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_domain_name_length"
+    titleZh="域名长度分布"
+    titleEn="Domain Name Length Distribution"
+    subtitle="平均长度 16.2 字符，中位数 15；11–15 字符段占比最高(49M 条)；极短域名(≤5 字符)仅 4.7 万条,极为稀缺。"
+  >
+    <PngChart src="/charts/cc/step_03_domain_name_length/chart.png" alt="域名长度分布" chartId="cc_domain_name_length" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_host_pr_distribution"
+    titleZh="Host 级 PageRank 分布"
+    titleEn="Host-Level PageRank Distribution"
+    subtitle="288M host 的 PR p99 = 1.00e-08，仅为域名级 p99 的 34%；twitter.com(0.00872)与 www.google.com(0.00830)位居前两。"
+  >
+    <PngChart src="/charts/cc/step_04_host_pr_distribution/chart.png" alt="Host 级 PageRank 分布" chartId="cc_host_pr_distribution" />
+  </ChartCard>
+
+  <ChartCard
+    id="cc_cluster_idx_domain_freq"
+    titleZh="cluster.idx 域名频次 Top-20"
+    titleEn="cluster.idx Domain Frequency Top-20"
+    subtitle="806,776 条 cluster.idx 入口中 youtube.com(142 次)居首；forsale.godaddy.com(125) 与 afternic.com(83) 高频出现,反映域名停放生态的大规模爬取覆盖。"
+  >
+    <PngChart src="/charts/cc/step_05_cluster_idx_domain_freq/chart.png" alt="cluster.idx 域名频次" chartId="cc_cluster_idx_domain_freq" />
+  </ChartCard>
+</SectionLayout>

@@ -1,0 +1,11 @@
+{
+  "id": "cc_cluster_idx_domain_freq",
+  "titleZh": "cluster.idx 域名频次 Top-20",
+  "titleEn": "cluster.idx Domain Frequency Top-20",
+  "findings": [
+    "youtube.com(142 次)居首,反映视频内容在 Common Crawl 覆盖中的主导地位。",
+    "forsale.godaddy.com(125)与 afternic.com(83)高频出现——域名停放平台的大量页面被系统性爬取。",
+    "学术域名(doi.org 70、pubmed 66)与技术文档(learn.microsoft.com 64、docs.cloud.google.com 57)入围前 20。"
+  ],
+  "implications": "cluster.idx 频次揭示爬虫覆盖的结构性偏差——停放域名、技术文档与学术内容的高频出现提示 Web 图与\"真实用户流量\"之间存在系统性偏移。"
+}
