@@ -116,11 +116,15 @@ def cmd_openintel(args):
 # CC-MAIN-2026-12's own webgraph is not published yet (expected ~June 2026).
 WG_SLUG = "cc-main-2025-26-dec-jan-feb"
 
+# Domain-level is flat .txt.gz (vertices 1 GB, edges 21.5 GB, ranks 2.5 GB).
+# We skip domain-edges: 21 GB / 200 KB/s ≈ 30 h, infeasible on this machine.
 CC_FILES_DOMAIN = [
-    f"{WG_SLUG}-domain-vertices.paths.gz",
-    f"{WG_SLUG}-domain-edges.paths.gz",
+    f"{WG_SLUG}-domain-vertices.txt.gz",
     f"{WG_SLUG}-domain-ranks.txt.gz",
 ]
+
+# Host-level vertices/edges are .paths.gz manifests pointing to many part files on S3.
+# host-ranks is a 5.6 GB flat .txt.gz (usable directly without following manifests).
 CC_FILES_HOST = [
     f"{WG_SLUG}-host-vertices.paths.gz",
     f"{WG_SLUG}-host-edges.paths.gz",
