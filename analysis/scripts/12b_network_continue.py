@@ -15,10 +15,11 @@ from scipy import stats
 
 warnings.filterwarnings("ignore")
 
-BASE = pathlib.Path(__file__).resolve().parent.parent
-DATA = BASE / "data" / "openintel"
+BASE = pathlib.Path(__file__).resolve().parent.parent    # analysis/
+REPO = BASE.parent                                        # repo root
+DATA = REPO / "downloads" / "openintel"
 ZONE = DATA / "zone"
-CC_DIR = BASE / "data" / "common-crawl"
+CC_DIR = REPO / "downloads" / "common-crawl"
 WG_DIR = CC_DIR / "webgraph"
 OUT = BASE / "network_analysis"
 

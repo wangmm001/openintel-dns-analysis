@@ -35,11 +35,13 @@ from scipy.optimize import curve_fit
 warnings.filterwarnings("ignore")
 
 # ── Paths ────────────────────────────────────────────────
-BASE   = pathlib.Path(__file__).resolve().parent.parent
-DATA   = BASE / "data" / "openintel"
+# Script lives at analysis/scripts/ → .parent.parent = analysis/, .parent.parent.parent = repo root
+BASE   = pathlib.Path(__file__).resolve().parent.parent          # analysis/
+REPO   = BASE.parent                                              # repo root
+DATA   = REPO / "downloads" / "openintel"
 ZONE   = DATA / "zone"
 TOP    = DATA / "toplist"
-CC_DIR = BASE / "data" / "common-crawl"
+CC_DIR = REPO / "downloads" / "common-crawl"
 WG_DIR = CC_DIR / "webgraph"
 OUT    = BASE / "network_analysis"
 OUT.mkdir(exist_ok=True)

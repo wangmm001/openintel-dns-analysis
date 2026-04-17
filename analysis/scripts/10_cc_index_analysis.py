@@ -28,11 +28,11 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from config import (
     get_conn, ZONE_TLDS, TOPLISTS, zone_glob, toplist_glob,
-    all_zone_sql, save_fig, BASE_DIR, OUTPUT_DIR
+    all_zone_sql, save_fig, BASE_DIR, REPO_DIR, OUTPUT_DIR
 )
 
-WG_DIR = BASE_DIR / "data" / "common-crawl" / "webgraph"
-CC_DIR = BASE_DIR / "data" / "common-crawl"
+WG_DIR = REPO_DIR / "downloads" / "common-crawl" / "webgraph"
+CC_DIR = REPO_DIR / "downloads" / "common-crawl"
 RANKS_FILE = WG_DIR / "domain-ranks.txt.gz"
 CLUSTER_IDX = CC_DIR / "cluster.idx"
 CDX_BASE = "https://data.commoncrawl.org/cc-index/collections/CC-MAIN-2026-12/indexes"

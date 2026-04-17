@@ -1,8 +1,9 @@
 """OpenINTEL DNS 开源数据分析教程 - 全局配置
 
 项目结构:
-  data/openintel/zone/{ch,ee,fr,gov,li,nu,se,sk,root}/*.parquet
-  data/openintel/toplist/{tranco,umbrella,radar,majestic}/*.parquet
+  downloads/openintel/zone/{ch,ee,fr,gov,li,nu,se,sk,root}/*.parquet
+  downloads/openintel/toplist/{tranco,umbrella,radar,majestic}/*.parquet
+  analysis/{scripts,output,deep_analysis,network_analysis,docs}/
 """
 
 import os
@@ -15,8 +16,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # ── 路径 ──────────────────────────────────────────────
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data" / "openintel"
+# config.py lives at analysis/scripts/config.py
+BASE_DIR = Path(__file__).resolve().parent.parent    # analysis/
+REPO_DIR = BASE_DIR.parent                            # repo root
+DATA_DIR = REPO_DIR / "downloads" / "openintel"
 ZONE_DIR = DATA_DIR / "zone"
 TOPLIST_DIR = DATA_DIR / "toplist"
 OUTPUT_DIR = BASE_DIR / "output"

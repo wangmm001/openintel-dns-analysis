@@ -1,8 +1,12 @@
-# Data files (too large for git)
-data/**/*.parquet
+# Downloaded data (too large for git)
+downloads/**/*.parquet
+downloads/**/*.gz
+downloads/**/*.idx
 
-# Output images
-output/*.png
+# Generated analysis artifacts
+analysis/output/*.png
+analysis/deep_analysis/**/*.png
+analysis/network_analysis/**/*.png
 
 # Python
 __pycache__/
