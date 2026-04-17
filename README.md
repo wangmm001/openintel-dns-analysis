@@ -6,11 +6,12 @@
 
 | 维度 | 数值 |
 |------|------|
-| 数据集 | 13 个（8 ccTLD 区域 + 4 TopList + Root） |
-| 总记录数 | 2.32 亿 |
-| 总域名数 | 3,347 万 |
-| 数据量 | 11.2 GB (Parquet) |
+| DNS 数据集 | 13 个（8 ccTLD 区域 + 4 TopList + Root） |
+| DNS 记录数 | 2.32 亿 |
+| DNS 域名数 | 3,347 万 |
+| Parquet 总量 | 11.2 GB |
 | 字段数 | 99 列 |
+| **Phase 1 新增** | RIR rDNS 3.7M IPv4 前缀 + CC WebGraph (cc-main-2025-26-dec-jan-feb, 288M host / 12.4B edge) |
 
 ## 项目结构
 
@@ -90,6 +91,50 @@ pnpm build                   # 生成 dist/web/ 静态站
 - **S3 接口**: `https://object.openintel.nl` / Bucket: `openintel-public`
 - **许可证**: CC BY-NC-SA 4.0
 - **项目主页**: https://openintel.nl
+
+## Phase 1 — 横向覆盖扩展（2026-04-17）
+
+在已有的 DNS + CC 分析之上新增两个正交维度，不改动既有分析的数值结论：
+
+### 1. RIR rDNS 富化（standalone 5 步分析）
+
+用 `data/rir-data/rirs-rdns-formatted/` 里 3.7M 条 IPv4 prefix → rDNS NS/PTR 映射做纯 RIR 维度分析：
+
+```bash
+python analysis/scripts/13_rir_enrichment.py
+```
+
+输出到 `analysis/rir_enrichment/step_{01..05}_*/`，含 `chart.png` + `result.txt`。关键发现：
+
+- **ARIN 54.4%**, APNIC 37.2%, RIPE 4.6%, AFRINIC 2.4%, LACNIC 1.4% — 北美 + 亚太合计 92% 的 IPv4 prefix
+- /24 块在每个 RIR 都占 >95% — 细粒度分配是事实标准；INTERNIC 的历史大块（1271 条 /8 类）是异常
+- NS 记录占 rDNS 的 99.9%+（其他 rtype 合计 <0.1%）
+- **NS rdata 命名模式** 里 Japan ISP 基础设施（ad.jp/ne.jp）在全球 NS 中占比最高（12.9% 合计），Akamai 第 3（1.7%）
+- ccTLD 维度下 `jp` 领先，反映 APNIC 的 Japan 权重
+
+前端在 `/phase1/rir-enrichment/` 新增一页 Tier H。
+
+### 2. 下载基础设施
+
+新建 `analysis/scripts/download_data.py`（OpenINTEL + Common Crawl 幂等下载器，`MANIFEST.json` 续传）。子命令：
+
+```bash
+python analysis/scripts/download_data.py openintel --date 2026-04-10
+python analysis/scripts/download_data.py common-crawl --crawl CC-MAIN-2026-12 --host-graph
+python analysis/scripts/download_data.py verify
+```
+
+CC webgraph 使用最新发布的 slug `cc-main-2025-26-dec-jan-feb`（CC-MAIN-2026-12 的图还未发布，预计 2026-06）。
+
+### 3. Checkpoint 基础设施
+
+新建 `analysis/scripts/_checkpoint.py`：通过 `.ok` sentinel + 环境变量 `FORCE=1` 支持 11/12/13 的断点续跑。每步目录下有 `result.txt` + `chart.png` + `.ok` 就视为已完成。
+
+### 带宽限制与 scope 调整
+
+本次执行中发现从本机到 `object.openintel.nl`（荷兰）带宽约 **8 KB/s**，全量 OpenINTEL 重下载不可行（≈ 58 天）。相比之下到 AWS us-east-1 的 Common Crawl 带宽约 200 KB/s—3.5 MB/s，CC 数据可顺畅拉取。
+
+因此本期（Phase 1）聚焦于不依赖 OpenINTEL 重下载的三块：RIR 分析、CC 基础设施下载、前端呈现。`analysis/output/` 和 `analysis/deep_analysis/`、`analysis/network_analysis/` 的既有分析结果不变。
 
 ## 未来规划
 
